@@ -1,4 +1,4 @@
-package Model;
+package com.internshipgo.Model;
 
 /**
  * Created by Hamza on 11/9/2016.
@@ -10,6 +10,10 @@ public class Company extends User{
     private String headquarters;
     private long founded;
     private String webSite;
+
+    public Company(String mail, String password) {
+        super(mail, password);
+    }
 
     public Type getType() {
         return type;
