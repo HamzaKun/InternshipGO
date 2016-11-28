@@ -38,10 +38,16 @@ public class MainController {
         return "index";
     }
 
+    //@Autowired
+    public JdbcTemplate jdbcTemplate;
+    //@Autowired
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
+    }
     @Autowired
-    JdbcTemplate jdbcTemplate;
-
-
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @RequestMapping("/create")
     public String Create(String mail, String password) {
@@ -50,7 +56,7 @@ public class MainController {
             User user = new User(mail, password);
             //userDao.save(user);
             //List<Object[]> param = Arrays.asList(mail, pas);//{new String[]{mail, password}});
-            jdbcTemplate.batchUpdate("INSERT INTO USER(email, password) VALUES(test, test)");
+            jdbcTemplate.batchUpdate("INSERT INTO USER(email, password) VALUES(?, ?)", mail, password);
             userId = user.getId();
         }
         catch (Exception ex) {

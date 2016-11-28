@@ -1,16 +1,16 @@
 package com.internshipgo.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Hamza on 11/9/2016.
  */
 @Entity
-public class User {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class User implements Serializable{
     @Id
-    @GeneratedValue
+    //@GeneratedValue
     private Long id;
     private String email;
     private String password;
