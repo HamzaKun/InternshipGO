@@ -12,6 +12,7 @@ public class User implements Serializable{
     @Id
     //@GeneratedValue
     private Long id;
+    private String username;
     private String email;
     private String password;
 
@@ -46,5 +47,13 @@ public class User implements Serializable{
     public User(String mail, String password) {
         email = mail;
         this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
