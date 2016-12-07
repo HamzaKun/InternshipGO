@@ -1,22 +1,15 @@
 package com.internshipgo.controller;
 
 import com.internshipgo.Model.User;
-import com.internshipgo.Model.repository.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 @Component
@@ -41,10 +34,14 @@ public class MainController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    @RequestMapping("/signup")
+    public String SignUpRedirection(String mail, String password) {
 
+        return "SignupPage";
+    }
 
-    @RequestMapping("/create")
-    public String Create(String mail, String password) {
+    @RequestMapping{"/createUser"}
+    public String createUser(String mail, String password) {
         long userId = 0;
         try {
             User user = new User(mail, password);
@@ -56,7 +53,7 @@ public class MainController {
         catch (Exception ex) {
             return "Error creating the user: " + ex.toString();
         }
-        return "User succesfully created with id = " + userId;
-    }/*@Bean/**/
+        return null;
+    }
 
 }

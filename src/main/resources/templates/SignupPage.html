@@ -2,10 +2,10 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-    <script src="/SignUp.js"></script>
-    <link rel="stylesheet" th:href="@{MyCSS.css}"/>
 
+<head>
+    <script src="SignUp.js"></script>
+    <link rel="stylesheet" href="MyCSS.css">
 </head>
 <body>
     <div class="account-wall">
@@ -15,23 +15,23 @@
                 </div>   
                 <span>SIGN UP</span>
         </div>
-        <div class="tabs">
-            <input type="button" name="button" id="student" onclick="showUser1()" class="buttons img1">
-            <input type="button" name="button" id="institute" onclick="showUser2()" class="buttons img2 ">
-            <input type="button" name="button" id="company" onclick="showUser3()" class="buttons img3">
+        <div class="tabs">            
+            <input type="button" name="button" id="student" onclick="showUser1()" class="buttons img1"/>
+            <input type="button" name="button" id="institute" onclick="showUser2()" class="buttons img2 "/>
+            <input type="button" name="button" id="company" onclick="showUser3()" class="buttons img3"/>
         </div>
-        <form class="form-signin">
+        <form class="form-signin" th:action="@{/createUser}">
             <div>
-                <input type="text" class="form-control" placeholder="Username">
-                <img src="Username1.png" class="icons"/>
+                <input type="text" class="form-control" th:field="*{user}" placeholder="Username">
+                <img src="Username1.png" class="icons"> 
             </div>
             <div>
-                <input type="email" class="form-control" placeholder="Email Id">
-                <img src="Mail1.png" class="icons"/>
+                <input type="email" class="form-control" placeholder="Email">
+                <img src="Mail1.png" class="icons"> 
             </div>
             <div id="org_name" style="display:none">
                 <input type="text" class="form-control" placeholder="Organization Name">
-                <img src="bag.png" class="icons"/>
+                <img src="bag.png" class="icons"> 
             </div>
             
             <select class="form-control" style="color:#999">
@@ -43,7 +43,7 @@
             </select>
             <div>
                 <input type="number" class="form-control" height=20px placeholder="Phone Number">
-                <img src="Phone.png" class="icons"/>
+                <img src="Phone.png" class="icons"> 
             </div>                
             <div>
               <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>  
@@ -51,5 +51,4 @@
         </form>
     </div>        
 </body>
-</html>
 

@@ -1,0 +1,39 @@
+<head>
+    <link rel="stylesheet" href="MyCSS.css">
+</head>
+<body>
+    <div class="account-wall">
+        <div class="user-login">
+                <div class="close" >
+                    <button type="button" class="close-btn"              onclick="window.open('', '_self', ''); window.close();">&times;</button>   
+                </div>   
+                <span>USER LOGIN</span>
+        </div>
+        <select class="first" style="color:#999">
+                 <option value="Student" class= "opt1">Institute</option>
+                 <option value="Institute" class= "opt2">Candidate</option>
+                 <option value="Employer" class= "opt3">Employer</option>
+        </select>
+        <form class="form-signin">                
+            <div>
+                <input type="text" class="form-control" placeholder="Username">
+                <img src="Username1.png" class="icons"> 
+            </div>
+            <div>
+                <input type="password" class="form-control" placeholder="Password">
+                <img src="key.png" class="icons"> 
+            </div>
+            
+            <label class="checkbox pull-left">
+                <input type="checkbox" value="remember-me">
+                <span class="remember">Remember me</span>
+            </label>    
+            <div>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">
+                Login</button>  
+            </div>  
+            <a href="#" class="forgot-pass">Forgot password? </a>
+            <a href="#" class="text-center new-account">Create an account </a> 
+        </form>
+    </div>        
+</body>

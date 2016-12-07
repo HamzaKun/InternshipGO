@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/InternshipGO.iml" filepath="$PROJECT_DIR$/InternshipGO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WSTest/WSTest.iml" filepath="$PROJECT_DIR$/WSTest/WSTest.iml" />
     </modules>
   </component>
 </project>
