@@ -2,6 +2,7 @@ package com.internshipgo.controller;
 
 import com.internshipgo.Model.User;
 import com.internshipgo.Model.repository.UserDao;
+import com.internshipgo.view.LoginForm;
 import com.internshipgo.view.SignUpForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,11 +46,6 @@ public class MainController extends WebMvcConfigurerAdapter {
     /*@Autowired
     JdbcTemplate jdbcTemplate;
 */
-    @RequestMapping("/signup")
-    public String SignUpRedirection(String mail, String password) {
-
-        return "SignupPage";
-    }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -59,7 +55,7 @@ public class MainController extends WebMvcConfigurerAdapter {
     @GetMapping("/createUser")
     public String showCreateUserForm(Model model, SignUpForm signUpForm) {
         //model.addAttribute("signUpForm", signUpForm);
-        return "index";
+        return "SignupPage";
     }
 
 
@@ -67,8 +63,7 @@ public class MainController extends WebMvcConfigurerAdapter {
     public String checkUserInfo(Model model, HttpSession session, @Valid SignUpForm signUpForm, BindingResult bindingResult) {
         //model.addAttribute("signUpForm", signUpForm);
         if(bindingResult.hasErrors() || !signUpForm.getConfPassword().equals((String) signUpForm.getPassword())) {
-
-            return "index";
+            return "SignupPage";
         }else{
             System.out.println(signUpForm);
             User user = new User();
@@ -80,6 +75,18 @@ public class MainController extends WebMvcConfigurerAdapter {
             return "redirect:/results";
         }
 
+    }
+
+    @GetMapping("/login")
+    public String loginRedirect(LoginForm loginForm) {
+        return "LoginPage";
+    }
+
+    @PostMapping("/login")
+    public String loginAction(@Valid LoginForm loginForm, BindingResult bindingResult) {
+        User user = userDao.findByEmailAndPassword(loginForm.getEmail(), loginForm.getPassword());
+        System.out.println(user);
+        return  "redirect:/results";
     }
 
 }

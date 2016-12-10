@@ -56,4 +56,8 @@ public class User {
         email = mail;
         this.password = password;
     }
+
+    public String toString() {
+        return "(" + email + ", " + password + ", " + field + ")";
+    }
 }
