@@ -34,23 +34,23 @@
             </tr>
             <tr>
                 <td>
-                <select class="form-control" th:field="*{field}" style="color:#999">
-                    <option value="hint" disabled selected hidden>Please select specialization</option>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Electrical">Electrical</option>
-                    <option value="Mechanical">Mechanical</option>
-                    <option value="Civil">Civil</option>
-                </select>
+                    <select class="form-control" th:field="*{field}" style="color:#999">
+                        <option value="hint" disabled selected hidden>Please select specialization</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Electrical">Electrical</option>
+                        <option value="Mechanical">Mechanical</option>
+                        <option value="Civil">Civil</option>
+                    </select>
                 </td>
                 <td th:if="${#fields.hasErrors('field')}" th:errors="*{field}">Field Error</td>
             </tr>
 
-        <div>
-            <tr>
-                <td><button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></td>
-            </tr>
+            <div>
+                <tr>
+                    <td><button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></td>
+                </tr>
 
-        </div>
+            </div>
         </table>
     </form>
 </div>
