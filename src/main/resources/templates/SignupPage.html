@@ -20,9 +20,9 @@
             <input type="button" name="button" id="institute" onclick="showUser2()" class="buttons img2 "/>
             <input type="button" name="button" id="company" onclick="showUser3()" class="buttons img3"/>
         </div>
-        <form class="form-signin" th:action="@{/createUser}">
+        <form class="form-signin" >
             <div>
-                <input type="text" class="form-control" th:field="*{user}" placeholder="Username">
+                <input type="text" class="form-control"  placeholder="Username">
                 <img src="Username1.png" class="icons"> 
             </div>
             <div>
@@ -51,4 +51,5 @@
         </form>
     </div>        
 </body>
+</html>
 

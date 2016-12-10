@@ -1,55 +1,59 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <script src="/SignUp.js"></script>
     <link rel="stylesheet" th:href="@{MyCSS.css}"/>
 
 </head>
 <body>
-    <div class="account-wall">
-        <div class="user-login">
-                <div class="close" >
-                    <button type="button" class="close-btn"              onclick="window.open('', '_self', ''); window.close();">&times;</button>   
-                </div>   
-                <span>SIGN UP</span>
+<div class="account-wall">
+    <div class="user-login">
+        <div class="close">
+            <button type="button" class="close-btn"
+                    onclick="window.open('', '_self', ''); window.close();">&times;</button>
         </div>
-        <div class="tabs">
-            <input type="button" name="button" id="student" onclick="showUser1()" class="buttons img1">
-            <input type="button" name="button" id="institute" onclick="showUser2()" class="buttons img2 ">
-            <input type="button" name="button" id="company" onclick="showUser3()" class="buttons img3">
+        <span>SIGN UP</span>
+    </div>
+
+    <!--/*@thymesVar id="signUpForm" type="com.internshipgo.view.SignUpForm"*/-->
+    <form class="form-signin" action="#" th:action="@{/createUser}" th:object="${signUpForm}" method="post">
+        <table>
+            <tr>
+                <td><input type="text" th:field="*{email}" class="form-control" placeholder="Email" /></td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Mail Error</td>
+            </tr>
+            <tr>
+                <td><input type="password" th:field="*{password}" class="form-control" placeholder="Password" /></td>
+                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Pass Error</td>
+            </tr>
+            <tr>
+                <td><input type="password" th:field="*{confPassword}" class="form-control" placeholder="Confirm Password" /></td>
+                <td th:if="${#fields.hasErrors('confPassword')}" th:errors="*{confPassword}">Pass Error</td>
+            </tr>
+            <tr>
+                <td>
+                <select class="form-control" th:field="*{field}" style="color:#999">
+                    <option value="hint" disabled selected hidden>Please select specialization</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Civil">Civil</option>
+                </select>
+                </td>
+                <td th:if="${#fields.hasErrors('field')}" th:errors="*{field}">Field Error</td>
+            </tr>
+
+        <div>
+            <tr>
+                <td><button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></td>
+            </tr>
+
         </div>
-        <form class="form-signin">
-            <div>
-                <input type="text" class="form-control" placeholder="Username">
-                <img src="Username1.png" class="icons"/>
-            </div>
-            <div>
-                <input type="email" class="form-control" placeholder="Email Id">
-                <img src="Mail1.png" class="icons"/>
-            </div>
-            <div id="org_name" style="display:none">
-                <input type="text" class="form-control" placeholder="Organization Name">
-                <img src="bag.png" class="icons"/>
-            </div>
-            
-            <select class="form-control" style="color:#999">
-                 <option value="hint" disabled selected hidden>Please select specialization</option>
-                 <option value="Computer Science">Computer Science</option>
-                 <option value="Electrical">Electrical</option>
-                 <option value="Mechanical">Mechanical</option>
-                 <option value="Civil">Civil</option>
-            </select>
-            <div>
-                <input type="number" class="form-control" height=20px placeholder="Phone Number">
-                <img src="Phone.png" class="icons"/>
-            </div>                
-            <div>
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>  
-            </div>              
-        </form>
-    </div>        
+        </table>
+    </form>
+</div>
 </body>
 </html>
 

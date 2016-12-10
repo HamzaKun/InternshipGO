@@ -21,10 +21,10 @@ import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
 @SpringBootApplication
-@ComponentScan("com.internshipgo")
+//@ComponentScan("com.internshipgo")
 //@EntityScan("com.")
 //@EnableAutoConfiguration
-@EnableJpaRepositories("com.internshipgo.Model.repository")
+//@EnableJpaRepositories("com.internshipgo.Model.repository")
 public class Application {
     /*@Bean
     public DataSource dataSource() {

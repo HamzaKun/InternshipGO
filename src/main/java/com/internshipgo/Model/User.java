@@ -14,6 +14,15 @@ public class User {
     private Long id;
     private String email;
     private String password;
+    private String field;
+
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
 
     public String getEmail() {
         return email;
