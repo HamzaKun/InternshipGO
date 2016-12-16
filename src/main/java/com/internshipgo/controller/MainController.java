@@ -16,22 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-//@Component
 public class MainController extends WebMvcConfigurerAdapter {
-
-    /*@Autowired
-    private UserDao userDao;
-
-    @Autowired
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }*/
 
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
     @Autowired
@@ -43,10 +32,6 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "index";
     }
 
-    /*@Autowired
-    JdbcTemplate jdbcTemplate;
-*/
-
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/results").setViewName("results");
@@ -54,14 +39,11 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/createUser")
     public String showCreateUserForm(Model model, SignUpForm signUpForm) {
-        //model.addAttribute("signUpForm", signUpForm);
         return "SignupPage";
     }
 
-
     @PostMapping("/createUser")
     public String checkUserInfo(Model model, HttpSession session, @Valid SignUpForm signUpForm, BindingResult bindingResult) {
-        //model.addAttribute("signUpForm", signUpForm);
         if(bindingResult.hasErrors() || !signUpForm.getConfPassword().equals((String) signUpForm.getPassword())) {
             return "SignupPage";
         }else{
@@ -85,6 +67,9 @@ public class MainController extends WebMvcConfigurerAdapter {
     @PostMapping("/login")
     public String loginAction(@Valid LoginForm loginForm, BindingResult bindingResult) {
         User user = userDao.findByEmailAndPassword(loginForm.getEmail(), loginForm.getPassword());
+        if( user == null ) {
+            return "LoginPage";
+        }
         System.out.println(user);
         return  "redirect:/results";
     }
