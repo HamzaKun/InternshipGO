@@ -1,18 +1,44 @@
 package com.internshipgo.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Created by Hamza on 11/9/2016.
  */
-public class Company extends User{
+@Entity
+public class Company {
+    @Id
+    @GeneratedValue
+    private long id;
     private Type type;
     private CompanySize companySize;
     private Industry industry;
     private String headquarters;
     private long founded;
     private String webSite;
+    /*@OneToMany
+    private List<CompanyAgent> agents;
 
-    public Company(String mail, String password) {
+    public List<CompanyAgent> getAgents() {
+        return agents;
+    }
+
+    public void setAgents(List<CompanyAgent> agents) {
+        this.agents = agents;
+    }
+*/
+    /*public Company(String mail, String password) {
         super(mail, password);
+    }*/
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Type getType() {
