@@ -9,7 +9,7 @@
 <!-- Basic Page Needs
 ================================================== -->
 <meta charset="utf-8">
-<title>Work Scout</title>
+<title>Internship Go</title>
 
 <!-- Mobile Specific Metas
 ================================================== -->
@@ -38,18 +38,18 @@
 
 		<!-- Logo -->
 		<div id="logo">
-			<h1><a th:href="index.html"><img src="images/logo2.png" alt="Work Scout" /></a></h1>
+			<h1><a th:href="index"><img src="images/logo2.png" alt="Internship Go" /></a></h1>
 		</div>
 
 		<!-- Menu -->
 		<nav id="navigation" class="menu">
 			<ul id="responsive">
 
-				<li><a th:href="index.html" id="current">Home</a></li>
+				<li><a th:href="index" id="current">Home</a></li>
 
-				<li><a th:href="blog.html">Blog</a></li>
+				<li><a th:href="blog">Blog</a></li>
 
-				<li><a th:href="contact.html">Contact</a></li>
+				<li><a th:href="contact">Contact</a></li>
 
 
 
@@ -57,15 +57,15 @@
 
 
 			<ul class="float-right">
-				<li><a th:href="@{my-account.html#tab2}"><i class="fa fa-user"></i> Sign Up</a></li>
-				<li><a th:href="my-account.html"><i class="fa fa-unlock"></i> Log In</a></li>
+				<li><a th:href="@{my-account#tab2}"><i class="fa fa-user"></i> Sign Up</a></li>
+				<li><a th:href="my-account"><i class="fa fa-unlock"></i> Log In</a></li>
 			</ul>
 
 		</nav>
 
 		<!-- Navigation -->
 		<div id="mobile-navigation">
-			<a th:href="@{/#menu}" class="menu-trigger"><i class="fa fa-reorder"></i> Menu</a>
+			<a th:href="@{/@{#menu}}" class="menu-trigger"><i class="fa fa-reorder"></i> Menu</a>
 		</div>
 
 	</div>
@@ -90,7 +90,7 @@
 
 				<!-- Browse Jobs -->
 				<div class="browse-jobs">
-					Browse job offers by <a th:href="browse-categories.html"> category</a> or <a th:href="@{/}">location</a>
+					Browse job offers by <a th:href="browse-categories"> category</a> or <a th:href="@{/}">location</a>
 				</div>
 
 				<!-- Announce -->
@@ -126,7 +126,7 @@
 		<div class="clearfix"></div>
 		<div class="margin-top-30"></div>
 
-		<a th:href="my-account.html" class="button centered">Browse sub Categories</a>
+		<a th:href="my-account" class="button centered">Browse sub Categories</a>
 		<div class="margin-bottom-50"></div>
 	</div>
 </div>
@@ -191,20 +191,19 @@
 			<div class="sixteen columns">
 				<h4>Follow Us</h4>
 				<ul class="social-icons">
-					<li><a class="facebook" th:href="@{/}"><i class="icon-facebook"></i></a></li>
-					<li><a class="twitter" th:href="@{/}"><i class="icon-twitter"></i></a></li>
-					<li><a class="gplus" th:href="@{/}"><i class="icon-gplus"></i></a></li>
-					<li><a class="linkedin" th:href="@{/}"><i class="icon-linkedin"></i></a></li>
+					<li><a class="facebook" th:href="@{https://www.facebook.com/INSAToulouse/}"><i class="icon-facebook"></i></a></li>
+					<li><a class="twitter" th:href="@{https://twitter.com/insatoulouse}"><i class="icon-twitter"></i></a></li>
+					<li><a class="instagram" th:href="@{https://www.instagram.com/insatoulouse/}"><i class="icon-instagram"></i></a></li>
+					<li><a class="youtube" th:href="@{https://www.youtube.com/user/InsaToulouse}"><i class="icon-youtube"></i></a></li>
 				</ul>
-				<div class="copyrights">©  Copyright 2017 by <a th:href="@{/}">Internship Go</a>. All Rights Reserved.</div>
+				<div class="copyrights">©  Copyright 2017 by <a th:href="@{#}">Internship Go</a>. All Rights Reserved.</div>
 			</div>
 		</div>
 	</div>
-
 </div>
 
 <!-- Back To Top Button -->
-<div id="backtotop"><a th:href="@{/}"></a></div>
+<div id="backtotop"><a th:href="@{#}"></a></div>
 
 </div>
 <!-- Wrapper / End -->

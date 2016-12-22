@@ -28,15 +28,119 @@ public class MainController extends WebMvcConfigurerAdapter {
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping("/")
+
+
+
+    //no connected -----------
+
+    @RequestMapping("/my-account")
     public String Try() {
+        return "my-account";
+    }
+    @RequestMapping("/index")
+    public String index() {
         return "index";
     }
 
-    @RequestMapping("/addJob")
+    @RequestMapping("/blog")
+    public String blog() {
+        return "blog";
+    }
+    @RequestMapping("/contact")
+    public String contact() {
+        return "contact";
+    }
+
+
+    //candidate connected -----------
+
+
+    @RequestMapping("/index-2")
+    public String index2() {
+        return "index-2";
+    }
+
+    @RequestMapping("/browse-jobs")
+    public String browseJobs() {
+        return "browse-jobs";
+    }
+
+    @RequestMapping("/browse-categories")
+    public String browseCategories() {
+        return "browse-categories";
+    }
+
+    @RequestMapping("/add-resume")
+    public String addResume() {
+        return "add-resume";
+    }
+
+    @RequestMapping("/manage-resumes")
+    public String manageResumes() {
+        return "manage-resumes";
+    }
+
+    @RequestMapping("/job-alerts")
+    public String jobAlerts() {
+        return "job-alerts";
+    }
+    @RequestMapping("/contact2")
+    public String contact2() {
+        return "contact2";
+    }
+    //employer connected -----------
+
+    @RequestMapping("/index-3")
+    public String index3() {
+        return "index-3";
+    }
+
+    @RequestMapping("/add-job")
     public String addJob() {
         return "add-job";
     }
+
+    @RequestMapping("/manage-jobs")
+    public String manageJobs() {
+        return "manage-jobs";
+    }
+
+    @RequestMapping("/manage-applications")
+    public String manageApplications() {
+        return "manage-applications";
+    }
+
+    @RequestMapping("/browse-resumes")
+    public String browseResumes() {
+        return "browse-resumes";
+    }
+
+    @RequestMapping("/contact3")
+    public String contact3() {
+        return "contact3";
+    }
+
+
+
+
+    @RequestMapping("/index-4")
+    public String index4() {
+        return "index-4";
+    }
+
+    @RequestMapping("/manage-conventions")
+    public String manageConventions() {
+        return "manage-conventions";
+    }
+
+    @RequestMapping("/contact4")
+    public String contact4() {
+        return "contact4";
+    }
+
+
+    //others
+    //TODO :(login a modifier par my-account et supprimer login)
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/results").setViewName("results");
@@ -72,6 +176,7 @@ public class MainController extends WebMvcConfigurerAdapter {
     public String loginRedirect(LoginForm loginForm) {
         return "LoginPage";
     }
+
 
     @PostMapping("/login")
     public String loginAction(@Valid LoginForm loginForm, BindingResult bindingResult) {
