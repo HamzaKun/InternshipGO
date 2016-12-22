@@ -60,4 +60,15 @@ public class SignUpForm {
     public void setField(String field) {
         this.field = field;
     }
+
+    public String getUserType() {
+        return userType;
+    }
+
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+
 }
