@@ -10,6 +10,8 @@ import javax.validation.constraints.Size;
  */
 public class SignUpForm {
     @NotNull
+    private String userType;
+    @NotNull
     @Size(min=6, max=30)
     @Email
     private String email;

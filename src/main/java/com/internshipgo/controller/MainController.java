@@ -18,6 +18,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MainController extends WebMvcConfigurerAdapter {
@@ -27,9 +29,8 @@ public class MainController extends WebMvcConfigurerAdapter {
     private UserDao userDao;
 
     @RequestMapping("/")
-    public String Try(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "index";
+    public String Try() {
+        return "fileUpload";
     }
 
     @Override
@@ -39,6 +40,10 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/createUser")
     public String showCreateUserForm(Model model, SignUpForm signUpForm) {
+        List<String> userTypes= new ArrayList<String>();
+        userTypes.add("Student");
+        userTypes.add("Company");
+        model.addAttribute("userTypes", userTypes);
         return "SignupPage";
     }
 

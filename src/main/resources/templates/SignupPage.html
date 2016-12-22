@@ -21,6 +21,17 @@
     <form class="form-signin" action="#" th:action="@{/createUser}" th:object="${signUpForm}" method="post">
         <table>
             <tr>
+                <ul>
+                    <li th:each="ty : ${userTypes}">
+                        <input type="radio" th:field="*{userType}" th:value="${ty}" />
+                        <label th:for="${#ids.prev('type')}" th:text="#{${'seedstarter.type.' + ty}}">Wireframe</label>
+                    </li>
+                </ul><!--
+                <td><input type="radio " name="userType" id="Student" class="form-control" th:checked="0" />Student</td>
+                <td><input type="radio " name="userType" id="Company" class="form-control" th:checked="0"/>Company</td>
+-->
+            </tr>
+            <tr>
                 <td><input type="text" th:field="*{email}" class="form-control" placeholder="Email" /></td>
                 <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Mail Error</td>
             </tr>
