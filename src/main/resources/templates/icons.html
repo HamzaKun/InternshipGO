@@ -55,12 +55,11 @@
 				<li><a th:href="@{#}" id="current">Pages</a>
 					<ul>
 						<li><a th:href="job-page">Job Page</a></li>
-						<li><a th:href="job-page-alt.html">Job Page Alternative</a></li>
+						<li><a th:href="job-page-alt">Job Page Alternative</a></li>
 						<li><a th:href="resume-page">Resume Page</a></li>
-						<li><a th:href="shortcodes.html">Shortcodes</a></li>
-						<li><a th:href="icons.html">Icons</a></li>
-						<li><a th:href="pricing-tables.html">Pricing Tables</a></li>
-						<li><a th:href="contact.html">Contact</a></li>
+						<li><a th:href="shortcodes">Shortcodes</a></li>
+						<li><a th:href="icons">Icons</a></li>
+						<li><a th:href="contact">Contact</a></li>
 					</ul>
 				</li>
 
@@ -88,8 +87,8 @@
 
 
 			<ul class="responsive float-right">
-				<li><a th:href="my-account#tab2"><i class="fa fa-user"></i> Sign Up</a></li>
-				<li><a th:href="my-account"><i class="fa fa-lock"></i> Log In</a></li>
+				<li><a th:href="@{my-account#tab2}"><i class="fa fa-user"></i> Sign Up</a></li>
+				<li><a th:href="@{my-account}"><i class="fa fa-lock"></i> Log In</a></li>
 			</ul>
 
 		</nav>
@@ -27316,20 +27315,20 @@
 	</div>
 
 	<!-- Bottom -->
-	<div class="container">
-		<div class="footer-bottom">
-			<div class="sixteen columns">
-				<h4>Follow Us</h4>
-				<ul class="social-icons">
-					<li><a class="facebook" th:href="@{#}"><i class="icon-facebook"></i></a></li>
-					<li><a class="twitter" th:href="@{#}"><i class="icon-twitter"></i></a></li>
-					<li><a class="gplus" th:href="@{#}"><i class="icon-gplus"></i></a></li>
-					<li><a class="linkedin" th:href="@{#}"><i class="icon-linkedin"></i></a></li>
-				</ul>
-				<div class="copyrights">©  Copyright 2015 by <a th:href="@{#}">Internship Go</a>. All Rights Reserved.</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="footer-bottom">
+            <div class="sixteen columns">
+                <h4>Follow Us</h4>
+                <ul class="social-icons">
+                    <li><a class="facebook" th:href="@{https://www.facebook.com/INSAToulouse/}"><i class="icon-facebook"></i></a></li>
+                    <li><a class="twitter" th:href="@{https://twitter.com/insatoulouse}"><i class="icon-twitter"></i></a></li>
+                    <li><a class="instagram" th:href="@{https://www.instagram.com/insatoulouse/}"><i class="icon-instagram"></i></a></li>
+                    <li><a class="youtube" th:href="@{https://www.youtube.com/user/InsaToulouse}"><i class="icon-youtube"></i></a></li>
+                </ul>
+                <div class="copyrights">©  Copyright 2017 by <a th:href="@{#}">Internship Go</a>. All Rights Reserved.</div>
+            </div>
+        </div>
+
 
 </div>
 
