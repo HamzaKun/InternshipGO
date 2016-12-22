@@ -33,10 +33,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     //no connected -----------
 
-    @RequestMapping("/my-account")
-    public String Try() {
-        return "my-account";
-    }
+
     @RequestMapping("/index")
     public String index() {
         return "index";
@@ -160,7 +157,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 
 
     //others
-    //TODO :(login a modifier par my-account et supprimer login)
+    //TODO :(register  a modifier par my-account et supprimer signup)
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/results").setViewName("results");
@@ -192,17 +189,17 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     }
 
-    @GetMapping("/login")
+
+    @GetMapping("/my-account")
     public String loginRedirect(LoginForm loginForm) {
-        return "LoginPage";
+        return "my-account";
     }
 
-
-    @PostMapping("/login")
+    @PostMapping("/my-account")
     public String loginAction(@Valid LoginForm loginForm, BindingResult bindingResult) {
         User user = userDao.findByEmailAndPassword(loginForm.getEmail(), loginForm.getPassword());
         if( user == null ) {
-            return "LoginPage";
+            return "/my-account";
         }
         System.out.println(user);
         return  "redirect:/results";
