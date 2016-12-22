@@ -30,9 +30,13 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     @RequestMapping("/")
     public String Try() {
-        return "fileUpload";
+        return "index";
     }
 
+    @RequestMapping("/addJob")
+    public String addJob() {
+        return "add-job";
+    }
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/results").setViewName("results");
