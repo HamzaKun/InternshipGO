@@ -120,8 +120,7 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "contact3";
     }
 
-
-
+    //year head  connected -----------
 
     @RequestMapping("/index-4")
     public String index4() {
@@ -136,6 +135,27 @@ public class MainController extends WebMvcConfigurerAdapter {
     @RequestMapping("/contact4")
     public String contact4() {
         return "contact4";
+    }
+
+    //pages annexe  -----------
+
+    @RequestMapping("/shortcodes")
+    public String shortcodes() {
+        return "shortcodes";
+    }
+
+    @RequestMapping("/resume-page")
+    public String resumePage() {
+        return "resume-page";
+    }
+
+    @RequestMapping("/job-page")
+    public String jobPage() {
+        return "job-page";
+    }
+    @RequestMapping("/job-page-alt")
+    public String jobPageAlt() {
+        return "job-page-alt";
     }
 
 
