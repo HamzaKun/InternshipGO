@@ -1,30 +1,15 @@
 package com.internshipgo;
 
-import com.internshipgo.Model.User;
-import com.internshipgo.Model.repository.UserDao;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.sql.DataSource;
 
 @SpringBootApplication
 //@ComponentScan("com.internshipgo")
-//@EntityScan("com.")
+//@EntityScan("com.internshipgo")
 //@EnableAutoConfiguration
-//@EnableJpaRepositories("com.internshipgo.Model.repository")
+//@EnableJpaRepositories("com.internshipgo.model.repository")
 public class Application {
     /*@Bean
     public DataSource dataSource() {
@@ -47,7 +32,7 @@ public class Application {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("com.internshipgo.Model");
+        em.setPackagesToScan("com.internshipgo.model");
         return em;
     }*/
 

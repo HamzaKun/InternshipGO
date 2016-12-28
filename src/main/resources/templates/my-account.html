@@ -101,7 +101,7 @@
 		<div class="tabs-container">
 			<!-- Login -->
 			<div class="tab-content" id="tab1" style="display: none;">
-				<form  action="#" th:action="@{/my-account}" th:object="${loginForm}" method="post" class="login">
+				<form  th:action="@{/login}" th:object="${loginForm}" method="post" class="login">
 
 					<p class="form-row form-row-wide">
 						<label for="username">Username:
@@ -134,33 +134,43 @@
 			<!-- Register -->
 			<div class="tab-content" id="tab2" style="display: none;">
 
-				<form method="post" class="register">
-
+				<!--/*@thymesVar id="signUpForm" type="com.internshipgo.view.SignUpForm"*/-->
+				<form th:action="@{/createUser}" th:object="${signUpForm}" method="post" class="register">
+					<p >
+						<label for="userType">Type:
+								<input type="radio" class="input-text" th:field="*{userType}" id="userType" value="Student" />Student
+								<input type="radio" class="input-text" th:field="*{userType}" id="userType1" value="Company" />Company
+						</label>
+					</p>
 				<p class="form-row form-row-wide">
 					<label for="username2">Username:
 						<i class="ln ln-icon-Male"></i>
-						<input type="text" class="input-text" name="username" id="username2" value="" />
+						<input type="text" class="input-text" th:field="*{userName}" id="username2" />
+                        <inline th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Mail Error</inline>
 					</label>
 				</p>
 
 				<p class="form-row form-row-wide">
 					<label for="email2">Email Address:
 						<i class="ln ln-icon-Mail"></i>
-						<input type="text" class="input-text" name="email" id="email2" value="" />
-					</label>
+						<input type="text" class="input-text" th:field="*{email}"  id="email2"  />
+                        <inline th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Mail Error</inline>
+                    </label>
 				</p>
 
 				<p class="form-row form-row-wide">
 					<label for="password1">Password:
 						<i class="ln ln-icon-Lock-2"></i>
-						<input class="input-text" type="password" name="password1" id="password1"/>
+						<input class="input-text" type="password" th:field="*{password}" id="password1"/>
+                        <inline th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Pass Error</inline>
 					</label>
 				</p>
 
 				<p class="form-row form-row-wide">
 					<label for="password2">Repeat Password:
 						<i class="ln ln-icon-Lock-2"></i>
-						<input class="input-text" type="password" name="password2" id="password2"/>
+						<input class="input-text" type="password" th:field="*{confPassword}" id="password2"/>
+                        <inline th:if="${#fields.hasErrors('confPassword')}" th:errors="*{confPassword}">Pass Error</inline>
 					</label>
 				</p>
 

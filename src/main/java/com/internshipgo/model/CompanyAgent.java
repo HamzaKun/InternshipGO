@@ -1,4 +1,4 @@
-package com.internshipgo.Model;
+package com.internshipgo.model;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;

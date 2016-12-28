@@ -12,6 +12,8 @@ public class SignUpForm {
     @NotNull
     private String userType;
     @NotNull
+    private String userName;
+    @NotNull
     @Size(min=6, max=30)
     @Email
     private String email;
@@ -22,8 +24,19 @@ public class SignUpForm {
     @Size(min=8, max=30)
     //@FieldMatch(first = "password", second = "confirmPassword", message = "Passowords are not equal.")
     private String confPassword;
-    @NotNull
     private String field;
+
+    public String toString() {
+        return ("userType :" + userType + ", userName: " + ", email: " +email + "pass: " + password +", conf: " + confPassword + "field:" + field);
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getConfPassword() {
         return confPassword;
@@ -33,9 +46,6 @@ public class SignUpForm {
         this.confPassword = confPassword;
     }
 
-    public String toString() {
-        return "Email: " + email + ", Password: " + password + ", Field: " + field;
-    }
 
     public String getEmail() {
         return email;

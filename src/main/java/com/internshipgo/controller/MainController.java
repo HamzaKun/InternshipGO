@@ -1,7 +1,11 @@
 package com.internshipgo.controller;
 
-import com.internshipgo.Model.User;
-import com.internshipgo.Model.repository.UserDao;
+import com.internshipgo.model.CompanyAgent;
+import com.internshipgo.model.Student;
+import com.internshipgo.model.User;
+import com.internshipgo.model.repository.CompanyAgentDao;
+import com.internshipgo.model.repository.StudentDao;
+import com.internshipgo.model.repository.UserDao;
 import com.internshipgo.view.LoginForm;
 import com.internshipgo.view.SignUpForm;
 import org.slf4j.Logger;
@@ -13,13 +17,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class MainController extends WebMvcConfigurerAdapter {
@@ -27,6 +28,10 @@ public class MainController extends WebMvcConfigurerAdapter {
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private StudentDao studentDao;
+    @Autowired
+    private CompanyAgentDao companyAgentDao;
 
 
 
@@ -165,25 +170,40 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/createUser")
     public String showCreateUserForm(Model model, SignUpForm signUpForm) {
-        List<String> userTypes= new ArrayList<String>();
+        /*List<String> userTypes= new ArrayList<String>();
         userTypes.add("Student");
         userTypes.add("Company");
-        model.addAttribute("userTypes", userTypes);
-        return "SignupPage";
+        model.addAttribute("userTypes", userTypes);*/
+        return "my-account";
     }
 
     @PostMapping("/createUser")
-    public String checkUserInfo(Model model, HttpSession session, @Valid SignUpForm signUpForm, BindingResult bindingResult) {
+    public String checkUserInfo(LoginForm loginForm, Model model, HttpSession session, @Valid SignUpForm signUpForm, BindingResult bindingResult) {
+        System.out.println("in createUser Post method");
+        System.out.println(signUpForm);
         if(bindingResult.hasErrors() || !signUpForm.getConfPassword().equals((String) signUpForm.getPassword())) {
-            return "SignupPage";
+            return "my-account";
         }else{
             System.out.println(signUpForm);
-            User user = new User();
-            user.setEmail(signUpForm.getEmail());
-            user.setPassword(signUpForm.getPassword());
-            user.setField(signUpForm.getField());
-            userDao.save(user);
-            session.setAttribute("activeUsesr", user);
+
+            if(signUpForm.getUserType().equals("Student")) {
+                User student = new Student();
+                student.setEmail(signUpForm.getEmail());
+                student.setPassword(signUpForm.getPassword());
+                student.setField(signUpForm.getField());
+                session.setAttribute("activeUsesr", student);
+                studentDao.save((Student)student);
+
+            } else if(signUpForm.getUserType().equals("Company")){
+                User company = new CompanyAgent();
+                company.setEmail(signUpForm.getEmail());
+                company.setPassword(signUpForm.getPassword());
+                company.setField(signUpForm.getField());
+                session.setAttribute("activeUsesr", company);
+                companyAgentDao.save((CompanyAgent) company);
+            }
+
+
             return "redirect:/results";
         }
 
@@ -191,13 +211,14 @@ public class MainController extends WebMvcConfigurerAdapter {
 
 
     @GetMapping("/my-account")
-    public String loginRedirect(LoginForm loginForm) {
+    public String loginRedirect(LoginForm loginForm, Model model, HttpSession session, SignUpForm signUpForm, BindingResult bindingResult) {
         return "my-account";
     }
 
-    @PostMapping("/my-account")
-    public String loginAction(@Valid LoginForm loginForm, BindingResult bindingResult) {
+    @PostMapping("/login")
+    public String loginAction(@Valid LoginForm loginForm, HttpSession session, SignUpForm signUpForm, BindingResult bindingResult) {
         User user = userDao.findByEmailAndPassword(loginForm.getEmail(), loginForm.getPassword());
+        System.out.println("in the login action method " + loginForm.getEmail() +", " + loginForm.getPassword());
         if( user == null ) {
             return "/my-account";
         }

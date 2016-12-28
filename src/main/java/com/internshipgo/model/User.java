@@ -1,20 +1,28 @@
-package com.internshipgo.Model;
+package com.internshipgo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Hamza on 11/9/2016.
  */
 @Entity
+@Inheritance    (strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+    private String userName;
     private String email;
     private String password;
     private String field;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getField() {
         return field;

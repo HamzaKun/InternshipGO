@@ -1,4 +1,4 @@
-package com.internshipgo.Model;
+package com.internshipgo.model;
 
 /**
  * Created by Hamza on 11/9/2016.
@@ -8,6 +8,9 @@ public class Student extends User{
     private String description;
     private String address;
 
+    public Student() {
+        super();
+    }
     public Student(String mail, String password) {
         super(mail, password);
     }
