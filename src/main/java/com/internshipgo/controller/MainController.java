@@ -192,7 +192,7 @@ public class MainController extends WebMvcConfigurerAdapter {
                 student.setPassword(signUpForm.getPassword());
                 student.setField(signUpForm.getField());
                 session.setAttribute("activeUsesr", student);
-                studentDao.save((Student)student);
+                userDao.save((Student)student);
 
             } else if(signUpForm.getUserType().equals("Company")){
                 User company = new CompanyAgent();
@@ -200,7 +200,7 @@ public class MainController extends WebMvcConfigurerAdapter {
                 company.setPassword(signUpForm.getPassword());
                 company.setField(signUpForm.getField());
                 session.setAttribute("activeUsesr", company);
-                companyAgentDao.save((CompanyAgent) company);
+                userDao.save((CompanyAgent) company);
             }
 
 

@@ -1,8 +1,11 @@
 package com.internshipgo.model;
 
+import javax.persistence.Entity;
+
 /**
  * Created by Hamza on 11/9/2016.
  */
+@Entity
 public class Student extends User{
     private String name;
     private String description;
