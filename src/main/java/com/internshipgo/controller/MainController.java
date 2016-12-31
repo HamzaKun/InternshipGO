@@ -21,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class MainController extends WebMvcConfigurerAdapter {
@@ -181,30 +182,31 @@ public class MainController extends WebMvcConfigurerAdapter {
     public String checkUserInfo(LoginForm loginForm, Model model, HttpSession session, @Valid SignUpForm signUpForm, BindingResult bindingResult) {
         System.out.println("in createUser Post method");
         System.out.println(signUpForm);
-        if(bindingResult.hasErrors() || !signUpForm.getConfPassword().equals((String) signUpForm.getPassword())) {
+        //To check if the email is already in use
+        List<User> users = userDao.findByEmail(signUpForm.getEmail());
+        if(bindingResult.hasErrors() || !signUpForm.getConfPassword().equals((String) signUpForm.getPassword())
+                || users.size() != 0) {
             return "my-account";
         }else{
             System.out.println(signUpForm);
-
             if(signUpForm.getUserType().equals("Student")) {
                 User student = new Student();
                 student.setEmail(signUpForm.getEmail());
                 student.setPassword(signUpForm.getPassword());
                 student.setField(signUpForm.getField());
                 session.setAttribute("activeUsesr", student);
-                userDao.save((Student)student);
-
+                studentDao.save((Student)student);
+                return "redirect:/index-2";
             } else if(signUpForm.getUserType().equals("Company")){
                 User company = new CompanyAgent();
                 company.setEmail(signUpForm.getEmail());
                 company.setPassword(signUpForm.getPassword());
                 company.setField(signUpForm.getField());
                 session.setAttribute("activeUsesr", company);
-                userDao.save((CompanyAgent) company);
+                companyAgentDao.save((CompanyAgent) company);
+                return "redirect:/index-3";
             }
-
-
-            return "redirect:/results";
+            return "redirect:/index";
         }
 
     }
@@ -221,9 +223,15 @@ public class MainController extends WebMvcConfigurerAdapter {
         System.out.println("in the login action method " + loginForm.getEmail() +", " + loginForm.getPassword());
         if( user == null ) {
             return "/my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUsesr", user);
+            return "redirect:/index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUsesr", user);
+            return "redirect:/index-2";
         }
-        System.out.println(user);
-        return  "redirect:/results";
+        //System.out.println(user);
+        return  "/my-account";
     }
 
 }
