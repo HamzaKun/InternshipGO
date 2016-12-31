@@ -7,6 +7,8 @@ import com.internshipgo.model.YearHead;
 import com.internshipgo.model.repository.CompanyAgentDao;
 import com.internshipgo.model.repository.StudentDao;
 import com.internshipgo.model.repository.UserDao;
+import com.internshipgo.model.repository.YearHeadDao;
+
 import com.internshipgo.view.LoginForm;
 import com.internshipgo.view.SignUpForm;
 import org.slf4j.Logger;
@@ -35,7 +37,7 @@ public class MainController extends WebMvcConfigurerAdapter {
     @Autowired
     private CompanyAgentDao companyAgentDao;
     @Autowired
-    private YearHead yearHeadDao;
+    private YearHeadDao yearHeadDao;
 
 
     //no connected -----------
@@ -147,13 +149,13 @@ public class MainController extends WebMvcConfigurerAdapter {
             return "my-account";
         }else if( user.getClass() == CompanyAgent.class) {
             session.setAttribute("activeUser", user);
-            return "redirect:/index-3";
+            return "/index-3";
         } else if( user.getClass() == Student.class) {
             session.setAttribute("activeUser"   , user);
-            return "redirect:/index-2";
+            return "/index-2";
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);
-            return "redirect:/index-4";
+            return "/index-4";
         }
         return "redirect:/index";
     }
@@ -234,16 +236,16 @@ public class MainController extends WebMvcConfigurerAdapter {
                 companyAgentDao.save((CompanyAgent) company);
                 return "redirect:/index-3";
             }
-        /*  else if(signUpForm.getUserType().equals("YearHead")){
+         else if(signUpForm.getUserType().equals("YearHead")){
                 User yearHead = new YearHead();
                 yearHead.setEmail(signUpForm.getEmail());
                 yearHead.setPassword(signUpForm.getPassword());
                 yearHead.setField(signUpForm.getField());
-                session.setAttribute("activeUser", yearHead);
+                session.setAttribute("activeUser",yearHead);
                 yearHeadDao.save((YearHead)yearHead);
 
                 return "redirect:/index-4";
-            }*/
+            }
 
 
             return "redirect:/index";
