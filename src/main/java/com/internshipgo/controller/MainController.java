@@ -34,8 +34,8 @@ public class MainController extends WebMvcConfigurerAdapter {
     private StudentDao studentDao;
     @Autowired
     private CompanyAgentDao companyAgentDao;
-
-
+    @Autowired
+    private YearHead yearHeadDao;
 
 
     //no connected -----------
@@ -227,6 +227,18 @@ public class MainController extends WebMvcConfigurerAdapter {
                 companyAgentDao.save((CompanyAgent) company);
                 return "redirect:/index-3";
             }
+        /*  else if(signUpForm.getUserType().equals("YearHead")){
+                User yearHead = new YearHead();
+                yearHead.setEmail(signUpForm.getEmail());
+                yearHead.setPassword(signUpForm.getPassword());
+                yearHead.setField(signUpForm.getField());
+                session.setAttribute("activeUser", yearHead);
+                yearHeadDao.save((YearHead)yearHead);
+
+                return "redirect:/index-4";
+            }*/
+
+
             return "redirect:/index";
         }
 
@@ -236,6 +248,11 @@ public class MainController extends WebMvcConfigurerAdapter {
     @GetMapping("/my-account")
     public String loginRedirect(LoginForm loginForm, Model model, HttpSession session, SignUpForm signUpForm, BindingResult bindingResult) {
         return redirectIndex(session);
+    }
+    @GetMapping("/disconnect")
+    public String discRedirect(LoginForm loginForm, Model model, HttpSession session, SignUpForm signUpForm, BindingResult bindingResult) {
+        session.invalidate();
+        return "/index";
     }
 
     @PostMapping("/login")
