@@ -76,7 +76,14 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     @RequestMapping("/add-resume")
     public String addResume(HttpSession session) {
-        return "add-resume";
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "my-account";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser", user);
+            return "redirect:/add-resume";
+        }
+        return "redirect:/index";
     }
 
     @RequestMapping("/manage-resumes")
