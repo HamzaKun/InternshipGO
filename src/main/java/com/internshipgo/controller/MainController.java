@@ -3,6 +3,7 @@ package com.internshipgo.controller;
 import com.internshipgo.model.CompanyAgent;
 import com.internshipgo.model.Student;
 import com.internshipgo.model.User;
+import com.internshipgo.model.YearHead;
 import com.internshipgo.model.repository.CompanyAgentDao;
 import com.internshipgo.model.repository.StudentDao;
 import com.internshipgo.model.repository.UserDao;
@@ -41,7 +42,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 
 
     @RequestMapping("/index")
-    public String index() {
+    public String index(HttpSession session) {
         return "index";
     }
 
@@ -50,7 +51,7 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "blog";
     }
     @RequestMapping("/contact")
-    public String contact() {
+    public String contact(HttpSession session) {
         return "contact";
     }
 
@@ -59,32 +60,32 @@ public class MainController extends WebMvcConfigurerAdapter {
 
 
     @RequestMapping("/index-2")
-    public String index2() {
+    public String index2(HttpSession session) {
         return "index-2";
     }
 
     @RequestMapping("/browse-jobs")
-    public String browseJobs() {
+    public String browseJobs(HttpSession session) {
         return "browse-jobs";
     }
 
     @RequestMapping("/browse-categories")
-    public String browseCategories() {
+    public String browseCategories(HttpSession session) {
         return "browse-categories";
     }
 
     @RequestMapping("/add-resume")
-    public String addResume() {
+    public String addResume(HttpSession session) {
         return "add-resume";
     }
 
     @RequestMapping("/manage-resumes")
-    public String manageResumes() {
+    public String manageResumes(HttpSession session) {
         return "manage-resumes";
     }
 
     @RequestMapping("/job-alerts")
-    public String jobAlerts() {
+    public String jobAlerts(HttpSession session) {
         return "job-alerts";
     }
     @RequestMapping("/contact2")
@@ -94,44 +95,64 @@ public class MainController extends WebMvcConfigurerAdapter {
     //employer connected -----------
 
     @RequestMapping("/index-3")
-    public String index3() {
+    public String index3(HttpSession session) {
         return "index-3";
     }
 
     @RequestMapping("/add-job")
-    public String addJob() {
+    public String addJob(HttpSession session) {
         return "add-job";
     }
 
     @RequestMapping("/manage-jobs")
-    public String manageJobs() {
+    public String manageJobs(HttpSession session) {
         return "manage-jobs";
     }
 
     @RequestMapping("/manage-applications")
-    public String manageApplications() {
+    public String manageApplications(HttpSession session) {
         return "manage-applications";
     }
 
     @RequestMapping("/browse-resumes")
-    public String browseResumes() {
+    public String browseResumes(HttpSession session) {
         return "browse-resumes";
     }
 
     @RequestMapping("/contact3")
-    public String contact3() {
+    public String contact3(HttpSession session) {
         return "contact3";
     }
 
     //year head  connected -----------
 
     @RequestMapping("/index-4")
-    public String index4() {
-        return "index-4";
+    public String index4(HttpSession session) {
+        String x = redirectIndex(session);
+        if (x != null) return x;
+        //System.out.println(user);
+        return  "/index";
+    }
+
+    private String redirectIndex(HttpSession session) {
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+            return "redirect:/index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser"   , user);
+            return "redirect:/index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "redirect:/index-4";
+        }
+        return "redirect:/index";
     }
 
     @RequestMapping("/manage-conventions")
-    public String manageConventions() {
+    public String manageConventions(HttpSession session) {
         return "manage-conventions";
     }
 
@@ -143,21 +164,21 @@ public class MainController extends WebMvcConfigurerAdapter {
     //pages annexe  -----------
 
     @RequestMapping("/shortcodes")
-    public String shortcodes() {
+    public String shortcodes(HttpSession session) {
         return "shortcodes";
     }
 
     @RequestMapping("/resume-page")
-    public String resumePage() {
+    public String resumePage(HttpSession session) {
         return "resume-page";
     }
 
     @RequestMapping("/job-page")
-    public String jobPage() {
+    public String jobPage(HttpSession session) {
         return "job-page";
     }
     @RequestMapping("/job-page-alt")
-    public String jobPageAlt() {
+    public String jobPageAlt(HttpSession session) {
         return "job-page-alt";
     }
 
@@ -194,7 +215,7 @@ public class MainController extends WebMvcConfigurerAdapter {
                 student.setEmail(signUpForm.getEmail());
                 student.setPassword(signUpForm.getPassword());
                 student.setField(signUpForm.getField());
-                session.setAttribute("activeUsesr", student);
+                session.setAttribute("activeUser", student);
                 studentDao.save((Student)student);
                 return "redirect:/index-2";
             } else if(signUpForm.getUserType().equals("Company")){
@@ -202,7 +223,7 @@ public class MainController extends WebMvcConfigurerAdapter {
                 company.setEmail(signUpForm.getEmail());
                 company.setPassword(signUpForm.getPassword());
                 company.setField(signUpForm.getField());
-                session.setAttribute("activeUsesr", company);
+                session.setAttribute("activeUser", company);
                 companyAgentDao.save((CompanyAgent) company);
                 return "redirect:/index-3";
             }
@@ -214,7 +235,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/my-account")
     public String loginRedirect(LoginForm loginForm, Model model, HttpSession session, SignUpForm signUpForm, BindingResult bindingResult) {
-        return "my-account";
+        return redirectIndex(session);
     }
 
     @PostMapping("/login")
@@ -223,15 +244,10 @@ public class MainController extends WebMvcConfigurerAdapter {
         System.out.println("in the login action method " + loginForm.getEmail() +", " + loginForm.getPassword());
         if( user == null ) {
             return "/my-account";
-        }else if( user.getClass() == CompanyAgent.class) {
-            session.setAttribute("activeUsesr", user);
-            return "redirect:/index-3";
-        } else if( user.getClass() == Student.class) {
-            session.setAttribute("activeUsesr", user);
-            return "redirect:/index-2";
+        }else {
+            session.setAttribute("activeUser", user);
+            return redirectIndex(session);
         }
-        //System.out.println(user);
-        return  "/my-account";
     }
 
 }
