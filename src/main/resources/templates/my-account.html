@@ -16,6 +16,8 @@
 ================================================== -->
 <link rel="stylesheet" th:href="@{css/style.css}">
 <link rel="stylesheet" th:href="@{css/colors/blue.css}" id="colors">
+	<script src="scripts/SignUp.js"></script>
+	<link rel="stylesheet" th:href="@{css/MyCSS.css}">
 
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -121,7 +123,7 @@
 						<input type="submit" class="button border fw margin-top-10" name="login" value="Login" />
 
 						<label for="rememberme" class="rememberme">
-						<input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember Me</label>
+							<input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember Me</label>
 					</p>
 
 					<p class="lost_password">
@@ -134,52 +136,76 @@
 			<!-- Register -->
 			<div class="tab-content" id="tab2" style="display: none;">
 
-				<!--/*@thymesVar id="signUpForm" type="com.internshipgo.view.SignUpForm"*/-->
-				<form th:action="@{/createUser}" th:object="${signUpForm}" method="post" class="register">
+
+				<form   th:action="@{/createUser}" th:object="${signUpForm}" method="post" class="register">
 					<p >
 						<label for="userType">Type:
-								<input type="radio" class="input-text" th:field="*{userType}" id="userType" value="Student" />Student
-								<input type="radio" class="input-text" th:field="*{userType}" id="userType1" value="Company" />Company
-								<input type="radio" class="input-text" th:field="*{userType}" id="userType2" value="YearHead" />YearHead
+							<input type="radio" class="input-text" th:field="*{userType}" onclick="showUser1()" id="userType" value="Student" />Student
+							<input type="radio" class="input-text" th:field="*{userType}" onclick="showUser2()" id="userType1" value="Company" />Company
+							<input type="radio" class="input-text" th:field="*{userType}" onclick="showUser3()" id="userType2" value="YearHead" />YearHead
 
 						</label>
 					</p>
-				<p class="form-row form-row-wide">
-					<label for="username2">Username:
-						<i class="ln ln-icon-Male"></i>
-						<input type="text" class="input-text" th:field="*{userName}" id="username2" />
-                        <inline th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Mail Error</inline>
-					</label>
-				</p>
+					<p class="form-row form-row-wide">
+						<label for="username2">Username:
+							<i class="ln ln-icon-Male"></i>
+							<input type="text" class="input-text" th:field="*{userName}" id="username2" />
+							<inline th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Mail Error</inline>
+						</label>
+					</p>
+					<p class="form-row form-row-wide">
+						<label for="email2">Email Address:
+							<i class="ln ln-icon-Mail"></i>
+							<input type="text" class="input-text" th:field="*{email}"  id="email2"  />
+							<inline th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Mail Error</inline>
+						</label>
+					</p>
+					<p class="form-row form-row-wide">
+						<label for="password1">Password:
+							<i class="ln ln-icon-Lock-2"></i>
+							<input class="input-text" type="password" th:field="*{password}" id="password1"/>
+							<inline th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Pass Error</inline>
+						</label>
+					</p>
+					<p class="form-row form-row-wide">
+						<label for="password2">Repeat Password:
+							<i class="ln ln-icon-Lock-2"></i>
+							<input class="input-text" type="password" th:field="*{confPassword}" id="password2"/>
+							<inline th:if="${#fields.hasErrors('confPassword')}" th:errors="*{confPassword}">Pass Error</inline>
+						</label>
+					</p>
+					<div class="cmp" style="display:none">
+						<input type="text" class="form-control" placeholder="Organization Name">
 
-				<p class="form-row form-row-wide">
-					<label for="email2">Email Address:
-						<i class="ln ln-icon-Mail"></i>
-						<input type="text" class="input-text" th:field="*{email}"  id="email2"  />
-                        <inline th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Mail Error</inline>
-                    </label>
-				</p>
+					</div><br/>
+					<div class="std" style="display:none">
 
-				<p class="form-row form-row-wide">
-					<label for="password1">Password:
-						<i class="ln ln-icon-Lock-2"></i>
-						<input class="input-text" type="password" th:field="*{password}" id="password1"/>
-                        <inline th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Pass Error</inline>
-					</label>
-				</p>
+					<select class="form-control" style="color:#999">
+						<option value="hint" disabled selected hidden>Please select specialization</option>
+						<option value="5GEI_IL">5GEI_IL</option>
+						<option value="5GEI_ISS">5GEI_ISS</option>
+						<option value="5GEI_ESE">5GEI_ESE</option>
+						<option value="4GEI_IR">4GEI_IR</option>
+						<option value="4GEI_AE">4GEI_IR</option>
+					</select>
+					</div><br/>
 
-				<p class="form-row form-row-wide">
-					<label for="password2">Repeat Password:
-						<i class="ln ln-icon-Lock-2"></i>
-						<input class="input-text" type="password" th:field="*{confPassword}" id="password2"/>
-                        <inline th:if="${#fields.hasErrors('confPassword')}" th:errors="*{confPassword}">Pass Error</inline>
-					</label>
-				</p>
+					<div class="yearhd" style="display:none">
 
-				<p class="form-row">
-					<input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
-				</p>
+						<select class="form-control" style="color:#999">
+							<option value="hint" disabled selected hidden>Please select Departement</option>
+							<option value="APS">APS</option>
+							<option value="CSH">CSH</option>
+							<option value="GC">GC</option>
+							<option value="GEI">GEI</option>
+							<option value="GM">GM</option>
+							<option value="GMM">GMM</option>
+						</select><br/>
+					</div><br/>
 
+					<p class="form-row">
+						<input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
+					</p>
 				</form>
 			</div>
 		</div>

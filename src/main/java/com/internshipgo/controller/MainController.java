@@ -439,6 +439,8 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "my-account";
     }
 
+
+
     @PostMapping("/createUser")
     public String checkUserInfo(LoginForm loginForm, Model model, HttpSession session, @Valid SignUpForm signUpForm, BindingResult bindingResult) {
         System.out.println("in createUser Post method");
