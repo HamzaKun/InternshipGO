@@ -24,6 +24,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
+/**
+ * Created by choaib on 01/01/16.
+ */
 
 @Controller
 public class MainController extends WebMvcConfigurerAdapter {
@@ -62,111 +65,321 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     @RequestMapping("/index-2")
     public String index2(HttpSession session) {
-        return "index-2";
-    }
-
-    @RequestMapping("/browse-jobs")
-    public String browseJobs(HttpSession session) {
-        return "browse-jobs";
-    }
-
-    @RequestMapping("/browse-categories")
-    public String browseCategories(HttpSession session) {
-        return "browse-categories";
-    }
-
-    @RequestMapping("/add-resume")
-    public String addResume(HttpSession session) {
         User user = (User) session.getAttribute("activeUser");
         if (user == null) {
-            return "my-account";
-        } else if( user.getClass() == Student.class) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
             session.setAttribute("activeUser", user);
-            return "redirect:/add-resume";
+
+            return "index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
         }
         return "redirect:/index";
     }
 
+    @RequestMapping("/browse-jobs")
+    public String browseJobs(HttpSession session) {
+
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "browse-jobs";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
+
+
+    }
+
+    @RequestMapping("/browse-categories")
+    public String browseCategories(HttpSession session) {
+
+
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "browse-categories";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
+
+
+
+    }
+
+    @RequestMapping("/add-resume")
+    public String addResume(HttpSession session) {
+
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "/index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "add-resume";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "/index-4";
+        }
+        return "redirect:/index";
+
+    }
+
     @RequestMapping("/manage-resumes")
     public String manageResumes(HttpSession session) {
-        return "manage-resumes";
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "manage-resumes";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
     }
 
     @RequestMapping("/job-alerts")
     public String jobAlerts(HttpSession session) {
-        return "job-alerts";
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "job-alerts";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
     }
     @RequestMapping("/contact2")
-    public String contact2() {
-        return "contact2";
+    public String contact2(HttpSession session) {
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "contact2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
     }
     //employer connected -----------
 
     @RequestMapping("/index-3")
     public String index3(HttpSession session) {
-        return "index-3";
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
     }
 
     @RequestMapping("/add-job")
     public String addJob(HttpSession session) {
-        return "add-job";
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "add-job";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
     }
 
     @RequestMapping("/manage-jobs")
     public String manageJobs(HttpSession session) {
-        return "manage-jobs";
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "manage-jobs";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
     }
 
     @RequestMapping("/manage-applications")
     public String manageApplications(HttpSession session) {
-        return "manage-applications";
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+            return "manage-applications";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
+
     }
 
     @RequestMapping("/browse-resumes")
     public String browseResumes(HttpSession session) {
-        return "browse-resumes";
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+            return "browse-resumes";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
     }
 
     @RequestMapping("/contact3")
     public String contact3(HttpSession session) {
-        return "contact3";
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+            return "contact3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "index-4";
+        }
+        return "redirect:/index";
     }
 
     //year head  connected -----------
 
     @RequestMapping("/index-4")
     public String index4(HttpSession session) {
-        String x = redirectIndex(session);
-        if (x != null) return x;
-        //System.out.println(user);
-        return  "/index";
-    }
-
-    private String redirectIndex(HttpSession session) {
         User user = (User) session.getAttribute("activeUser");
         if (user == null) {
-            return "my-account";
+            return "redirect:my-account";
         }else if( user.getClass() == CompanyAgent.class) {
             session.setAttribute("activeUser", user);
-            return "redirect:/index-3";
+
+            return "index-3";
         } else if( user.getClass() == Student.class) {
-            session.setAttribute("activeUser"   , user);
-            return "redirect:/index-2";
+            session.setAttribute("activeUser" , user);
+            return "index-2";
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);
-            return "redirect:/index-4";
+            return "index-4";
         }
         return "redirect:/index";
     }
 
+
+
+
     @RequestMapping("/manage-conventions")
     public String manageConventions(HttpSession session) {
-        return "manage-conventions";
+
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "manage-conventions";
+        }
+        return "redirect:/index";
     }
 
     @RequestMapping("/contact4")
-    public String contact4() {
-        return "contact4";
+    public String contact4(HttpSession session) {
+
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+
+            return "index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "contact4";
+        }
+        return "redirect:/index";
     }
 
     //pages annexe  -----------
@@ -192,7 +405,26 @@ public class MainController extends WebMvcConfigurerAdapter {
 
 
     //others
-    //TODO :(register  a modifier par my-account et supprimer signup)
+
+    private String redirectIndex(HttpSession session) {
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            session.setAttribute("activeUser", user);
+            return "redirect:/index-3";
+        } else if( user.getClass() == Student.class) {
+            session.setAttribute("activeUser" , user);
+            return "redirect:/index-2";
+        } else if ( user.getClass() == YearHead.class) {
+            session.setAttribute("activeUser", user);
+            return "redirect:/index-4";
+        }
+        return "redirect:/index";
+    }
+
+
+    //TODO :(supprimer signup)
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/results").setViewName("results");
@@ -223,7 +455,8 @@ public class MainController extends WebMvcConfigurerAdapter {
                 student.setEmail(signUpForm.getEmail());
                 student.setPassword(signUpForm.getPassword());
                 student.setField(signUpForm.getField());
-                session.setAttribute("activeUser", student);
+                student.setUserName(signUpForm.getUserName());
+                session.setAttribute("activeUser",student);
                 studentDao.save((Student)student);
                 return "index-2";
             } else if(signUpForm.getUserType().equals("Company")){
