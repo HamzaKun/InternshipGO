@@ -135,14 +135,26 @@ public class MainController extends WebMvcConfigurerAdapter {
         if (user == null) {
             return "redirect:my-account";
         }else if( user.getClass() == CompanyAgent.class) {
-            session.setAttribute("activeUser", user);
-
             return "/index-3";
         } else if( user.getClass() == Student.class) {
-            session.setAttribute("activeUser" , user);
             return "add-resume";
         } else if ( user.getClass() == YearHead.class) {
-            session.setAttribute("activeUser", user);
+            return "/index-4";
+        }
+        return "redirect:/index";
+
+    }
+
+    @RequestMapping("/edit-profile")
+    public String editProfile(HttpSession session) {
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:my-account";
+        }else if( user.getClass() == CompanyAgent.class) {
+            return "/index-3";
+        } else if( user.getClass() == Student.class) {
+            return "Edit-profile";
+        } else if ( user.getClass() == YearHead.class) {
             return "/index-4";
         }
         return "redirect:/index";

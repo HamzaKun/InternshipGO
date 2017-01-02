@@ -6,7 +6,7 @@
 <!-- Basic Page Needs
 ================================================== -->
 <meta charset="utf-8">
-<title>Browse Categories</title>
+<title>Candidate Resume</title>
 
 <!-- Mobile Specific Metas
 ================================================== -->
@@ -29,55 +29,67 @@
 
 <!-- Header
 ================================================== -->
-<header class="sticky-header">
-<div class="container">
-	<div class="sixteen columns">
+	<header class="sticky-header">
+		<div class="container">
+			<div class="sixteen columns">
 
-		<!-- Logo -->
-		<div id="logo">
-			<h1><a th:href="index-2"><img src="images/logo.png" alt="Internship Go" /></a></h1>
-		</div>
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a th:href="index-2"><img src="images/logo.png" alt="Internship Go" /></a></h1>
+				</div>
 
-		<!-- Menu -->
-		<nav id="navigation" class="menu">
-			<ul id="responsive">
+				<!-- Menu -->
+				<nav id="navigation" class="menu">
+					<ul id="responsive">
 
 						<li><a th:href="index-2" ><i class="fa fa-home"></i></a></li>
 						<li><a th:href="browse-jobs">Browse Jobs</a></li>
-						<li><a th:href="browse-categories" id="current">Browse Categories</a></li>
+						<li><a th:href="browse-categories">Browse Categories</a></li>
 						<li><a th:href="add-resume">Add Resume</a></li>
 						<li><a th:href="manage-resumes">Manage Resumes</a></li>
 						<li><a th:href="job-alerts">Job Alerts</a></li>
 
-			</ul>
-			<ul class="float-right">
-				<li><a th:href="edit-profile"><i class="fa fa-user"></i> </a></li>
+					</ul>
+					<ul class="float-right">
+						<li><a th:href="edit-profile" id="current"><i class="fa fa-user"></i> </a></li>
 
-				<li><a th:href="disconnect"><i class="fa fa-lock"></i> </a></li>
-			</ul>
-		</nav>
+						<li><a th:href="disconnect"><i class="fa fa-lock"></i> </a></li>
+					</ul>
+				</nav>
 
-		<!-- Navigation -->
-		<div id="mobile-navigation">
-			<a th:href="@{#menu}" class="menu-trigger"><i class="fa fa-reorder"></i> Menu</a>
+				<!-- Navigation -->
+				<div id="mobile-navigation">
+					<a th:href="@{#menu}" class="menu-trigger"><i class="fa fa-reorder"></i> Menu</a>
+				</div>
+
+			</div>
 		</div>
-
-	</div>
-</div>
-</header>
+	</header>
 <div class="clearfix"></div>
 
 
 <!-- Titlebar
 ================================================== -->
-<div id="titlebar" class="photo-bg" style="background-image: url(images/all-categories-photo.jpg);">
+<div id="titlebar" class="resume">
 	<div class="container">
 		<div class="ten columns">
-			<h2>All Categories</h2>
-		</div>
+			<div class="resume-titlebar">
+				<img src="images/resumes-list-avatar-01.png" alt="">
+				<div class="resumes-list-content">
+					<h4>John Doe <span>UX/UI Graphic Designer</span></h4>
+					<span class="icons"><i class="fa fa-map-marker"></i> Mountain View, CA</span>
+					<span class="icons"><i class="fa fa-money"></i> $100 / hour</span>
+					<span class="icons"><a th:href="@{#}"><i class="fa fa-link"></i> Website</a></span>
+					<span class="icons"><a th:href="@{mailto:john.doe@example.com}"><i class="fa fa-envelope"></i> john.doe@example.com</a></span>
+					<div class="skills">
+						<span>JavaScript</span>
+						<span>PHP</span>
+						<span>WordPress</span>
+					</div>
+					<div class="clearfix"></div>
 
-		<div class="six columns">
-			<a th:href="add-job" class="button">Post a Job, It’s Free!</a>
+				</div>
+			</div>
 		</div>
 
 	</div>
@@ -86,111 +98,67 @@
 
 <!-- Content
 ================================================== -->
-<div id="categories">
-	<!-- Categories Group -->
-	<div class="categories-group">
-		<div class="container">
-			<div class="four columns"><h4>Web, Software & IT</h4></div>
-			<div class="four columns">
-				<ul>
-					<li><a th:href="@{#}">PHP</a></li>
-					<li><a th:href="@{#}">Android</a></li>
-					<li><a th:href="@{#}">WordPress</a></li>
-					<li><a th:href="@{#}">Design</a></li>
-					<li><a th:href="@{#}">Developer</a></li>
-					<li><a th:href="@{#}">iOS</a></li>
-					<li><a th:href="@{#}">Mobile</a></li>
-				</ul>
-			</div>
-			<div class="four columns">
-				<ul>
-					<li><a th:href="@{#}">MySQL</a></li>
-					<li><a th:href="@{#}">JavaScript</a></li>
-					<li><a th:href="@{#}">Software</a></li>
-					<li><a th:href="@{#}">Website Design</a></li>
-					<li><a th:href="@{#}">Programming</a></li>
-					<li><a th:href="@{#}">SEO</a></li>
-					<li><a th:href="@{#}">Java</a></li>
-				</ul>
-			</div>
-			<div class="four columns">
-				<ul>
-					<li><a th:href="@{#}">CSS</a></li>
-					<li><a th:href="@{#}">HTML5</a></li>
-					<li><a th:href="@{#}">Web Development</a></li>
-					<li><a th:href="@{#}">Web Design</a></li>
-					<li><a th:href="@{#}">eCommerce</a></li>
-				</ul>
-			</div>
-		</div>
+<div class="container">
+	<!-- Recent Jobs -->
+	<div class="eight columns">
+	<div class="padding-right">
+
+		<h3 class="margin-bottom-15">About Me</h3>
+
+		<p class="margin-reset">
+			The Food Service Specialist ensures outstanding customer service is provided to food customers and that all food offerings meet the required stock levels and presentation standards. Beginning your career as a Food Steward will give you a strong foundation in Speedway’s food segment that can make you a vital member of the front line team!
+		</p>
+
+		<br>
+
+		<p>The <strong>Food Service Specialist</strong> will have responsibilities that include:</p>
+
+		<ul class="list-1">
+			<li>Excellent customer service skills, communication skills, and a happy, smiling attitude are essential.</li>
+			<li>Must be available to work required shifts including weekends, evenings and holidays.</li>
+			<li>Must be able to perform repeated bending, standing and reaching.</li>
+			<li>Must be able to occasionally lift up to 50 pounds</li>
+		</ul>
+
+	</div>
 	</div>
 
-	<!-- Categories Group -->
-	<div class="categories-group">
-		<div class="container">
-			<div class="four columns"><h4>Design, Art & Multimedia</h4></div>
-			<div class="four columns">
-				<ul>
-					<li><a th:href="@{#}">Design</a></li>
-					<li><a th:href="@{#}">Logo Design</a></li>
-					<li><a th:href="@{#}">Graphic Design</a></li>
-					<li><a th:href="@{#}">Video</a></li>
-					<li><a th:href="@{#}">Adnimation</a></li>
-					<li><a th:href="@{#}">Adobe Photoshop</a></li>
-					<li><a th:href="@{#}">Illustration</a></li>
-				</ul>
-			</div>
-			<div class="four columns">
-				<ul>
-					<li><a th:href="@{#}">Art</a></li>
-					<li><a th:href="@{#}">3D</a></li>
-					<li><a th:href="@{#}">Adobe Illustrator</a></li>
-					<li><a th:href="@{#}">Drawing</a></li>
-					<li><a th:href="@{#}">Web Design</a></li>
-					<li><a th:href="@{#}">Cartoon</a></li>
-					<li><a th:href="@{#}">Graphics</a></li>
-				</ul>
-			</div>
-			<div class="four columns">
-				<ul>
-					<li><a th:href="@{#}">Fashion Design</a></li>
-					<li><a th:href="@{#}">WordPress</a></li>
-					<li><a th:href="@{#}">Editing</a></li>
-					<li><a th:href="@{#}">Writing</a></li>
-					<li><a th:href="@{#}">T-Shirt Design</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
 
-	<!-- Categories Group -->
-	<div class="categories-group">
-		<div class="container">
-			<div class="four columns"><h4>Sales & Marketing</h4></div>
-			<div class="four columns">
-				<ul>
-					<li><a th:href="@{#}">Display Advertising</a></li>
-					<li><a th:href="@{#}">Email Marketing</a></li>
-					<li><a th:href="@{#}">Lead Generation</a></li>
-					<li><a th:href="@{#}">Market & Customer Research</a></li>
-				</ul>
-			</div>
-			<div class="four columns">
-				<ul>
-					<li><a th:href="@{#}">Marketing Strategy</a></li>
-					<li><a th:href="@{#}">Public Relations</a></li>
-					<li><a th:href="@{#}">Telemarketing & Telesales</a></li>
-					<li><a th:href="@{#}">Other - Sales & Marketing</a></li>
-				</ul>
-			</div>
-			<div class="four columns">
-				<ul>
-					<li><a th:href="@{#}">SEM - Search Engine Marketing</a></li>
-					<li><a th:href="@{#}">SEO - Search Engine Optimization</a></li>
-					<li><a th:href="@{#}">SMM - Social Media Marketing</a></li>
-				</ul>
-			</div>
-		</div>
+	<!-- Widgets -->
+	<div class="eight columns">
+
+		<h3 class="margin-bottom-20">Education</h3>
+
+		<!-- Resume Table -->
+		<dl class="resume-table">
+			<dt>
+				<small class="date">2012 - 2015</small>
+				<strong>Bsc Computing at College of West Anglia</strong>
+			</dt>
+			<dd>
+				<p>Captain, why are we out here chasing comets? Maybe we better talk out here; the observation lounge has turned into a swamp. Ensign Babyface!</p>
+			</dd>
+
+
+			<dt>
+				<small class="date">2006 - 2010</small>
+				<strong>GCSE something at King Edward 7th</strong>
+			</dt>
+			<dd>
+				<p>Captain, why are we out here chasing comets? Maybe we better talk out here; the observation lounge has turned into a swamp. Ensign Babyface!</p>
+			</dd>
+
+
+			<dt>
+				<small class="date">2004 - 2006</small>
+				<strong>Test 2 at Test</strong>
+			</dt>
+			<dd>
+				<p>Phasellus vestibulum metus orci, ut facilisis dolor interdum eget. Pellentesque magna sem, hendrerit nec elit sit amet, ornare efficitur est.</p>
+			</dd>
+
+		</dl>
+
 	</div>
 
 </div>
@@ -198,7 +166,7 @@
 
 <!-- Footer
 ================================================== -->
-<div class="margin-top-0"></div>
+<div class="margin-top-45"></div>
 
 <div id="footer">
 	<!-- Main -->
@@ -207,7 +175,7 @@
 		<div class="seven columns">
 			<h4>Contact</h4>
 			<p>If you have any question you can contact the internship office</p>
-			<a th:href="contact2" class="button">Contact Us</a>
+			<a th:href="contact3" class="button">Contact Us</a>
 		</div>
 
 
