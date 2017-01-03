@@ -2,6 +2,7 @@ package com.internshipgo.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 /**
@@ -12,6 +13,7 @@ public class Language {
     @Id
     private String name;
     private String level;
+    @ManyToMany
     private List<Student> students;
 
     public List<Student> getStudents() {
