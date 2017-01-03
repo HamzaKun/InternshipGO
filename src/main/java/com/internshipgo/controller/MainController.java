@@ -130,7 +130,8 @@ public class MainController extends WebMvcConfigurerAdapter {
     }
 
     @RequestMapping("/add-resume")
-    public String addResume(UpdateNameForm nameForm, HttpSession session) {
+    public String addResume(UpdateNameForm nameForm, HttpSession session, Model model) {
+        model.addAttribute("nameForm", new UpdateNameForm());
         User user = (User) session.getAttribute("activeUser");
         if (user == null) {
             return "redirect:my-account";
@@ -493,10 +494,16 @@ public class MainController extends WebMvcConfigurerAdapter {
     }
 
     @PostMapping("/updateUserName")
-    public String updateUser(@Valid UpdateNameForm nameForm, HttpSession session, BindingResult bindingResult) {
+    public String updateUser(@Valid UpdateNameForm nameForm, HttpSession session, BindingResult bindingResult, Model model) {
+        model.addAttribute("nameForm", new UpdateNameForm());
         User user = (User) session.getAttribute("activeUser");
-        if (user != null) {
-            userDao.updateUserName(user.getId(), nameForm.getUserName());
+        if (user != null  && (user.getClass() == Student.class) ) {
+            if ( !bindingResult.hasErrors() ) {
+                userDao.updateUserName(user.getId(), nameForm.getUserName());
+                return "add-resume";
+            }
+        } else {
+            return "my-account";
         }
         return "redirect:/add-resume";
     }

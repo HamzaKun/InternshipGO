@@ -18,6 +18,7 @@ public class Company {
     private String headquarters;
     private long founded;
     private String webSite;
+    private String address;
     /*@OneToMany
     private List<CompanyAgent> agents;
 
@@ -32,6 +33,14 @@ public class Company {
     /*public Company(String mail, String password) {
         super(mail, password);
     }*/
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public long getId() {
         return id;
