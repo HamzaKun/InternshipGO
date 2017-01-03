@@ -94,7 +94,7 @@
 
 			<!-- Notice -->
 			<div class="notification notice closeable margin-bottom-40">
-				<p><span>Have an account?</span> If you don’t have an account you can create one below by entering your email address. A password will be automatically emailed to you.</p>
+				<p><span>Have an account?</span> If you don’t have an account you can create one below by entering your email address.</p>
 			</div>
 
 
@@ -106,8 +106,12 @@
 
 			<!-- Email -->
 			<div class="form">
-				<h5>Your Name</h5>
-				<input class="search-field" type="text" placeholder="Your full name" value=""/>
+				<!--/*@thymesVar id="nameForm" type="com.internshipgo.view.UpdateNameForm"*/-->
+				<form   th:action="@{/updateUserName}" th:object="${nameForm}" method="post" class="register">
+					<h5>Your Name</h5>
+					<input type="text" class="input-text" th:field="*{userName}" placeholder="Your full name" />
+					<input type="submit" class="button border fw margin-top-10" name="update" value="Update" />
+				</form>
 			</div>
 
 			<!-- Email -->

@@ -10,6 +10,7 @@ import com.internshipgo.model.repository.UserDao;
 import com.internshipgo.model.repository.YearHeadDao;
 import com.internshipgo.view.LoginForm;
 import com.internshipgo.view.SignUpForm;
+import com.internshipgo.view.UpdateNameForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,8 +130,7 @@ public class MainController extends WebMvcConfigurerAdapter {
     }
 
     @RequestMapping("/add-resume")
-    public String addResume(HttpSession session) {
-
+    public String addResume(UpdateNameForm nameForm, HttpSession session) {
         User user = (User) session.getAttribute("activeUser");
         if (user == null) {
             return "redirect:my-account";
@@ -435,7 +435,6 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "redirect:/index";
     }
 
-
     //TODO :(supprimer signup)
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -450,8 +449,6 @@ public class MainController extends WebMvcConfigurerAdapter {
         model.addAttribute("userTypes", userTypes);*/
         return "my-account";
     }
-
-
 
     @PostMapping("/createUser")
     public String checkUserInfo(LoginForm loginForm, Model model, HttpSession session, @Valid SignUpForm signUpForm, BindingResult bindingResult) {
@@ -495,6 +492,14 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     }
 
+    @PostMapping("/updateUserName")
+    public String updateUser(@Valid UpdateNameForm nameForm, HttpSession session, BindingResult bindingResult) {
+        User user = (User) session.getAttribute("activeUser");
+        if (user != null) {
+            userDao.updateUserName(user.getId(), nameForm.getUserName());
+        }
+        return "redirect:/add-resume";
+    }
 
     @GetMapping("/my-account")
     public String loginRedirect(LoginForm loginForm, Model model, HttpSession session, SignUpForm signUpForm, BindingResult bindingResult) {
