@@ -13,6 +13,8 @@ public class Student extends User{
     private String name;
     private String description;
     private String address;
+    private String picPath;
+    private String resumePath;
     @OneToMany
     private List<Experience> experiences;
     @ManyToMany
@@ -23,8 +25,25 @@ public class Student extends User{
     public Student() {
         super();
     }
+
     public Student(String mail, String password) {
         super(mail, password);
+    }
+
+    public String getResumePath() {
+        return resumePath;
+    }
+
+    public void setResumePath(String resumePath) {
+        this.resumePath = resumePath;
+    }
+
+    public String getPicPath() {
+        return picPath;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
     }
 
     public String getName() {

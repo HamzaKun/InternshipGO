@@ -24,6 +24,7 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 </head>
 
 <body>
@@ -116,14 +117,11 @@
 
 			<!-- Email -->
 			<div class="form">
-				<h5>Your Email</h5>
-				<input class="search-field" type="text" placeholder="mail@example.com" value=""/>
-			</div>
-
-			<!-- Title -->
-			<div class="form">
-				<h5>Professional Title</h5>
-				<input class="search-field" type="text" placeholder="e.g. Web Developer" value=""/>
+				<form   th:action="@{/updateEmail}" th:object="${mailForm}" method="post" class="register">
+					<h5>Your Email</h5>
+					<input type="text" class="search-field" th:field="*{email}" placeholder="mail@example.com" />
+					<input type="submit" class="button border fw margin-top-10" name="update" value="Update" />
+				</form>
 			</div>
 
 			<!-- Location -->
@@ -133,23 +131,25 @@
 			</div>
 
 			<!-- Logo -->
-			<div class="form">
-				<h5>Photo <span>(optional)</span></h5>
-				<label class="upload-btn">
-				    <input type="file" multiple />
-				    <i class="fa fa-upload"></i> Browse
-				</label>
-				<span class="fake-input">No file selected</span>
-			</div>
+            <div class="form">
+                <h5>Photo </h5>
+                <form id="upload-file-form" method="post" enctype="multipart/form-data" class="register">
+                    <input class="upload-btn"id="upload-file-input" type="file" name="uploadfile" accept="*" />
+                    <span id="upload-file-message" class="fake-input">No file selected</span>
+                </form>
+            </div>
 
-			<!-- Email -->
-			<div class="form">
-				<h5>Video <span>(optional)</span></h5>
-				<input class="search-field" type="text" placeholder="A link to a video about you" value=""/>
-			</div>
 
-			<!-- Description -->
-			<div class="form">
+            <!--<h5>Video <span>(optional)</span></h5>
+                            <input class="search-field" type="text" placeholder="A link to a video about you" value=""/>-->
+            <div class="form">
+                <h5>Resume </h5>
+                <form id="upload-file-form1" method="post" enctype="multipart/form-data" class="register">
+                    <input class="upload-btn"id="upload-file-input1" type="file" name="uploadfile1" accept="*" />
+                    <span id="upload-file-message1" class="fake-input">No file selected</span>
+                </form>
+            </div>
+            <div class="form">
 				<h5>Resume Content</h5>
 				<textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"></textarea>
 			</div>
@@ -275,6 +275,8 @@
 <script src="scripts/jquery.jpanelmenu.js"></script>
 <script src="scripts/stacktable.js"></script>
 <script src="scripts/headroom.min.js"></script>
+<script src="scripts/fileupload.js"></script>
+<!-- Javascript functions -->
 
 
 <!-- WYSIWYG Editor -->

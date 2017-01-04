@@ -19,4 +19,9 @@ public interface UserDao extends CrudRepository<User, Long> {
     @Transactional
     @Query("update User u set u.userName = ?2 where u.id = ?1")
     void updateUserName(Long id, String userName);
+    @Modifying
+    @Transactional
+    @Query("update User u set u.email = ?2 where u.id = ?1")
+    void updateEmail(Long id, String email);
+
 }

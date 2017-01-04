@@ -10,6 +10,7 @@ import com.internshipgo.model.repository.UserDao;
 import com.internshipgo.model.repository.YearHeadDao;
 import com.internshipgo.view.LoginForm;
 import com.internshipgo.view.SignUpForm;
+import com.internshipgo.view.UpdateEmailForm;
 import com.internshipgo.view.UpdateNameForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -132,6 +133,7 @@ public class MainController extends WebMvcConfigurerAdapter {
     @RequestMapping("/add-resume")
     public String addResume(UpdateNameForm nameForm, HttpSession session, Model model) {
         model.addAttribute("nameForm", new UpdateNameForm());
+        model.addAttribute("mailForm", new UpdateEmailForm());
         User user = (User) session.getAttribute("activeUser");
         if (user == null) {
             return "redirect:my-account";
@@ -508,12 +510,30 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "redirect:/add-resume";
     }
 
+    @PostMapping("/updateEmail")
+    public String updateEmail(@Valid UpdateEmailForm mailForm, HttpSession session, BindingResult bindingResult, Model model) {
+        List<User> users = userDao.findByEmail(mailForm.getEmail());
+        model.addAttribute("nameForm", new UpdateNameForm());
+        model.addAttribute("mailForm", new UpdateEmailForm());
+        User user = (User) session.getAttribute("activeUser");
+        if ( user != null && (user.getClass() == Student.class) ) {
+            if ( !bindingResult.hasErrors() && users.size() == 0) {
+                userDao.updateEmail(user.getId(), mailForm.getEmail());
+                return "add-resume";
+            }
+        } else {
+            return "my-account";
+        }
+        return "redirect:/add-resume";
+    }
+
     @GetMapping("/my-account")
     public String loginRedirect(LoginForm loginForm, Model model, HttpSession session, SignUpForm signUpForm, BindingResult bindingResult) {
         return redirectIndex(session);
     }
+
     @GetMapping("/disconnect")
-    public String discRedirect(LoginForm loginForm, Model model, HttpSession session, SignUpForm signUpForm, BindingResult bindingResult) {
+    public String discRedirect(HttpSession session) {
         session.invalidate();
         return "/index";
     }
