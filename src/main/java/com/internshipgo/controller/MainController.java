@@ -46,9 +46,8 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     //no connected -----------
 
-
     @RequestMapping("/index")
-    public String index(HttpSession session) {
+    public String index() {
         return "index";
     }
 
@@ -445,11 +444,7 @@ public class MainController extends WebMvcConfigurerAdapter {
     }
 
     @GetMapping("/createUser")
-    public String showCreateUserForm(Model model, SignUpForm signUpForm) {
-        /*List<String> userTypes= new ArrayList<String>();
-        userTypes.add("Student");
-        userTypes.add("Company");
-        model.addAttribute("userTypes", userTypes);*/
+    public String showCreateUserForm() {
         return "my-account";
     }
 
@@ -498,6 +493,7 @@ public class MainController extends WebMvcConfigurerAdapter {
     @PostMapping("/updateUserName")
     public String updateUser(@Valid UpdateNameForm nameForm, HttpSession session, BindingResult bindingResult, Model model) {
         model.addAttribute("nameForm", new UpdateNameForm());
+        model.addAttribute("mailForm", new UpdateEmailForm());
         User user = (User) session.getAttribute("activeUser");
         if (user != null  && (user.getClass() == Student.class) ) {
             if ( !bindingResult.hasErrors() ) {
@@ -528,7 +524,7 @@ public class MainController extends WebMvcConfigurerAdapter {
     }
 
     @GetMapping("/my-account")
-    public String loginRedirect(LoginForm loginForm, Model model, HttpSession session, SignUpForm signUpForm, BindingResult bindingResult) {
+    public String loginRedirect(LoginForm loginForm, HttpSession session, SignUpForm signUpForm) {
         return redirectIndex(session);
     }
 

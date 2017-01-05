@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.CascadeType;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class InternshipOffer {
     private int duration;
     private int companyResponse;
     private int yearHeadResponse;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Student> students;
     @ManyToMany
     private List<Company> companies;
