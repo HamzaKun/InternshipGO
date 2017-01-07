@@ -105,29 +105,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     }
 
-    @RequestMapping("/browse-categories")
-    public String browseCategories(HttpSession session) {
 
-
-        User user = (User) session.getAttribute("activeUser");
-        if (user == null) {
-            return "redirect:my-account";
-        }else if( user.getClass() == CompanyAgent.class) {
-            session.setAttribute("activeUser", user);
-
-            return "index-3";
-        } else if( user.getClass() == Student.class) {
-            session.setAttribute("activeUser" , user);
-            return "browse-categories";
-        } else if ( user.getClass() == YearHead.class) {
-            session.setAttribute("activeUser", user);
-            return "index-4";
-        }
-        return "redirect:/index";
-
-
-
-    }
 
     @RequestMapping("/add-resume")
     public String addResume(UpdateNameForm nameForm, HttpSession session, Model model) {
@@ -182,24 +160,7 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "redirect:/index";
     }
 
-    @RequestMapping("/job-alerts")
-    public String jobAlerts(HttpSession session) {
-        User user = (User) session.getAttribute("activeUser");
-        if (user == null) {
-            return "redirect:my-account";
-        }else if( user.getClass() == CompanyAgent.class) {
-            session.setAttribute("activeUser", user);
 
-            return "index-3";
-        } else if( user.getClass() == Student.class) {
-            session.setAttribute("activeUser" , user);
-            return "job-alerts";
-        } else if ( user.getClass() == YearHead.class) {
-            session.setAttribute("activeUser", user);
-            return "index-4";
-        }
-        return "redirect:/index";
-    }
     @RequestMapping("/contact2")
     public String contact2(HttpSession session) {
         User user = (User) session.getAttribute("activeUser");
@@ -430,10 +391,6 @@ public class MainController extends WebMvcConfigurerAdapter {
     @RequestMapping("/job-page")
     public String jobPage(HttpSession session) {
         return "job-page";
-    }
-    @RequestMapping("/job-page-alt")
-    public String jobPageAlt(HttpSession session) {
-        return "job-page-alt";
     }
 
 
