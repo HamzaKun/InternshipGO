@@ -456,7 +456,7 @@ public class MainController extends WebMvcConfigurerAdapter {
         List<User> users = userDao.findByEmail(signUpForm.getEmail());
         if(bindingResult.hasErrors() || !signUpForm.getConfPassword().equals((String) signUpForm.getPassword())
                 || users.size() != 0) {
-            return "my-account";
+            return "redirect:my-account#tab2";
         }else{
             System.out.println(signUpForm);
             if(signUpForm.getUserType().equals("Student")) {
@@ -539,7 +539,7 @@ public class MainController extends WebMvcConfigurerAdapter {
         User user = userDao.findByEmailAndPassword(loginForm.getEmail(), loginForm.getPassword());
         System.out.println("in the login action method " + loginForm.getEmail() +", " + loginForm.getPassword());
         if( user == null ) {
-            return "/my-account";
+            return "redirect:my-account#tab1";
         }else {
             session.setAttribute("activeUser", user);
             return redirectIndex(session);
