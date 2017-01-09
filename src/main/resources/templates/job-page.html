@@ -14,8 +14,8 @@
 
 <!-- CSS
 ================================================== -->
-<link rel="stylesheet" th:href="@{css/style.css}">
-<link rel="stylesheet" th:href="@{css/colors/blue.css}" id="colors">
+<link rel="stylesheet" th:href="@{../css/style.css}">
+<link rel="stylesheet" th:href="@{../css/colors/blue.css}" id="colors">
 
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -35,7 +35,7 @@
 
 		<!-- Logo -->
 		<div id="logo">
-			<h1><a th:href="index-2"><img src="images/logo.png" alt="Internship Go" /></a></h1>
+			<h1><a th:href="index-2"><img src="../images/logo.png" alt="Internship Go" /></a></h1>
 		</div>
 
 		<!-- Menu -->
@@ -51,7 +51,6 @@
 			</ul>
 			<ul class="float-right">
 				<li><a th:href="edit-profile"><i class="fa fa-user"></i> </a></li>
-
 				<li><a th:href="disconnect"><i class="fa fa-lock"></i> </a></li>
 			</ul>
 		</nav>
@@ -76,9 +75,6 @@
 			<h2>Restaurant Team Member - Crew <span class="full-time">Full-Time</span></h2>
 		</div>
 
-		<div class="six columns">
-			<a th:href="@{#}" class="button dark"><i class="fa fa-star"></i> Bookmark This Job</a>
-		</div>
 
 	</div>
 </div>
@@ -94,42 +90,19 @@
 
 		<!-- Company Info -->
 		<div class="company-info">
-			<img src="images/company-logo.png" alt="">
+			<img src="../images/company-logo.png" alt="">
 			<div class="content">
-				<h4>King LLC</h4>
-				<span><a th:href="@{#}"><i class="fa fa-link"></i> Website</a></span>
-				<span><a th:href="@{#}"><i class="fa fa-twitter"></i> @kingrestaurants</a></span>
+				<h4 th:text="${internship.title}"></h4>
+				<span><i class="fa fa-briefcase" th:text="${internship.nameCompany}"></i></span>
+				<span><i class="fa fa-map-marker" th:text="${internship.city}"></i> </span>
+				<span><i class="fa fa-money" th:text="${internship.duration}"></i>  months</span>
 			</div>
 			<div class="clearfix"></div>
 		</div>
 
-		<p class="margin-reset">
-			The Food Service Specialist ensures outstanding customer service is provided to food customers and that all food offerings meet the required stock levels and presentation standards. Beginning your career as a Food Steward will give you a strong foundation in Speedway’s food segment that can make you a vital member of the front line team!
-		</p>
-
 		<br>
-		<p>The <strong>Food Service Specialist</strong> will have responsibilities that include:</p>
-
-		<ul class="list-1">
-			<li>Executing the Food Service program, including preparing and presenting our wonderful food offerings
-			to hungry customers on the go!
-			</li>
-			<li>Greeting customers in a friendly manner and suggestive selling and sampling items to help increase sales.</li>
-			<li>Keeping our Store food area looking terrific and ready for our valued customers by managing product
-			inventory, stocking, cleaning, etc.</li>
-			<li>We’re looking for associates who enjoy interacting with people and working in a fast-paced environment!</li>
-		</ul>
-
+		<p class="margin-reset"  th:text="${internship.description}" ></p>
 		<br>
-
-		<h4 class="margin-bottom-10">Job Requirment</h4>
-
-		<ul class="list-1">
-			<li>Excellent customer service skills, communication skills, and a happy, smiling attitude are essential.</li>
-			<li>Must be available to work required shifts including weekends, evenings and holidays.</li>
-			<li>Must be able to perform repeated bending, standing and reaching.</li>
-			<li> Must be able to occasionally lift up to 50 pounds</li>
-		</ul>
 
 	</div>
 	</div>
@@ -175,8 +148,7 @@
 					</li>
 				</ul>
 
-
-				<a th:href="@{#small-dialog}" class="popup-with-zoom-anim button">Apply For This Job</a>
+				<a th:href="@{/uploadRedirect}" class="popup-with-zoom-anim button">Apply For This Job</a>
 
 				<div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
 					<div class="small-dialog-headline">

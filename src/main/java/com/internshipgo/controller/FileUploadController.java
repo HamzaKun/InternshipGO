@@ -34,6 +34,7 @@ public class FileUploadController {
     public String uploadRedirect() {
         return "fileUpload";
     }
+
     @RequestMapping("/uploadProfilePic")
     public ResponseEntity<?> uploadProfilePic(@RequestParam("uploadfile") MultipartFile uploadfile, HttpSession session) {
         User user= (User) session.getAttribute("activeUser");

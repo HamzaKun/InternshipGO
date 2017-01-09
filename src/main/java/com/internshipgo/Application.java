@@ -1,8 +1,12 @@
 package com.internshipgo;
 
+import com.internshipgo.model.InternshipOffer;
+import com.internshipgo.model.repository.InternshipOfferDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
@@ -75,7 +79,19 @@ public class Application {
         } catch (Exception e) {
             e.printStackTrace();
         }*/
-        SpringApplication.run(Application.class, args);
+
+
+        ApplicationContext ctx = SpringApplication.run(Application.class, args);
+
+        //@Autowired
+        //InternshipOfferDao internshipOfferDao;
+        //internshipOfferDao.findOne(18L);
+        System.out.println("okkkkkkkkkkk");
+       //InternshipOfferDao dao = ctx.getBean(InternshipOfferDao.class);
+
+        //InternshipOffer it = new InternshipOffer("Developer QT","hhhh",4,1,1,"Khouribga","SH");
+        //dao.save(it);
+        //dao.findOne(18L).describe();
     }
 /*
     @Bean

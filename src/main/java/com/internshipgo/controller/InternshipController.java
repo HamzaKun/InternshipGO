@@ -7,6 +7,8 @@ import com.internshipgo.model.repository.InternshipOfferDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -33,6 +35,36 @@ public class InternshipController {
         list.add(test);
         internshipOfferDao.save(list);
         return "index";
+    }
+
+    @RequestMapping(value = "/test")
+    public ModelAndView test(){
+        ModelAndView model = new ModelAndView("job-page");
+        model.addObject("internship", internshipOfferDao.findOne(24L));
+        return model;
+    }
+
+    @RequestMapping(value = "/Internships")
+    public ModelAndView ShowInternships(){
+        ModelAndView model = new ModelAndView("browse-jobs");
+        model.addObject("lists", internshipOfferDao.findAll());
+        return model;
+    }
+
+    @RequestMapping(value = "/Internships/{internshipId}")
+    public ModelAndView ShowInternshipDetaillee(@PathVariable("internshipId") Long internshipId){
+        ModelAndView model = new ModelAndView("job-page");
+        model.addObject("internship", internshipOfferDao.findOne(internshipId));
+        return model;
+    }
+
+    public ArrayList<InternshipOffer> getInternships(){
+        ArrayList<InternshipOffer> list = new ArrayList<InternshipOffer>();
+
+        list = (ArrayList<InternshipOffer>) internshipOfferDao.getALL();
+        for(InternshipOffer stage : list)
+            stage.describe();
+        return list;
     }
 
 
