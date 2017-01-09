@@ -1,10 +1,6 @@
 package com.internshipgo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -21,8 +17,8 @@ public class InternshipOffer {
     private int yearHeadResponse;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Student> students;
-    @ManyToMany
-    private List<Company> companies;
+    @ManyToOne
+    private Company company;
 
     public Long getId() {
         return id;
@@ -72,11 +68,11 @@ public class InternshipOffer {
         this.students = students;
     }
 
-    public List<Company> getCompanies() {
-        return companies;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanies(List<Company> companies) {
-        this.companies = companies;
+    public void setCompany(Company companies) {
+        this.company = companies;
     }
 }
