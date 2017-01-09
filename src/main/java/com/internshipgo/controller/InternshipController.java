@@ -1,6 +1,5 @@
 package com.internshipgo.controller;
 
-import com.internshipgo.model.InternshipOffer;
 import com.internshipgo.model.Student;
 import com.internshipgo.model.User;
 import com.internshipgo.model.repository.InternshipOfferDao;

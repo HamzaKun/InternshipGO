@@ -1,5 +1,6 @@
 package com.internshipgo.controller;
 
+import com.internshipgo.view.*;
 import com.internshipgo.model.CompanyAgent;
 import com.internshipgo.model.Student;
 import com.internshipgo.model.User;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
+
 /**
  * Created by choaib on 01/01/16.
  */
@@ -474,6 +476,21 @@ public class MainController extends WebMvcConfigurerAdapter {
         if (user != null  && (user.getClass() == Student.class) ) {
             if ( !bindingResult.hasErrors() ) {
                 userDao.updateUserName(user.getId(), nameForm.getUserName());
+                return "add-resume";
+            }
+        } else {
+            return "my-account";
+        }
+        return "redirect:/add-resume";
+    }
+
+    @PostMapping("/studentconvention")
+    public String studentconv(@Valid ManageConventionS nameForm, HttpSession session, BindingResult bindingResult, Model model) {
+        model.addAttribute("nameForm", new UpdateNameForm());
+        model.addAttribute("mailForm", new UpdateEmailForm());
+        User user = (User) session.getAttribute("activeUser");
+        if (user != null  && (user.getClass() == Student.class) ) {
+            if ( !bindingResult.hasErrors() ) {
                 return "add-resume";
             }
         } else {

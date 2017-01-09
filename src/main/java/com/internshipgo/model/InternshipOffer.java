@@ -24,8 +24,8 @@ public class InternshipOffer {
     private String nameCompany;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Student> students;
-    @ManyToMany
-    private List<Company> companies;
+    @ManyToOne
+    private Company company;
 
     public InternshipOffer() {
         super();
@@ -113,12 +113,12 @@ public class InternshipOffer {
         this.students = students;
     }
 
-    public List<Company> getCompanies() {
-        return companies;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanies(List<Company> companies) {
-        this.companies = companies;
+    public void setCompany(Company companies) {
+        this.company = companies;
     }
 
     @Override
