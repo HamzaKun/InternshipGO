@@ -1,0 +1,1199 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns="http://www.w3.org/1999/xhtml">
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<meta charset="utf-8">
+<title>Add Resume</title>
+
+<!-- Mobile Specific Metas
+================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" th:href="@{css/style.css}">
+<link rel="stylesheet" th:href="@{css/colors/blue.css}" id="colors">
+
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+
+<body>
+<div id="wrapper">
+
+
+<!-- Header
+================================================== -->
+<header class="sticky-header">
+<div class="container">
+	<div class="sixteen columns">
+
+		<!-- Logo -->
+		<div id="logo">
+			<h1><a th:href="index-2"><img src="images/logo.png" alt="Internship Go" /></a></h1>
+		</div>
+
+		<!-- Menu -->
+		<nav id="navigation" class="menu">
+			<ul id="responsive">
+						<!--<h1 th:text="${session.activeUser.userName}"></h1>-->
+						<li><a th:href="index-2" ><i class="fa fa-home"></i></a></li>
+						<li><a th:href="browse-jobs">Browse Jobs</a></li>
+						<li><a th:href="add-resume" id="current">Add Resume</a></li>
+						<li><a th:href="manage-resumes">Manage Resumes</a></li>
+						<li><a th:href="manage-conventions2">Manage Convention</a></li>
+
+			</ul>
+			<ul class="float-right">
+				<li><a th:href="edit-profile"><i class="fa fa-user"></i> </a></li>
+
+				<li><a th:href="disconnect"><i class="fa fa-lock"></i> </a></li>
+			</ul>
+		</nav>
+
+		<!-- Navigation -->
+		<div id="mobile-navigation">
+			<a th:href="@{#menu}" class="menu-trigger"><i class="fa fa-reorder"></i> Menu</a>
+		</div>
+
+	</div>
+</div>
+</header>
+<div class="clearfix"></div>
+
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single submit-page">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2><i class="fa fa-plus-circle"></i> Add Resume</h2>
+		</div>
+
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+
+	<!-- Submit Page -->
+	<div class="sixteen columns">
+		<div class="submit-page">
+
+			<!-- Notice -->
+
+
+
+
+
+			<!-- Email -->
+			<div class="form">
+				<!--/*@thymesVar id="nameForm" type="com.internshipgo.view.UpdateNameForm"*/-->
+
+				<form th:action="@{/studentconvention}" th:object="${nameForm}" method="post" class="register">
+					<!--	<input type="hidden" id="id_stage" name="id_stage" value="">
+                        <input type="hidden" id="faire" name="faire" value="">
+                        <input type="hidden" id="deletePJ" name="deletePJ" value="">   -->
+                        <h2>CONVENTION DE STAGE</h2>
+                        <font color=red><b><u>Avant de commencer, munissez-vous de toutes les informations obligatoires. Imprimer la fiche de renseignements &agrave; transmettre &agrave; l'entreprise &nbsp;</u></b><a href='Fiche_fr.doc' target='_blank'><img src='../img/iconeWord.gif' alt='Télécharger'></a>(version anglaise <a href='Fiche_en.doc' target='_blank'>
+							<img src='../img/iconeWord.gif' alt='Télécharger'></a>)<BR><BR></font>
+					<font color=red><b><u>Pour les stages à l'&eacute;tranger merci de prendre connaissance des consignes :</u></b></font>
+					<a href='stage_etranger.pdf' target='_blank'><img src='../img/pdf_icon.gif' alt='Télécharger'></a><BR><BR><BR>
+
+                        <h3>Type du stage *</h3>
+					<input type="radio" name="type" id="type" value="2" >Immersion PPI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="type" id="type" value="3" >Stage obligatoire&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="type" id="type" value="7" >Projet multidisciplinaire&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="type" id="type" value="5" >Stage facultatif&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="type" id="type" value="9" >VIE / VIA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="type" id="type" value="10" >Contrat de professionnalisation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<BR><font color=red><b><u>Dans le cadre d'un CDD ou d'un VIE, vous devez déposer une photocopie de votre contrat au bureau des stages.</u></b></font>
+
+
+
+					<h3>Année universitaire du stage *</h3>
+                        <select name="Annee_Univ">
+                            <option value="">Choisir une année universitaire</option>
+                            <option value="2016/2017" >2016/2017</option>
+						</select>
+
+
+                        <h3>Langue utilisée pour l'édition de la convention *</h3>
+                        <select name="Langue">
+                            <option value="">Choisir une langue</option>
+                            <option value="Français" >Français</option>
+                            <option value="Anglais" >Anglais</option>
+					   </select>
+					<h3>&Eacute;tudiant</h3>
+					<table>
+
+
+						<tr>
+							<td width=80><b>Nom :</b>
+							</td>
+							<td>Assoualma</td>
+						</tr>
+
+
+						<tr>
+							<td><b>Prénom :</b>
+							</td>
+							<td>Mohamed</td>
+						</tr>
+
+
+						<tr>
+							<td><b>Mail :</b>
+							</td>
+							<td>assoualm@etud.insa-toulouse.fr</td>
+						</tr>
+
+						<tr>
+							<td valign=top><b>Mail personnel :</b>
+							</td>
+							<td>
+								<INPUT name="Mail_Perso_Etu" ID="Mail_Perso_Etu" value="" size="40"></INPUT>
+							</td>
+						</tr>
+
+
+
+						<tr>
+							<td valign=top>
+								<b>Num&eacute;ro S&eacute;curit&eacute; sociale :<BR>(pour les stages &agrave; l'&eacute;tranger *)</b>
+							</td>
+							<td>
+								<INPUT name="Secu_Etu" ID="Secu_Etu" value=""></INPUT>
+							</td>
+						</tr>
+
+						<tr>
+							<td valign=top colspan=2>
+								<i>Si vous bénéficiez d'une carte européenne merci de déposer une photocopie au Bureau des stages
+								<BR>et d'indiquer votre numéro de carte ci-dessus.</i><BR><BR>
+							</td>
+						</tr>
+
+
+
+
+
+
+						<tr>
+							<td valign=top><b>Adresse * :</b>
+							</td>
+							<td><TEXTAREA name="Adresse_Etu" ID="Adresse_Etu" rows=3 COLS=50></TEXTAREA>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top><b>Code postal * :</b>
+							</td>
+							<td><INPUT name="CP_Etu" ID="CP_Etu" value=""></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top><b>Ville * :</b>
+							</td>
+							<td><INPUT name="Ville_Etu" ID="Ville_Etu" value=""></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td><b>Pays * :</b>
+							</td>
+							<td>
+								<select name="Pays_Etu">
+									<option value="">Choisir un pays</option>
+									<option value="2" >Afghanistan</option><option value="3" >Afrique du Sud</option><option value="4" >Albanie</option><option value="5" >Algérie</option><option value="6" >Allemagne</option><option value="7" >Andorre</option><option value="8" >Angola</option><option value="9" >Antigua-et-Barbuda</option><option value="10" >Arabie saoudite</option><option value="11" >Argentine</option><option value="12" >Arménie</option><option value="13" >Australie</option><option value="14" >Autriche</option><option value="15" >Azerbaïdjan</option><option value="16" >Bahamas</option><option value="17" >Bahreïn</option><option value="18" >Bangladesh</option><option value="19" >Barbade</option><option value="20" >Belau</option><option value="21" >Belgique</option><option value="22" >Belize</option><option value="23" >Bénin</option><option value="24" >Bhoutan</option><option value="25" >Biélorussie</option><option value="26" >Birmanie</option><option value="27" >Bolivie</option><option value="28" >Bosnie-Herzégovine</option><option value="29" >Botswana</option><option value="30" >Brésil</option><option value="31" >Brunei</option><option value="32" >Bulgarie</option><option value="33" >Burkina</option><option value="34" >Burundi</option><option value="35" >Cambodge</option><option value="36" >Cameroun</option><option value="37" >Canada</option><option value="38" >Cap-Vert</option><option value="39" >Chili</option><option value="40" >Chine</option><option value="41" >Chypre</option><option value="42" >Colombie</option><option value="43" >Comores</option><option value="44" >Congo</option><option value="45" >Congo  (ex-Zaïre)</option><option value="46" >Cook (les Îles)</option><option value="47" >Corée du Nord</option><option value="48" >Corée du Sud</option><option value="49" >Costa Rica</option><option value="50" >Côte d'Ivoire</option><option value="51" >Croatie</option><option value="52" >Cuba</option><option value="53" >Danemark</option><option value="54" >Djibouti</option><option value="55" >Dominique</option><option value="56" >Égypte</option><option value="57" >Émirats arabes unis</option><option value="58" >Équateur</option><option value="59" >Érythrée</option><option value="60" >Espagne</option><option value="61" >Estonie</option><option value="62" >États-Unis</option><option value="63" >Éthiopie</option><option value="64" >Fidji</option><option value="65" >Finlande</option><option value="1" >France</option><option value="67" >Gabon</option><option value="68" >Gambie</option><option value="69" >Géorgie</option><option value="70" >Ghana</option><option value="71" >Grèce</option><option value="72" >Grenade</option><option value="73" >Guatemala</option><option value="74" >Guinée</option><option value="75" >Guinée-Bissao</option><option value="76" >Guinée équatoriale</option><option value="77" >Guyana</option><option value="78" >Haïti</option><option value="79" >Honduras</option><option value="80" >Hongrie</option><option value="81" >Inde</option><option value="82" >Indonésie</option><option value="83" >Iran</option><option value="84" >Iraq</option><option value="85" >Irlande</option><option value="86" >Islande</option><option value="87" >Israël</option><option value="88" >Italie</option><option value="89" >Jamaïque</option><option value="90" >Japon</option><option value="91" >Jordanie</option><option value="92" >Kazakhstan</option><option value="93" >Kenya</option><option value="94" >Kirghizistan</option><option value="95" >Kiribati</option><option value="96" >Koweït</option><option value="97" >Laos</option><option value="98" >Lesotho</option><option value="99" >Lettonie</option><option value="100" >Liban</option><option value="101" >Liberia</option><option value="102" >Libye</option><option value="103" >Liechtenstein</option><option value="104" >Lituanie</option><option value="105" >Luxembourg</option><option value="106" >Macédoine</option><option value="107" >Madagascar</option><option value="108" >Malaisie</option><option value="109" >Malawi</option><option value="110" >Maldives</option><option value="111" >Mali</option><option value="112" >Malte</option><option value="113" >Maroc</option><option value="114" >Marshall (les Îles)</option><option value="115" >Maurice</option><option value="116" >Mauritanie</option><option value="117" >Mexique</option><option value="118" >Micronésie</option><option value="119" >Moldavie</option><option value="120" >Monaco</option><option value="121" >Mongolie</option><option value="122" >Mozambique</option><option value="123" >Namibie</option><option value="124" >Nauru</option><option value="125" >Népal</option><option value="126" >Nicaragua</option><option value="127" >Niger</option><option value="128" >Nigeria</option><option value="129" >Niue</option><option value="130" >Norvège</option><option value="131" >Nouvelle-Zélande</option><option value="132" >Oman</option><option value="133" >Ouganda</option><option value="134" >Ouzbékistan</option><option value="135" >Pakistan</option><option value="136" >Panama</option><option value="137" >Papouasie - Nouvelle Guinée</option><option value="138" >Paraguay</option><option value="139" >Pays-Bas</option><option value="140" >Pérou</option><option value="141" >Philippines</option><option value="142" >Pologne</option><option value="143" >Portugal</option><option value="144" >Qatar</option><option value="145" >République centrafricaine</option><option value="146" >République dominicaine</option><option value="147" >République tchèque</option><option value="148" >Roumanie</option><option value="149" >Royaume-Uni</option><option value="150" >Russie</option><option value="151" >Rwanda</option><option value="152" >Saint-Christophe-et-Niévès</option><option value="153" >Sainte-Lucie</option><option value="154" >Saint-Marin</option><option value="155" >Saint-Siège , ou leVatican</option><option value="156" >Saint-Vincent-et-les Grenadines</option><option value="157" >Salomon (les Îles)</option><option value="158" >Salvador</option><option value="159" >Samoa occidentales</option><option value="160" >Sao Tomé-et-Principe</option><option value="161" >Sénégal</option><option value="162" >Seychelles</option><option value="163" >Sierra Leone</option><option value="164" >Singapour</option><option value="165" >Slovaquie</option><option value="166" >Slovénie</option><option value="167" >Somalie</option><option value="168" >Soudan</option><option value="169" >Sri Lanka</option><option value="170" >Suède</option><option value="171" >Suisse</option><option value="172" >Suriname</option><option value="173" >Swaziland</option><option value="174" >Syrie</option><option value="175" >Tadjikistan</option><option value="196" >Taïwan</option><option value="176" >Tanzanie</option><option value="177" >Tchad</option><option value="178" >Thaïlande</option><option value="179" >Togo</option><option value="180" >Tonga</option><option value="181" >Trinité-et-Tobago</option><option value="182" >Tunisie</option><option value="183" >Turkménistan</option><option value="184" >Turquie</option><option value="185" >Tuvalu</option><option value="186" >Ukraine</option><option value="187" >Uruguay</option><option value="188" >Vanuatu</option><option value="189" >Venezuela</option><option value="190" >Viêt Nam</option><option value="191" >Yémen</option><option value="192" >Yougoslavie</option><option value="193" >Zaïre  voir Congo</option><option value="194" >Zambie</option><option value="195" >Zimbabwe</option>								</select>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top><b>Téléphone * :</b>
+							</td>
+							<td><INPUT name="Telephone_Etu" ID="Telephone_Etu" value=""></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td><b>PO/Spécialité * :</b>
+							</td>
+							<td>
+								<input type="hidden" value="89" name="Specialite_Etu">
+								ECHANGE INFORMATIQUE ET RESEAUX							</td>
+						</tr>
+
+
+						<tr>
+							<td width=200><b>Double diplôme * ? :</b>
+							</td>
+							<td>
+								<INPUT type="radio" name="Double_Diplome" ID="Double_Diplome" value="false" ></INPUT>&nbsp;Non&nbsp;&nbsp;&nbsp;&nbsp;
+								<INPUT type="radio" name="Double_Diplome" ID="Double_Diplome" value="true" ></INPUT>&nbsp;Oui
+							</td>
+						</tr>
+
+
+						<tr>
+							<td width=200><b>Comment avez-vous <BR>trouvé votre stage * ?</b>
+							</td>
+							<td>
+								<select name="Mode_Etu">
+									<option value="">Choisir comment ?</option>
+									<option value="7" >Candidature spontanée</option>
+									<option value="5" >Offre sur le site de l'entreprise</option>
+									<option value="4" >Offre sur un site web spécialisé</option>
+									<option value="2" >Offre transmise par un enseignant/secrétaire INSA</option>
+									<option value="10" >Offre déposée sur PlaceOjeunes</option>
+									<option value="11" >Forum INSA</option><option value="8" >Relation personnelle ou familiale</option>
+									<option value="9" >Autre</option>
+								</select>
+							</td>
+						</tr>
+
+
+					</table>
+					<h3>Organisme d'accueil</h3>
+					<table>
+
+						<tr>
+							<td width=80><b>Type * :</b>
+							</td>
+							<td>
+								<input type="radio" name="Type_Etab" id="Type_Etab" value="3" >Entreprise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="Type_Etab" id="Type_Etab" value="2" >Association&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="Type_Etab" id="Type_Etab" value="1" >Université&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="Type_Etab" id="Type_Etab" value="4" >Autre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</td>
+						</tr>
+
+
+						<tr>
+							<td width=80><b>Nom * :</b>
+							</td>
+							<td><INPUT name="Nom_Etab" ID="Nom_Etab" value="" size="80"></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td><b>Num&eacute;ro SIRET :<BR>(pour les entreprises fran&ccedil;aises *)</b>
+							</td>
+							<td><INPUT name="Siret_Etab" ID="Siret_Etab" value="" size="20" maxlength="14"></INPUT>
+							</td>
+						</tr>
+
+
+
+
+						<tr>
+							<td><b>Domaine d'activité * :</b>
+							</td>
+							<td>
+								<select name="Domaine_Etab">
+									<option value="">Choisir un domaine</option>
+									<option value="19" >Eco-industrie, environnement et aménagement</option>
+									<option value="20" >Eco conception</option>
+									<option value="11" >Industrie agroalimentaire</option>
+									<option value="21" >Industrie chimique, parachimique, pharmaceutique, cosmétique</option>
+									<option value="12" >Energie</option>
+									<option value="8" >Industrie aéronautique - espace</option>
+									<option value="22" >Industrie automobile, navale, ferroviaire</option>
+									<option value="23" >Matériaux, métallurgie</option>
+									<option value="24" >Nanotechnologies</option>
+									<option value="25" >Instrumentation</option>
+									<option value="3" >Industrie électronique et microélectronique</option>
+									<option value="4" >Informatique</option>
+									<option value="26" >SSII</option>
+									<option value="27" >Opérateur de télécommunication</option>
+									<option value="28" >Réseaux</option>
+									<option value="29" >Institution financière/banque/assurance</option>
+									<option value="30" >Société de conseil</option>
+									<option value="31" >Administration d'Etat, territoriale, hospitalière</option>
+									<option value="1" >Bâtiment travaux publics</option>
+									<option value="18" >Autres secteurs industriels</option>
+								</select>
+							</td>
+						</tr>
+
+
+
+						<tr>
+							<td><b>Taille de l'&eacute;tablissement * :</b>
+							</td>
+							<td>
+								<select name="Taille_Etab">
+									<option value="">Choisir une taille</option>
+									<option value="1" >1 à 49 (TPE)</option>
+									<option value="2" >50 à 249 (PME)</option>
+									<option value="3" >250 à 4999 (ETI)</option>
+									<option value="4" >> 5000 (Grand Groupe)</option>
+								</select>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top width=200><b>Adresse * :</b>
+							</td>
+							<td><TEXTAREA name="Adresse_Etab" ID="Adresse_Etab" rows=3 COLS=50></TEXTAREA>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top><b>Code postal * :</b>
+							</td>
+							<td><INPUT name="CP_Etab" ID="CP_Etab" value=""></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top><b>Ville * :</b>
+							</td>
+							<td><INPUT name="Ville_Etab" ID="Ville_Etab" value=""></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td><b>Pays * :</b>
+							</td>
+							<td>
+								<select name="Pays_Etab">
+									<option value="">Choisir un pays</option>
+									<option value="2" >Afghanistan</option><option value="3" >Afrique du Sud</option>
+									<option value="4" >Albanie</option><option value="5" >Algérie</option><option value="6" >Allemagne</option>
+									<option value="7" >Andorre</option><option value="8" >Angola</option><option value="9" >Antigua-et-Barbuda</option>
+									<option value="10" >Arabie saoudite</option><option value="11" >Argentine</option><option value="12" >Arménie</option>
+									<option value="13" >Australie</option><option value="14" >Autriche</option><option value="15" >Azerbaïdjan</option>
+									<option value="16" >Bahamas</option><option value="17" >Bahreïn</option><option value="18" >Bangladesh</option>
+									<option value="19" >Barbade</option>
+									<option value="20" >Belau</option><option value="21" >Belgique</option>
+									<option value="22" >Belize</option>
+									<option value="23" >Bénin</option>
+									<option value="24" >Bhoutan</option><option value="25" >Biélorussie</option>
+									<option value="26" >Birmanie</option><option value="27" >Bolivie</option><option value="28" >Bosnie-Herzégovine</option>
+									<option value="29" >Botswana</option><option value="30" >Brésil</option><option value="31" >Brunei</option>
+									<option value="32" >Bulgarie</option><option value="33" >Burkina</option><option value="34" >Burundi</option>
+									<option value="35" >Cambodge</option><option value="36" >Cameroun</option><option value="37" >Canada</option>
+									<option value="38" >Cap-Vert</option><option value="39" >Chili</option><option value="40" >Chine</option>
+									<option value="41" >Chypre</option><option value="42" >Colombie</option><option value="43" >Comores</option>
+									<option value="44" >Congo</option><option value="45" >Congo  (ex-Zaïre)</option><option value="46" >Cook (les Îles)</option>
+									<option value="47" >Corée du Nord</option><option value="48" >Corée du Sud</option><option value="49" >Costa Rica</option>
+									<option value="50" >Côte d'Ivoire</option>
+									<option value="51" >Croatie</option><option value="52" >Cuba</option>
+									<option value="53" >Danemark</option>
+									<option value="54" >Djibouti</option><option value="55" >Dominique</option><option value="56" >Égypte</option>
+									<option value="57" >Émirats arabes unis</option><option value="58" >Équateur</option><option value="59" >Érythrée</option><option value="60" >Espagne</option><option value="61" >Estonie</option>
+									<option value="62" >États-Unis</option>
+									<option value="63" >Éthiopie</option><option value="64" >Fidji</option>
+									<option value="65" >Finlande</option><option value="1" >France</option><option value="67" >Gabon</option><option value="68" >Gambie</option><option value="69" >Géorgie</option><option value="70" >Ghana</option><option value="71" >Grèce</option>
+									<option value="72" >Grenade</option>
+									<option value="73" >Guatemala</option><option value="74" >Guinée</option>
+									<option value="75" >Guinée-Bissao</option>
+									<option value="76" >Guinée équatoriale</option><option value="77" >Guyana</option>
+									<option value="78" >Haïti</option>
+									<option value="79" >Honduras</option><option value="80" >Hongrie</option>
+									<option value="81" >Inde</option>
+									<option value="82" >Indonésie</option><option value="83" >Iran</option>
+									<option value="84" >Iraq</option><option value="85" >Irlande</option><option value="86" >Islande</option><option value="87" >Israël</option><option value="88" >Italie</option><option value="89" >Jamaïque</option><option value="90" >Japon</option>
+									<option value="91" >Jordanie</option><option value="92" >Kazakhstan</option>
+									<option value="93" >Kenya</option>
+									<option value="94" >Kirghizistan</option><option value="95" >Kiribati</option>
+									<option value="96" >Koweït</option><option value="97" >Laos</option><option value="98" >Lesotho</option><option value="99" >Lettonie</option><option value="100" >Liban</option><option value="101" >Liberia</option><option value="102" >Libye</option><option value="103" >Liechtenstein</option><option value="104" >Lituanie</option><option value="105" >Luxembourg</option><option value="106" >Macédoine</option><option value="107" >Madagascar</option><option value="108" >Malaisie</option>
+									<option value="109" >Malawi</option><option value="110" >Maldives</option>
+									<option value="111" >Mali</option><option value="112" >Malte</option>
+									<option value="113" >Maroc</option><option value="114" >Marshall (les Îles)</option>
+									<option value="115" >Maurice</option><option value="116" >Mauritanie</option>
+									<option value="117" >Mexique</option><option value="118" >Micronésie</option>
+									<option value="119" >Moldavie</option>
+									<option value="120" >Monaco</option><option value="121" >Mongolie</option>
+									<option value="122" >Mozambique</option>
+									<option value="123" >Namibie</option><option value="124" >Nauru</option><option value="125" >Népal</option><option value="126" >Nicaragua</option><option value="127" >Niger</option><option value="128" >Nigeria</option><option value="129" >Niue</option><option value="130" >Norvège</option><option value="131" >Nouvelle-Zélande</option><option value="132" >Oman</option>
+									<option value="133" >Ouganda</option><option value="134" >Ouzbékistan</option><option value="135" >Pakistan</option>
+									<option value="136" >Panama</option><option value="137" >Papouasie - Nouvelle Guinée</option><option value="138" >Paraguay</option>
+									<option value="139" >Pays-Bas</option><option value="140" >Pérou</option><option value="141" >Philippines</option>
+									<option value="142" >Pologne</option><option value="143" >Portugal</option><option value="144" >Qatar</option>
+									<option value="145" >République centrafricaine</option><option value="146" >République dominicaine</option><option value="147" >République tchèque</option>
+									<option value="148" >Roumanie</option><option value="149" >Royaume-Uni</option><option value="150" >Russie</option>
+									<option value="151" >Rwanda</option><option value="152" >Saint-Christophe-et-Niévès</option><option value="153" >Sainte-Lucie</option><option value="154" >Saint-Marin</option>
+									<option value="155" >Saint-Siège , ou leVatican</option><option value="156" >Saint-Vincent-et-les Grenadines</option>
+									<option value="157" >Salomon (les Îles)</option><option value="158" >Salvador</option><option value="159" >Samoa occidentales</option><option value="160" >Sao Tomé-et-Principe</option><option value="161" >Sénégal</option>
+									<option value="162" >Seychelles</option><option value="163" >Sierra Leone</option><option value="164" >Singapour</option>
+									<option value="165" >Slovaquie</option><option value="166" >Slovénie</option>
+									<option value="167" >Somalie</option><option value="168" >Soudan</option><option value="169" >Sri Lanka</option>
+									<option value="170" >Suède</option><option value="171" >Suisse</option><option value="172" >Suriname</option><option value="173" >Swaziland</option>
+									<option value="174" >Syrie</option><option value="175" >Tadjikistan</option><option value="196" >Taïwan</option>
+									<option value="176" >Tanzanie</option><option value="177" >Tchad</option><option value="178" >Thaïlande</option><option value="179" >Togo</option><option value="180" >Tonga</option><option value="181" >Trinité-et-Tobago</option>
+									<option value="182" >Tunisie</option><option value="183" >Turkménistan</option><option value="184" >Turquie</option>
+									<option value="185" >Tuvalu</option><option value="186" >Ukraine</option><option value="187" >Uruguay</option><option value="188" >Vanuatu</option><option value="189" >Venezuela</option><option value="190" >Viêt Nam</option><option value="191" >Yémen</option><option value="192" >Yougoslavie</option><option value="193" >Zaïre  voir Congo</option>
+									<option value="194" >Zambie</option><option value="195" >Zimbabwe</option>
+								</select>
+							</td>
+						</tr>
+
+
+
+
+
+						<tr>
+							<td valign=top><b>Téléphone * :</b>
+							</td>
+							<td><INPUT name="Telephone_Etab" ID="Telephone_Etab" value=""></INPUT>
+							</td>
+						</tr>
+						<tr>
+							<td valign=top><b>Site internet :</b>
+							</td>
+							<td><INPUT name="Site_Etab" ID="Site_Etab" value=""></INPUT>
+							</td>
+						</tr>
+					</table>
+
+					<h3>Repr&eacute;sent&eacute; par (nom signataire de la convention)</h3>
+					<table>
+						<tr>
+							<td width=200><b>Civilité * :</b>
+							</td>
+							<td>
+								<INPUT type="radio" name="Civilite_Resp_Admin" ID="Civilite_Resp_Admin" value="Mme" ></INPUT>&nbsp;Mme&nbsp;&nbsp;&nbsp;&nbsp;
+								<INPUT type="radio" name="Civilite_Resp_Admin" ID="Civilite_Resp_Admin" value="Mr" ></INPUT>&nbsp;Mr
+							</td>
+						</tr>
+						<tr>
+							<td width=200><b>Nom * :</b>
+							</td>
+							<td><INPUT name="Nom_Resp_Admin" ID="Nom_Resp_Admin" value="" size="80"></INPUT>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Prénom * :</b>
+							</td>
+							<td><INPUT name="Prenom_Resp_Admin" ID="Prenom_Resp_Admin" value="" size="80"></INPUT>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Mail :</b>
+							</td>
+							<td><INPUT name="Mail_Resp_Admin" ID="Mail_Resp_Admin" value="" size="80"></INPUT>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Qualit&eacute; du repr&eacute;sentant * :</b>
+							</td>
+
+							<td>
+								<select name="Fonction_Resp_Admin">
+									<option value="">Choisir une fonction</option>
+									<option value="1" >PDG de société</option>
+									<option value="2" >Directeur de la société</option>
+									<option value="3" >Directeur de l'usine ou du site</option>
+									<option value="4" >DRH ou chef du personnel</option><option value="5" >Commerçant</option>
+									<option value="6" >Artisan</option><option value="7" >Chef de service ou de département</option>
+									<option value="8" >Ingénieur</option>
+									<option value="9" >Technicien</option>
+									<option value="10" >Autre</option>
+								</select>
+								Si "Autre", pr&eacute;ciser : <input value="" name="Fonction_Resp_Admin_Autre" ID="Fonction_Resp_Admin_Autre">
+							</td>
+						</tr>
+
+
+
+						<tr>
+							<td valign=top><b>Téléphone * :</b>
+							</td>
+							<td><INPUT name="Telephone_Resp_Admin" ID="Telephone_Resp_Admin" value=""></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td><b>Service dans lequel le<BR> stage sera effectu&eacute; * :</b>
+							</td>
+							<td><INPUT name="Service_Resp_Admin" ID="Service_Resp_Admin" value="" size="80"></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td colspan=2>
+								<BR><b>Concerne uniquement les stages &agrave; l'&eacute;tranger </b>:<BR>Protection sociale issue de l'organisme d'accueil (en cochant la case appropri&eacute;e, l'organisme d'accueil indique ci-apr&egrave;s s'il fournit une protection Maladie au stagiaire, en vertu du droit local :<BR>
+								<input type="radio" name="Protection" value="1" > oui : cette protection s'ajoute au maintien, &agrave; l'&eacute;tranger, des droits issus du droit fran&ccedil;ais<BR>
+								<input type="radio" name="Protection" value="0" > non : la protection d&eacute;coule alors exclusivement du maintien, &agrave; l'&eacute;tranger, des droits issus du r&eacute;gime fran&ccedil;ais &eacute;tudiant
+							</td>
+						</tr>
+					</table>
+
+
+
+					<h3>Lieu du stage</h3>
+					<table>
+						<tr>
+							<td valign=top width=200><b>Adresse * :</b>
+							</td>
+							<td><TEXTAREA name="Adresse_Lieu" ID="Adresse_Lieu" rows=3 COLS=50></TEXTAREA>
+							</td>
+						</tr>
+
+
+
+						<tr>
+							<td valign=top><b>Code postal * :</b>
+							</td>
+							<td><INPUT name="CP_Lieu" ID="CP_Lieu" value=""></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top><b>Ville * :</b>
+							</td>
+							<td><INPUT name="Ville_Lieu" ID="Ville_Lieu" value=""></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td><b>Pays * :</b>
+							</td>
+							<td>
+								<select name="Pays_Lieu">
+									<option value="">Choisir un pays</option>
+									<option value="2" >Afghanistan</option>
+									<option value="3" >Afrique du Sud</option>
+									<option value="4" >Albanie</option>
+									<option value="5" >Algérie</option>
+									<option value="6" >Allemagne</option>
+									<option value="7" >Andorre</option>
+									<option value="8" >Angola</option>
+									<option value="9" >Antigua-et-Barbuda</option>
+									<option value="10" >Arabie saoudite</option>
+									<option value="11" >Argentine</option>
+									<option value="12" >Arménie</option>
+									<option value="13" >Australie</option>
+									<option value="14" >Autriche</option>
+									<option value="15" >Azerbaïdjan</option>
+									<option value="16" >Bahamas</option>
+									<option value="17" >Bahreïn</option>
+									<option value="18" >Bangladesh</option>
+									<option value="19" >Barbade</option>
+									<option value="20" >Belau</option>
+									<option value="21" >Belgique</option>
+									<option value="22" >Belize</option>
+									<option value="23" >Bénin</option>
+									<option value="24" >Bhoutan</option>
+									<option value="25" >Biélorussie</option>
+									<option value="26" >Birmanie</option>
+									<option value="27" >Bolivie</option>
+									<option value="28" >Bosnie-Herzégovine</option>
+									<option value="29" >Botswana</option>
+									<option value="30" >Brésil</option>
+									<option value="31" >Brunei</option>
+									<option value="32" >Bulgarie</option>
+									<option value="33" >Burkina</option>
+									<option value="34" >Burundi</option>
+									<option value="35" >Cambodge</option>
+									<option value="36" >Cameroun</option>
+									<option value="37" >Canada</option>
+									<option value="38" >Cap-Vert</option>
+									<option value="39" >Chili</option>
+									<option value="40" >Chine</option>
+									<option value="41" >Chypre</option>
+									<option value="42" >Colombie</option>
+									<option value="43" >Comores</option>
+									<option value="44" >Congo</option>
+									<option value="45" >Congo  (ex-Zaïre)</option>
+									<option value="46" >Cook (les Îles)</option>
+									<option value="47" >Corée du Nord</option>
+									<option value="48" >Corée du Sud</option>
+									<option value="49" >Costa Rica</option>
+									<option value="50" >Côte d'Ivoire</option>
+									<option value="51" >Croatie</option>
+									<option value="52" >Cuba</option>
+									<option value="53" >Danemark</option>
+									<option value="54" >Djibouti</option>
+									<option value="55" >Dominique</option>
+									<option value="56" >Égypte</option>
+									<option value="57" >Émirats arabes unis</option>
+									<option value="58" >Équateur</option>
+									<option value="59" >Érythrée</option>
+									<option value="60" >Espagne</option>
+									<option value="61" >Estonie</option>
+									<option value="62" >États-Unis</option>
+									<option value="63" >Éthiopie</option>
+									<option value="64" >Fidji</option>
+									<option value="65" >Finlande</option><option value="1" >France</option>
+									<option value="67" >Gabon</option>
+									<option value="68" >Gambie</option><option value="69" >Géorgie</option>
+									<option value="70" >Ghana</option>
+									<option value="71" >Grèce</option>
+									<option value="72" >Grenade</option><option value="73" >Guatemala</option>
+									<option value="74" >Guinée</option><option value="75" >Guinée-Bissao</option><option value="76" >Guinée équatoriale</option>
+									<option value="77" >Guyana</option><option value="78" >Haïti</option><option value="79" >Honduras</option>
+									<option value="80" >Hongrie</option><option value="81" >Inde</option>
+									<option value="82" >Indonésie</option><option value="83" >Iran</option><option value="84" >Iraq</option>
+									<option value="85" >Irlande</option>
+									<option value="86" >Islande</option>
+									<option value="87" >Israël</option><option value="88" >Italie</option>
+									<option value="89" >Jamaïque</option><option value="90" >Japon</option>
+									<option value="91" >Jordanie</option><option value="92" >Kazakhstan</option>
+									<option value="93" >Kenya</option><option value="94" >Kirghizistan</option>
+									<option value="95" >Kiribati</option><option value="96" >Koweït</option>
+									<option value="97" >Laos</option><option value="98" >Lesotho</option>
+									<option value="99" >Lettonie</option>
+									<option value="100" >Liban</option>
+									<option value="101" >Liberia</option>
+									<option value="102" >Libye</option>
+									<option value="103" >Liechtenstein</option>
+									<option value="104" >Lituanie</option>
+									<option value="105" >Luxembourg</option>
+									<option value="106" >Macédoine</option>
+									<option value="107" >Madagascar</option>
+									<option value="108" >Malaisie</option>
+									<option value="109" >Malawi</option>
+									<option value="110" >Maldives</option>
+									<option value="111" >Mali</option><option value="112" >Malte</option>
+									<option value="113" >Maroc</option>
+									<option value="114" >Marshall (les Îles)</option>
+									<option value="115" >Maurice</option>
+									<option value="116" >Mauritanie</option>
+									<option value="117" >Mexique</option>
+									<option value="118" >Micronésie</option>
+									<option value="119" >Moldavie</option>
+									<option value="120" >Monaco</option>
+									<option value="121" >Mongolie</option>
+									<option value="122" >Mozambique</option>
+									<option value="123" >Namibie</option>
+									<option value="124" >Nauru</option>
+									<option value="125" >Népal</option>
+									<option value="126" >Nicaragua</option>
+									<option value="127" >Niger</option>
+									<option value="128" >Nigeria</option>
+									<option value="129" >Niue</option>
+									<option value="130" >Norvège</option>
+									<option value="131" >Nouvelle-Zélande</option>
+									<option value="132" >Oman</option>
+									<option value="133" >Ouganda</option><option value="134" >Ouzbékistan</option>
+									<option value="135" >Pakistan</option>
+									<option value="136" >Panama</option><option value="137" >Papouasie - Nouvelle Guinée</option>
+									<option value="138" >Paraguay</option>
+									<option value="139" >Pays-Bas</option><option value="140" >Pérou</option>
+									<option value="141" >Philippines</option>
+									<option value="142" >Pologne</option><option value="143" >Portugal</option>
+									<option value="144" >Qatar</option>
+									<option value="145" >République centrafricaine</option>
+									<option value="146" >République dominicaine</option>
+									<option value="147" >République tchèque</option>
+									<option value="148" >Roumanie</option>
+									<option value="149" >Royaume-Uni</option>
+									<option value="150" >Russie</option><option value="151" >Rwanda</option>
+									<option value="152" >Saint-Christophe-et-Niévès</option>
+									<option value="153" >Sainte-Lucie</option>
+									<option value="154" >Saint-Marin</option>
+									<option value="155" >Saint-Siège , ou leVatican</option>
+									<option value="156" >Saint-Vincent-et-les Grenadines</option>
+									<option value="157" >Salomon (les Îles)</option>
+									<option value="158" >Salvador</option>
+									<option value="159" >Samoa occidentales</option>
+									<option value="160" >Sao Tomé-et-Principe</option>
+									<option value="161" >Sénégal</option>
+									<option value="162" >Seychelles</option>
+									<option value="163" >Sierra Leone</option>
+									<option value="164" >Singapour</option>
+									<option value="165" >Slovaquie</option>
+									<option value="166" >Slovénie</option>
+									<option value="167" >Somalie</option>
+									<option value="168" >Soudan</option>
+									<option value="169" >Sri Lanka</option>
+									<option value="170" >Suède</option>
+									<option value="171" >Suisse</option>
+									<option value="172" >Suriname</option>
+									<option value="173" >Swaziland</option>
+									<option value="174" >Syrie</option>
+									<option value="175" >Tadjikistan</option>
+									<option value="196" >Taïwan</option>
+									<option value="176" >Tanzanie</option>
+									<option value="177" >Tchad</option>
+									<option value="178" >Thaïlande</option>
+									<option value="179" >Togo</option>
+									<option value="180" >Tonga</option>
+									<option value="181" >Trinité-et-Tobago</option>
+									<option value="182" >Tunisie</option>
+									<option value="183" >Turkménistan</option>
+									<option value="184" >Turquie</option>
+									<option value="185" >Tuvalu</option>
+									<option value="186" >Ukraine</option>
+									<option value="187" >Uruguay</option>
+									<option value="188" >Vanuatu</option>
+									<option value="189" >Venezuela</option>
+									<option value="190" >Viêt Nam</option>
+									<option value="191" >Yémen</option>
+									<option value="192" >Yougoslavie</option>
+									<option value="193" >Zaïre  voir Congo</option>
+									<option value="194" >Zambie</option>
+									<option value="195" >Zimbabwe</option>
+								</select>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top><b>Téléphone * :</b>
+							</td>
+							<td><INPUT name="Telephone_Lieu" ID="Telephone_Lieu" value=""></INPUT>
+							</td>
+						</tr>
+					</table>
+
+
+
+
+
+
+					<h3>Tuteur de l'organisme d'accueil</h3>
+					<table>
+						<tr>
+							<td width=200><b>Civilité * :</b>
+							</td>
+							<td>
+								<INPUT type="radio" name="Civilite_Resp_Stage" ID="Civilite_Resp_Stage" value="Mme" ></INPUT>&nbsp;Mme&nbsp;&nbsp;&nbsp;&nbsp;
+								<INPUT type="radio" name="Civilite_Resp_Stage" ID="Civilite_Resp_Stage" value="Mr" ></INPUT>&nbsp;Mr
+							</td>
+						</tr>
+
+
+						<tr>
+							<td width=200><b>Nom * :</b>
+							</td>
+							<td><INPUT name="Nom_Resp_Stage" ID="Nom_Resp_Stage" value="" size="80"></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td><b>Prénom * :</b>
+							</td>
+							<td><INPUT name="Prenom_Resp_Stage" ID="Prenom_Resp_Stage" value="" size="80"></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td><b>Mail * :</b>
+							</td>
+							<td><INPUT name="Mail_Resp_Stage" ID="Mail_Resp_Stage" value="" size="80"></INPUT>
+							</td>
+						</tr>
+
+
+
+
+
+						<tr>
+							<td><b>Fonction :</b>
+							</td>
+							<td>
+								<select name="Fonction_Resp_Stage">
+									<option value="">Choisir une fonction</option>
+									<option value="1" >PDG de société</option>
+									<option value="2" >Directeur de la société</option>
+									<option value="3" >Directeur de l'usine ou du site</option>
+									<option value="4" >DRH ou chef du personnel</option>
+									<option value="5" >Commerçant</option>
+									<option value="6" >Artisan</option>
+									<option value="7" >Chef de service ou de département</option>
+									<option value="8" >Ingénieur</option>
+									<option value="9" >Technicien</option>
+									<option value="10" >Autre</option>
+								</select>
+							</td>
+						</tr>
+
+
+
+						<tr>
+							<td valign=top><b>Téléphone * :</b>
+							</td>
+							<td><INPUT name="Telephone_Resp_Stage" ID="Telephone_Resp_Stage" value=""></INPUT>
+							</td>
+						</tr>
+					</table>
+
+					<h3>Contenu du stage</h3>
+					<table>
+
+
+						<tr>
+							<td width=200 valign=top><b>Sujet du stage * :</b>
+							</td>
+							<td><INPUT name="Definition_stage" ID="Definition_stage" value="" size="100" maxlength="200"></INPUT>
+							</td>
+						</tr>
+
+
+
+						<tr>
+							<td width=200 valign=top><b>Activit&eacute;s confi&eacute;es (1000 caract&egrave;res maximum) * :</b>
+							</td>
+							<td><TEXTAREA name="Description_stage" ID="Description_stage" rows=3 COLS=76></TEXTAREA></INPUT>
+							</td>
+						</tr>
+
+
+
+
+
+						<tr>
+							<td width=200 valign=top><b>Pièce jointe :</b>
+							</td>
+							<td>
+								<INPUT type=hidden name=MAX_FILE_SIZE  VALUE=1024000>
+								<INPUT type=file name="nom_du_fichier" value="">
+							</td>
+						</tr>
+
+
+
+
+						<tr>
+							<td valign=top colspan=2><i>Attention : cette pi&egrave;ce jointe ne doit pas d&eacute;passer 1Mo et doit avoir une extension de type pps, ppt, pdf, doc ou odt</i><BR><BR>
+							</td>
+						</tr>
+
+
+
+
+
+
+						<tr>
+							<td width=200 valign=top><b>Date début du stage * :</b>
+							</td>
+							<td>
+								<table border=0>
+									<tr>
+										<td colspan="2"><input type="text" id="date_debut" name="date_debut" size="10" maxlength="10" value="" readonly=true/></td>
+									</tr>
+									<tr class="trcenter">
+										<td><a title="Ouvrir Calendrier" href="javascript:openCalendar('Select','date_debut','date')"><img src="../img/cal.png" border="0" width="16" height="16" alt="Cal" title="Calendrier" /></a></td>
+										<td><a title="Effacer le contenu de la cellule" href="javascript:void(0)" onclick="javascript:document.getElementById('date_debut').value=''"><img src="../img/red_drop.png" title="Effacer le contenu de la cellule" align="bottom" alt="X" width="16" height="16" border="0" /></a></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+
+
+
+
+						<tr>
+							<td width=200 valign=top><b>Date fin du stage * :</b>
+							</td>
+							<td>
+								<table border=0>
+									<tr>
+										<td colspan="2"><input type="text" id="date_fin" name="date_fin" size="10" maxlength="10" value="" readonly=true/></td>
+									</tr>
+									<tr class="trcenter">
+										<td><a title="Ouvrir Calendrier" href="javascript:openCalendar('Select','date_fin','date')">
+											<img src="../img/cal.png" border="0" width="16" height="16" alt="Cal" title="Calendrier" /></a>
+										</td>
+
+										<td><a title="Effacer le contenu de la cellule" href="javascript:void(0)" onclick="javascript:document.getElementById('date_fin').value=''">
+											<img src="../img/red_drop.png" title="Effacer le contenu de la cellule" align="bottom" alt="X" width="16" height="16" border="0" /></a>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+
+
+
+
+
+						<tr>
+							<td><b>Repr&eacute;sentant une dur&eacute;e totale de : *<BR></b>
+							</td>
+							<td><INPUT name="horaire" ID="horaire" value="" size=10></INPUT> heures
+							</td>
+						</tr>
+
+
+
+						<tr>
+							<td valign=top colspan=2><b>Dur&eacute;e hebdomadaire maximale de pr&eacute;sence du stagiaire dans l'organisme d'accueil : *</b>
+								<select name="Horaire_Hebdomadaire_H">
+									<option value="10" >10</option><option value="11" >11</option>
+									<option value="12" >12</option><option value="13" >13</option>
+									<option value="14" >14</option><option value="15" >15</option>
+									<option value="16" >16</option><option value="17" >17</option>
+									<option value="18" >18</option><option value="19" >19</option>
+									<option value="20" >20</option><option value="21" >21</option>
+									<option value="22" >22</option><option value="23" >23</option>
+									<option value="24" >24</option><option value="25" >25</option>
+									<option value="26" >26</option>
+									<option value="27" >27</option><option value="28" >28</option>
+									<option value="29" >29</option>
+									<option value="30" >30</option><option value="31" >31</option>
+									<option value="32" >32</option>
+									<option value="33" >33</option><option value="34" >34</option>
+									<option value="35" selected>35</option><option value="36" >36</option>
+									<option value="37" >37</option><option value="38" >38</option>
+									<option value="39" >39</option>
+									<option value="40" >40</option><option value="41" >41</option>
+									<option value="42" >42</option>
+									<option value="43" >43</option><option value="44" >44</option>
+									<option value="45" >45</option>
+									<option value="46" >46</option><option value="47" >47</option>
+									<option value="48" >48</option>
+									<option value="49" >49</option>
+									<option value="50" >50</option>
+								 </select> H
+								<select name="Horaire_Hebdomadaire_M">
+									<option value="00" >00</option>
+									<option value="15" >15</option><option value="30" >30</option>
+									<option value="45" >45</option>
+								</select> MIN
+							</td>
+						</tr>
+
+
+
+
+						<tr>
+							<td colspan="2"><b>Et correspondant &agrave; <INPUT name="jour_de_presence" ID="jour_de_presence" value="" size=5></INPUT> jours de pr&eacute;sence effective dans l'organisme d'accueil sur la totalit&eacute; du stage *.</b>
+								<BR><font color=red><b>Voir aide calculateur</b> : <a href="https://www.service-public.fr/simulateur/calcul/gratification-stagiaire" target="_blank">https://www.service-public.fr/simulateur/calcul/gratification-stagiaire</a></font>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan=2>
+								<b>Le stagiaire sera-t-il présent dans l'entreprise * :</b>
+							</td>
+						</tr>
+
+						<tr>
+							<td valign=top>- La nuit :
+							</td>
+							<td>
+								<INPUT type="radio" name="nuit" ID="nuit" value="true" checked></INPUT>&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+								<INPUT type="radio" name="nuit" ID="nuit" value="false" ></INPUT>&nbsp;Non
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si oui, préciser : <INPUT name="preciser_nuit" ID="preciser_nuit" value="" size=60></INPUT>
+							</td>
+						</tr>
+
+
+
+						<tr>
+							<td valign=top>- Le dimanche :
+							</td>
+							<td>
+								<INPUT type="radio" name="dimanche" ID="dimanche" value="true" checked></INPUT>&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+								<INPUT type="radio" name="dimanche" ID="dimanche" value="false" ></INPUT>&nbsp;Non
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si oui, préciser : <INPUT name="preciser_dimanche" ID="preciser_dimanche" value="" size=60></INPUT>
+							</td>
+						</tr>
+
+
+
+
+						<tr>
+							<td valign=top>- Un jour férié :
+							</td>
+							<td>
+								<INPUT type="radio" name="ferie" ID="ferie" value="true" checked></INPUT>&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+								<INPUT type="radio" name="ferie" ID="ferie" value="false" ></INPUT>&nbsp;Non
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si oui, préciser : <INPUT name="preciser_ferie" ID="preciser_ferie" value="" size=60></INPUT>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td><b>Nombre de jours de cong&eacute;s autoris&eacute;s : *<BR></b>
+							</td>
+							<td><INPUT name="jour_de_conges" ID="jour_de_conges" value="" size=10></INPUT> jours
+							</td>
+						</tr>
+
+						<tr>
+							<td valign=top colspan=2>
+								<b>Montant total en &euro; de la gratification pour la totalit&eacute; du stage (obligatoire en France si la dur&eacute;e est sup&eacute;rieure &agrave; 2  mois ou 44 jours de pr&eacute;sence) * :<BR>
+								22 jours de pr&eacute;sence = 1 mois / 7 heures = 1 journ&eacute;e
+								</b>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td colspan=2><INPUT name="gratification" ID="gratification" value="" size=120></INPUT>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan=2>
+								<b>Le stagiaire bénéficiera-t-il d'avantanges * ?</b>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top>- Pour la restauration :
+							</td>
+							<td>
+								<INPUT type="radio" name="restauration" ID="restauration" value="true" checked></INPUT>&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+								<INPUT type="radio" name="restauration" ID="restauration" value="false" ></INPUT>&nbsp;Non
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top>- Pour l'hébergement :
+							</td>
+							<td>
+								<INPUT type="radio" name="hebergement" ID="hebergement" value="true" checked></INPUT>&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+								<INPUT type="radio" name="hebergement" ID="hebergement" value="false" ></INPUT>&nbsp;Non
+							</td>
+						</tr>
+
+
+						<tr>
+							<td valign=top>- Pour les frais engagés :
+							</td>
+							<td>
+								<INPUT type="radio" name="frais" ID="frais" value="true" checked></INPUT>&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+								<INPUT type="radio" name="frais" ID="frais" value="false" ></INPUT>&nbsp;Non
+							</td>
+						</tr>
+
+
+
+						<tr>
+							<td valign=top>- Autre :
+							</td>
+							<td>
+								<INPUT name="autre_avantage" ID="autre_avantage" value="" size=80></INPUT>
+							</td>
+						</tr>
+					</table><BR><BR>
+
+
+
+
+					<table width=100%>
+						<tr>
+							<td align=center>
+								<INPUT type="submit" name="faire" ID="faire" value="Soumettre"></INPUT>
+							</td>
+						</tr>
+						<tr>
+							<td>
+							</td> * Champs obligatoires
+						</tr>
+					</table><BR>
+
+
+
+				</form>
+			</div>
+
+
+
+			<div class="divider margin-top-0 padding-reset"></div>
+			<a th:href="@{#}" class="button big margin-top-5">Preview <i class="fa fa-arrow-circle-right"></i></a>
+
+		</div>
+	</div>
+
+</div>
+
+
+<!-- Footer
+================================================== -->
+<div class="margin-top-60"></div>
+
+<div id="footer">
+	<!-- Main -->
+	<div class="container">
+		<div class="seven columns">
+			<h4>Contact</h4>
+			<p>If you have any question you can contact the internship office</p>
+			<a th:href="contact2" class="button">Contact Us</a>
+		</div>
+	</div>
+
+	<!-- Bottom -->
+	<div class="container">
+		<div class="footer-bottom">
+			<div class="sixteen columns">
+				<h4>Follow Us</h4>
+				<ul class="social-icons">
+					<li><a class="facebook" th:href="@{https://www.facebook.com/INSAToulouse/}"><i class="icon-facebook"></i></a></li>
+					<li><a class="twitter" th:href="@{https://twitter.com/insatoulouse}"><i class="icon-twitter"></i></a></li>
+					<li><a class="instagram" th:href="@{https://www.instagram.com/insatoulouse/}"><i class="icon-instagram"></i></a></li>
+					<li><a class="youtube" th:href="@{https://www.youtube.com/user/InsaToulouse}"><i class="icon-youtube"></i></a></li>
+				</ul>
+				<div class="copyrights">©  Copyright 2017 by <a th:href="@{#}">Internship Go</a>. All Rights Reserved.</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a th:href="@{#}"></a></div>
+
+</div>
+<!-- Wrapper / End -->
+
+
+<!-- Scripts
+================================================== -->
+<script src="scripts/jquery-2.1.3.min.js"></script>
+<script src="scripts/custom.js"></script>
+<script src="scripts/jquery.superfish.js"></script>
+<script src="scripts/jquery.themepunch.tools.min.js"></script>
+<script src="scripts/jquery.themepunch.revolution.min.js"></script>
+<script src="scripts/jquery.themepunch.showbizpro.min.js"></script>
+<script src="scripts/jquery.flexslider-min.js"></script>
+<script src="scripts/chosen.jquery.min.js"></script>
+<script src="scripts/jquery.magnific-popup.min.js"></script>
+<script src="scripts/waypoints.min.js"></script>
+<script src="scripts/jquery.counterup.min.js"></script>
+<script src="scripts/jquery.jpanelmenu.js"></script>
+<script src="scripts/stacktable.js"></script>
+<script src="scripts/headroom.min.js"></script>
+<script src="scripts/fileupload.js"></script>
+<!-- Javascript functions -->
+
+
+<!-- WYSIWYG Editor -->
+<script type="text/javascript" src="scripts/jquery.sceditor.bbcode.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.sceditor.js"></script>
+
+
+
+
+
+
+</body>
+</html>
