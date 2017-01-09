@@ -1,5 +1,6 @@
 package com.internshipgo.controller;
 
+import com.internshipgo.model.InternshipOffer;
 import com.internshipgo.model.Student;
 import com.internshipgo.model.User;
 import com.internshipgo.model.repository.InternshipOfferDao;
@@ -36,13 +37,6 @@ public class InternshipController {
         return "index";
     }
 
-    @RequestMapping(value = "/test")
-    public ModelAndView test(){
-        ModelAndView model = new ModelAndView("job-page");
-        model.addObject("internship", internshipOfferDao.findOne(24L));
-        return model;
-    }
-
     @RequestMapping(value = "/Internships")
     public ModelAndView ShowInternships(){
         ModelAndView model = new ModelAndView("browse-jobs");
@@ -56,15 +50,4 @@ public class InternshipController {
         model.addObject("internship", internshipOfferDao.findOne(internshipId));
         return model;
     }
-
-    public ArrayList<InternshipOffer> getInternships(){
-        ArrayList<InternshipOffer> list = new ArrayList<InternshipOffer>();
-
-        list = (ArrayList<InternshipOffer>) internshipOfferDao.getALL();
-        for(InternshipOffer stage : list)
-            stage.describe();
-        return list;
-    }
-
-
 }

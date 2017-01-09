@@ -1,5 +1,6 @@
 package com.internshipgo.model.repository;
 
+import com.internshipgo.model.InternshipOffer;
 import com.internshipgo.model.Student;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
