@@ -175,12 +175,17 @@
 						</label>
 					</p>
 					<div class="cmp" style="display:none">
-						<input type="text" class="form-control" placeholder="Organization Name">
-
+						<p class="form-row form-row-wide">
+							<label for="organame">Organization Name
+								<i class="ln ln-icon-Office"></i>
+						<input  th:field="*{organame}" id="organame" type="text" class="form-control" >
+							</label>
+						</p>
 					</div><br/>
 					<div class="std" style="display:none">
-
-					<select class="form-control" style="color:#999">
+						<p class="form-row form-row-wide">
+							<label for="specialization">Specialization:
+					<select id="specialization"  th:field="*{specialization}" class="form-control" style="color:#999">
 						<option value="hint" disabled selected hidden>Please select specialization</option>
 						<option value="5GEI_IL">5GEI_IL</option>
 						<option value="5GEI_ISS">5GEI_ISS</option>
@@ -188,11 +193,15 @@
 						<option value="4GEI_IR">4GEI_IR</option>
 						<option value="4GEI_AE">4GEI_IR</option>
 					</select>
+							</label>
+
+						</p>
 					</div><br/>
 
 					<div class="yearhd" style="display:none">
-
-						<select class="form-control" style="color:#999">
+						<p class="form-row form-row-wide">
+							<label for="departement">Departement:
+						<select id="departement" th:field="*{departement}"  class="form-control" style="color:#999">
 							<option value="hint" disabled selected hidden>Please select Departement</option>
 							<option value="APS">APS</option>
 							<option value="CSH">CSH</option>
@@ -201,6 +210,9 @@
 							<option value="GM">GM</option>
 							<option value="GMM">GMM</option>
 						</select><br/>
+						</label>
+
+						</p>
 					</div><br/>
 
 					<p class="form-row">

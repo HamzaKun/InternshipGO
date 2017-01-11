@@ -438,27 +438,31 @@ public class MainController extends WebMvcConfigurerAdapter {
         }else{
             System.out.println(signUpForm);
             if(signUpForm.getUserType().equals("Student")) {
-                User student = new Student();
+                Student student = new Student();
                 student.setEmail(signUpForm.getEmail());
                 student.setPassword(signUpForm.getPassword());
-                student.setField(signUpForm.getField());
                 student.setUserName(signUpForm.getUserName());
+                student.setSpecialization(signUpForm.getSpecialization());
+                student.setName(signUpForm.getUserName());
+
                 session.setAttribute("activeUser",student);
                 studentDao.save((Student)student);
                 return "index-2";
             } else if(signUpForm.getUserType().equals("Company")){
-                User company = new CompanyAgent();
+                CompanyAgent company = new CompanyAgent();
+                company.setUserName(signUpForm.getUserName());
                 company.setEmail(signUpForm.getEmail());
                 company.setPassword(signUpForm.getPassword());
-                company.setField(signUpForm.getField());
+                company.setCompanyname(signUpForm.getOrganame());
                 session.setAttribute("activeUser", company);
                 companyAgentDao.save((CompanyAgent) company);
                 return "index-3";
             } else if(signUpForm.getUserType().equals("YearHead")){
-                User yearHead = new YearHead();
+                YearHead yearHead = new YearHead();
+                yearHead.setUserName(signUpForm.getUserName());
                 yearHead.setEmail(signUpForm.getEmail());
                 yearHead.setPassword(signUpForm.getPassword());
-                yearHead.setField(signUpForm.getField());
+                yearHead.setDepartement(signUpForm.getDepartement());
                 session.setAttribute("activeUser", yearHead);
                 yearHeadDao.save((YearHead)yearHead);
                 return "index-4";
@@ -537,6 +541,12 @@ public class MainController extends WebMvcConfigurerAdapter {
             session.setAttribute("activeUser", user);
             return redirectIndex(session);
         }
+    }
+
+
+    @GetMapping("/icons")
+    public String icon(HttpSession session) {
+        return "/icons";
     }
 
 }

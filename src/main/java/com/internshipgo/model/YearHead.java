@@ -11,6 +11,15 @@ public class YearHead extends User {
     private String name;
     private String description;
     private String address;
+    private String departement;
+
+    public String getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(String departement) {
+        this.departement = departement;
+    }
 
     public YearHead() {
         super();
