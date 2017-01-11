@@ -24,10 +24,12 @@ public class SignUpForm {
     @Size(min=8, max=30)
     //@FieldMatch(first = "password", second = "confirmPassword", message = "Passowords are not equal.")
     private String confPassword;
-    private String field;
+    private String specialization;
+    private String departement;
+    private String organame;
 
     public String toString() {
-        return ("userType :" + userType + ", userName: " + ", email: " +email + "pass: " + password +", conf: " + confPassword + "field:" + field);
+        return ("userType :" + userType + ", userName: " + ", email: " +email + "pass: " + password +", conf: " + confPassword );
     }
 
     public String getUserName() {
@@ -63,13 +65,7 @@ public class SignUpForm {
         this.password = password;
     }
 
-    public String getField() {
-        return field;
-    }
 
-    public void setField(String field) {
-        this.field = field;
-    }
 
     public String getUserType() {
         return userType;
@@ -80,5 +76,27 @@ public class SignUpForm {
         this.userType = userType;
     }
 
+    public String getSpecialization() {
+        return specialization;
+    }
 
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    public String getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(String departement) {
+        this.departement = departement;
+    }
+
+    public String getOrganame() {
+        return organame;
+    }
+
+    public void setOrganame(String organame) {
+        this.organame = organame;
+    }
 }

@@ -8,6 +8,10 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class CompanyAgent extends User {
+    @ManyToOne
+    private Company company;
+
+    private String companyname;
 
     public CompanyAgent() {
     }
@@ -21,8 +25,7 @@ public class CompanyAgent extends User {
         this.company = company;
     }
 
-    @ManyToOne
-    private Company company;
+
 
     public Company getCompany() {
         return company;
@@ -30,5 +33,13 @@ public class CompanyAgent extends User {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public String getCompanyname() {
+        return companyname;
+    }
+
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
     }
 }

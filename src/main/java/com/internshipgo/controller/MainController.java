@@ -1,14 +1,8 @@
 package com.internshipgo.controller;
 
+import com.internshipgo.model.*;
+import com.internshipgo.model.repository.*;
 import com.internshipgo.view.*;
-import com.internshipgo.model.CompanyAgent;
-import com.internshipgo.model.Student;
-import com.internshipgo.model.User;
-import com.internshipgo.model.YearHead;
-import com.internshipgo.model.repository.CompanyAgentDao;
-import com.internshipgo.model.repository.StudentDao;
-import com.internshipgo.model.repository.UserDao;
-import com.internshipgo.model.repository.YearHeadDao;
 import com.internshipgo.view.LoginForm;
 import com.internshipgo.view.SignUpForm;
 import com.internshipgo.view.UpdateEmailForm;
@@ -20,12 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,6 +41,8 @@ public class MainController extends WebMvcConfigurerAdapter {
     private CompanyAgentDao companyAgentDao;
     @Autowired
     private YearHeadDao yearHeadDao;
+    @Autowired
+    InternshipOfferDao internshipOfferDao;
 
 
     //no connected -----------
@@ -86,26 +85,42 @@ public class MainController extends WebMvcConfigurerAdapter {
     }
 
     @RequestMapping("/browse-jobs")
-    public String browseJobs(HttpSession session) {
+    public ModelAndView browseJobs(HttpSession session) {
 
         User user = (User) session.getAttribute("activeUser");
+        ModelAndView model=new ModelAndView("index");
+
         if (user == null) {
-            return "redirect:my-account";
+            model = new ModelAndView("redirect:my-account");
         }else if( user.getClass() == CompanyAgent.class) {
             session.setAttribute("activeUser", user);
+             model= new ModelAndView("index-3");
 
-            return "index-3";
         } else if( user.getClass() == Student.class) {
             session.setAttribute("activeUser" , user);
-            return "browse-jobs";
+            model = new ModelAndView("browse-jobs");
+            model.addObject("lists", internshipOfferDao.findAll());
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);
-            return "index-4";
+            model= new ModelAndView("index-4");
+
         }
-        return "redirect:/index";
+        return model;
 
 
     }
+
+    @RequestMapping(value = "/browse-jobs/{internshipId}")
+    public ModelAndView ShowInternshipDetaillee(@PathVariable("internshipId") Long internshipId){
+        ModelAndView model = new ModelAndView("job-page");
+        model.addObject("internship", internshipOfferDao.findOne(internshipId));
+        return model;
+    }
+
+
+
+
+
 
 
 
@@ -440,27 +455,31 @@ public class MainController extends WebMvcConfigurerAdapter {
         }else{
             System.out.println(signUpForm);
             if(signUpForm.getUserType().equals("Student")) {
-                User student = new Student();
+                Student student = new Student();
                 student.setEmail(signUpForm.getEmail());
                 student.setPassword(signUpForm.getPassword());
-                student.setField(signUpForm.getField());
                 student.setUserName(signUpForm.getUserName());
+                student.setSpecialization(signUpForm.getSpecialization());
+                student.setName(signUpForm.getUserName());
+
                 session.setAttribute("activeUser",student);
                 studentDao.save((Student)student);
                 return "index-2";
             } else if(signUpForm.getUserType().equals("Company")){
-                User company = new CompanyAgent();
+                CompanyAgent company = new CompanyAgent();
+                company.setUserName(signUpForm.getUserName());
                 company.setEmail(signUpForm.getEmail());
                 company.setPassword(signUpForm.getPassword());
-                company.setField(signUpForm.getField());
+                company.setCompanyname(signUpForm.getOrganame());
                 session.setAttribute("activeUser", company);
                 companyAgentDao.save((CompanyAgent) company);
                 return "index-3";
             } else if(signUpForm.getUserType().equals("YearHead")){
-                User yearHead = new YearHead();
+                YearHead yearHead = new YearHead();
+                yearHead.setUserName(signUpForm.getUserName());
                 yearHead.setEmail(signUpForm.getEmail());
                 yearHead.setPassword(signUpForm.getPassword());
-                yearHead.setField(signUpForm.getField());
+                yearHead.setDepartement(signUpForm.getDepartement());
                 session.setAttribute("activeUser", yearHead);
                 yearHeadDao.save((YearHead)yearHead);
                 return "index-4";
@@ -539,6 +558,27 @@ public class MainController extends WebMvcConfigurerAdapter {
             session.setAttribute("activeUser", user);
             return redirectIndex(session);
         }
+    }
+
+    // TODO: 2017/1/5 add known student into selected offer
+    @RequestMapping("/apply")
+    private String applyInternship(HttpSession session) {
+        User user = (User) session.getAttribute("activeUser");
+
+        List<Student> students = new ArrayList<Student>();
+        students.add(new Student());
+        List<InternshipOffer> list = new ArrayList<InternshipOffer>();
+        InternshipOffer test = new InternshipOffer();
+        test.setStudents(students);
+        list.add(test);
+        internshipOfferDao.save(list);
+        return "index";
+    }
+
+
+    @GetMapping("/icons")
+    public String icon(HttpSession session) {
+        return "/icons";
     }
 
 }

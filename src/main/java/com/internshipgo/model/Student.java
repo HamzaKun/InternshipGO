@@ -21,6 +21,15 @@ public class Student extends User{
     private List<InternshipOffer> internshipOffers;
     @ManyToMany
     private List<Language> languages;
+    private String specialization;
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
 
     public Student() {
         super();
