@@ -114,6 +114,7 @@ public class MainController extends WebMvcConfigurerAdapter {
         model.addAttribute("nameForm", new UpdateNameForm());
         model.addAttribute("mailForm", new UpdateEmailForm());
         User user = (User) session.getAttribute("activeUser");
+        user= new User("fflllf","kkkkkk");
         if (user == null) {
             return "redirect:my-account";
         }else if( user.getClass() == CompanyAgent.class) {
@@ -123,7 +124,8 @@ public class MainController extends WebMvcConfigurerAdapter {
         } else if ( user.getClass() == YearHead.class) {
             return "/index-4";
         }
-        return "redirect:/index";
+       // return "redirect:/index";
+        return "add-resume";
 
     }
 
