@@ -24,11 +24,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by choaib on 01/01/16.
- */
-
+//TODO: Adding a mailing service to students, if they got accepted
 @Controller
 public class MainController extends WebMvcConfigurerAdapter {
 
@@ -84,7 +80,7 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "redirect:/index";
     }
 
-    @RequestMapping("/browse-jobs")
+        @RequestMapping("/browse-jobs")
     public ModelAndView browseJobs(HttpSession session) {
 
         User user = (User) session.getAttribute("activeUser");
@@ -116,13 +112,6 @@ public class MainController extends WebMvcConfigurerAdapter {
         model.addObject("internship", internshipOfferDao.findOne(internshipId));
         return model;
     }
-
-
-
-
-
-
-
 
     @RequestMapping("/add-resume")
     public String addResume(UpdateNameForm nameForm, HttpSession session, Model model) {
@@ -178,7 +167,6 @@ public class MainController extends WebMvcConfigurerAdapter {
         }
         return "redirect:/index";
     }
-
 
     @RequestMapping("/contact2")
     public String contact2(HttpSession session) {
@@ -278,7 +266,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     @RequestMapping("/manage-applications")
     public String manageApplications(HttpSession session) {
-        User user = (User) session.getAttribute("activeUser");
+        /*User user = (User) session.getAttribute("activeUser");
         if (user == null) {
             return "redirect:my-account";
         }else if( user.getClass() == CompanyAgent.class) {
@@ -290,8 +278,9 @@ public class MainController extends WebMvcConfigurerAdapter {
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);
             return "index-4";
-        }
-        return "redirect:/index";
+        }*/
+        return "manage-applications";
+        //return "redirect:/index";
 
     }
 
@@ -412,8 +401,6 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "job-page";
     }
 
-
-    //others
 
     private String redirectIndex(HttpSession session) {
         User user = (User) session.getAttribute("activeUser");
@@ -560,25 +547,6 @@ public class MainController extends WebMvcConfigurerAdapter {
         }
     }
 
-    // TODO: 2017/1/5 add known student into selected offer
-    @RequestMapping("/apply")
-    private String applyInternship(HttpSession session) {
-        User user = (User) session.getAttribute("activeUser");
 
-        List<Student> students = new ArrayList<Student>();
-        students.add(new Student());
-        List<InternshipOffer> list = new ArrayList<InternshipOffer>();
-        InternshipOffer test = new InternshipOffer();
-        test.setStudents(students);
-        list.add(test);
-        internshipOfferDao.save(list);
-        return "index";
-    }
-
-
-    @GetMapping("/icons")
-    public String icon(HttpSession session) {
-        return "/icons";
-    }
 
 }
