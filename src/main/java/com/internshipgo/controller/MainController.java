@@ -24,11 +24,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by choaib on 01/01/16.
- */
-
 //TODO: Adding a mailing service to students, if they got accepted
 @Controller
 public class MainController extends WebMvcConfigurerAdapter {
@@ -269,7 +264,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     @RequestMapping("/manage-applications")
     public String manageApplications(HttpSession session) {
-        User user = (User) session.getAttribute("activeUser");
+        /*User user = (User) session.getAttribute("activeUser");
         if (user == null) {
             return "redirect:my-account";
         }else if( user.getClass() == CompanyAgent.class) {
@@ -281,8 +276,9 @@ public class MainController extends WebMvcConfigurerAdapter {
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);
             return "index-4";
-        }
-        return "redirect:/index";
+        }*/
+        return "manage-applications";
+        //return "redirect:/index";
 
     }
 
