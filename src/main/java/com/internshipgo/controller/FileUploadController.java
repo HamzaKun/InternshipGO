@@ -32,12 +32,14 @@ public class FileUploadController {
 
     @RequestMapping("/uploadRedirect")
     public String uploadRedirect() {
-        return "fileUpload";
+        return "add-resume";
     }
+
 
     @RequestMapping("/uploadProfilePic")
     public ResponseEntity<?> uploadProfilePic(@RequestParam("uploadfile") MultipartFile uploadfile, HttpSession session) {
         User user= (User) session.getAttribute("activeUser");
+        //user = new User("fffff","ggggg");
         if (user != null && (user.getClass() == Student.class) ) {
             if (fileUpload(uploadfile)) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
