@@ -11,6 +11,8 @@ import java.io.FileOutputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,13 +23,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UploadController {
-
+    @Autowired
+    private Environment env;
     private static final Logger logger = LoggerFactory
             .getLogger(FileUploadController.class);
 
     @RequestMapping("/Nasa")
     public String uploadRedirect1() {
-        return "job-page";
+        return "apply-offer";
     }
 
     @RequestMapping(value = "/uploadFileNasa", method = RequestMethod.POST)
@@ -39,13 +42,13 @@ public class UploadController {
                              @RequestParam("photo") MultipartFile photo,
                              @RequestParam("motiv") String motiv
                              ) {
-
+        String uploadPath = env.getProperty("paths.uploadedFiles");
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
 
                 // Creating the directory to store file
-                File dir = new File("C:/Users/user/Desktop/uploadww");
+                File dir = new File(uploadPath);
                 if (!dir.exists())
                     dir.mkdirs();
                 // recuperation des data
