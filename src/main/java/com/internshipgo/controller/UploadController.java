@@ -27,7 +27,7 @@ public class UploadController {
 
     @RequestMapping("/Nasa")
     public String uploadRedirect1() {
-        return "testAddResume";
+        return "job-page";
     }
 
     @RequestMapping(value = "/uploadFileNasa", method = RequestMethod.POST)
