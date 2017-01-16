@@ -32,12 +32,6 @@ public class MainController extends WebMvcConfigurerAdapter {
     @Autowired
     private UserDao userDao;
     @Autowired
-    private StudentDao studentDao;
-    @Autowired
-    private CompanyAgentDao companyAgentDao;
-    @Autowired
-    private YearHeadDao yearHeadDao;
-    @Autowired
     InternshipOfferDao internshipOfferDao;
 
 
@@ -264,25 +258,6 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "redirect:/index";
     }
 
-    @RequestMapping("/manage-applications")
-    public String manageApplications(HttpSession session) {
-        /*User user = (User) session.getAttribute("activeUser");
-        if (user == null) {
-            return "redirect:my-account";
-        }else if( user.getClass() == CompanyAgent.class) {
-            session.setAttribute("activeUser", user);
-            return "manage-applications";
-        } else if( user.getClass() == Student.class) {
-            session.setAttribute("activeUser" , user);
-            return "index-2";
-        } else if ( user.getClass() == YearHead.class) {
-            session.setAttribute("activeUser", user);
-            return "index-4";
-        }*/
-        return "manage-applications";
-        //return "redirect:/index";
-
-    }
 
     @RequestMapping("/browse-resumes")
     public String browseResumes(HttpSession session) {
@@ -424,74 +399,6 @@ public class MainController extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/results").setViewName("results");
     }
-
-    @GetMapping("/createUser")
-    public String showCreateUserForm() {
-        return "my-account";
-    }
-
-    @PostMapping("/createUser")
-    public String checkUserInfo(LoginForm loginForm, Model model, HttpSession session, @Valid SignUpForm signUpForm, BindingResult bindingResult) {
-        System.out.println("in createUser Post method");
-        System.out.println(signUpForm);
-        //To check if the email is already in use
-        List<User> users = userDao.findByEmail(signUpForm.getEmail());
-        if(bindingResult.hasErrors() || !signUpForm.getConfPassword().equals((String) signUpForm.getPassword())
-                || users.size() != 0) {
-            return "redirect:my-account#tab2";
-        }else{
-            System.out.println(signUpForm);
-            if(signUpForm.getUserType().equals("Student")) {
-                Student student = new Student();
-                student.setEmail(signUpForm.getEmail());
-                student.setPassword(signUpForm.getPassword());
-                student.setUserName(signUpForm.getUserName());
-                student.setSpecialization(signUpForm.getSpecialization());
-                student.setName(signUpForm.getUserName());
-
-                session.setAttribute("activeUser",student);
-                studentDao.save((Student)student);
-                return "index-2";
-            } else if(signUpForm.getUserType().equals("Company")){
-                CompanyAgent company = new CompanyAgent();
-                company.setUserName(signUpForm.getUserName());
-                company.setEmail(signUpForm.getEmail());
-                company.setPassword(signUpForm.getPassword());
-                company.setCompanyname(signUpForm.getOrganame());
-                session.setAttribute("activeUser", company);
-                companyAgentDao.save((CompanyAgent) company);
-                return "index-3";
-            } else if(signUpForm.getUserType().equals("YearHead")){
-                YearHead yearHead = new YearHead();
-                yearHead.setUserName(signUpForm.getUserName());
-                yearHead.setEmail(signUpForm.getEmail());
-                yearHead.setPassword(signUpForm.getPassword());
-                yearHead.setDepartement(signUpForm.getDepartement());
-                session.setAttribute("activeUser", yearHead);
-                yearHeadDao.save((YearHead)yearHead);
-                return "index-4";
-            }
-            return "redirect:/index";
-        }
-
-    }
-
-    @PostMapping("/updateUserName")
-    public String updateUser(@Valid UpdateNameForm nameForm, HttpSession session, BindingResult bindingResult, Model model) {
-        model.addAttribute("nameForm", new UpdateNameForm());
-        model.addAttribute("mailForm", new UpdateEmailForm());
-        User user = (User) session.getAttribute("activeUser");
-        if (user != null  && (user.getClass() == Student.class) ) {
-            if ( !bindingResult.hasErrors() ) {
-                userDao.updateUserName(user.getId(), nameForm.getUserName());
-                return "add-resume";
-            }
-        } else {
-            return "my-account";
-        }
-        return "redirect:/add-resume";
-    }
-
     @PostMapping("/studentconvention")
     public String studentconv(@Valid ManageConventionS nameForm, HttpSession session, BindingResult bindingResult, Model model) {
         model.addAttribute("nameForm", new UpdateNameForm());

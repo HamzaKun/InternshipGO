@@ -17,7 +17,7 @@ public class InternshipOffer {
     private int companyResponse;
     private int yearHeadResponse;
     private String city;
-    private String nameCompany;
+    private String companyName;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Student> students;
     @ManyToOne
@@ -30,7 +30,7 @@ public class InternshipOffer {
 
     public InternshipOffer(String title, String description, int duration,
                            int companyResponse, int yearHeadResponse, String city,
-                           String nameCompany) {
+                           String companyName) {
         super();
         this.title = title;
         this.description = description;
@@ -38,12 +38,12 @@ public class InternshipOffer {
         this.companyResponse = companyResponse;
         this.yearHeadResponse = yearHeadResponse;
         this.city = city;
-        this.nameCompany = nameCompany;
+        this.companyName = companyName;
     }
 
     public InternshipOffer(Long id,String title, String description, int duration,
                            int companyResponse, int yearHeadResponse, String city,
-                           String nameCompany) {
+                           String companyName) {
         super();
         this.id=id;
         this.title = title;
@@ -52,7 +52,7 @@ public class InternshipOffer {
         this.companyResponse = companyResponse;
         this.yearHeadResponse = yearHeadResponse;
         this.city = city;
-        this.nameCompany = nameCompany;
+        this.companyName = companyName;
     }
 
     public Long getId() {
@@ -97,9 +97,9 @@ public class InternshipOffer {
     public void setCity(String city) {
         this.city = city;
     }
-    public String getNameCompany() {     return nameCompany;     }
+    public String getCompanyName() {     return companyName;     }
 
-    public void setNameCompany(String nameCompany) { this.nameCompany = nameCompany;    }
+    public void setCompanyName(String companyName) { this.companyName = companyName;    }
 
     public List<Student> getStudents() {
         return students;
@@ -122,7 +122,7 @@ public class InternshipOffer {
         return "InternshipOffer [title=" + title + ", description="
                 + "ok" + ", duration=" + duration + ", companyResponse="
                 + companyResponse + ", yearHeadResponse=" + yearHeadResponse
-                + ", city=" + city + ", nameCompany=" + nameCompany + "]";
+                + ", city=" + city + ", companyName=" + companyName + "]";
     }
 
     public void describe(){
