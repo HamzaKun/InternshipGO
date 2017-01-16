@@ -84,11 +84,6 @@ public class ConventionController {
             e.printStackTrace();
             return "index";
         }
-        /*PDDocumentCatalog docCatalog = pdfDoc.getDocumentCatalog();
-        PDAcroForm acroForm = docCatalog.getAcroForm();
-        PDField field = acroForm.getField("applicationPrepaid[0].#pageSet[0].Pagina1[0].txtFirstName[0]");
-        */
-
         return "index";
     }
 }

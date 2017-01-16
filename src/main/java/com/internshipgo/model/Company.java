@@ -3,6 +3,8 @@ package com.internshipgo.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * Created by Hamza on 11/9/2016.
@@ -11,7 +13,7 @@ import javax.persistence.Id;
 public class Company {
     @Id
     @GeneratedValue
-    private long id;
+    private String id;
     private Type type;
     private CompanySize companySize;
     private Industry industry;
@@ -19,7 +21,7 @@ public class Company {
     private long founded;
     private String webSite;
     private String address;
-    /*@OneToMany
+    @OneToMany
     private List<CompanyAgent> agents;
 
     public List<CompanyAgent> getAgents() {
@@ -29,7 +31,7 @@ public class Company {
     public void setAgents(List<CompanyAgent> agents) {
         this.agents = agents;
     }
-*/
+
     /*public Company(String mail, String password) {
         super(mail, password);
     }*/
@@ -42,11 +44,11 @@ public class Company {
         this.address = address;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

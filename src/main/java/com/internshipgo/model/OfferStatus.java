@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 /**
  * Created by user on 09/01/2017.
  */
-/*@Entity
+@Entity
 public class OfferStatus {
 
     @Id
@@ -81,4 +81,4 @@ public class OfferStatus {
     public void setInternshipOffer(InternshipOffer internshipOffer) {
         this.internshipOffer = internshipOffer;
     }
-}*/
+}
