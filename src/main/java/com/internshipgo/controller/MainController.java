@@ -183,7 +183,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 
     @RequestMapping("/manage-conventions2")
     public String manageConvention2(HttpSession session) {
-        User user = (User) session.getAttribute("activeUser");
+        /*User user = (User) session.getAttribute("activeUser");
         if (user == null) {
             return "redirect:my-account";
         }else if( user.getClass() == CompanyAgent.class) {
@@ -196,8 +196,8 @@ public class MainController extends WebMvcConfigurerAdapter {
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);
             return "index-4";
-        }
-        return "redirect:/index";
+        }*/
+        return "manage-conventions2";
     }
     //employer connected -----------
 

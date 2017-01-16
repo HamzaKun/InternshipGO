@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class CompanyAgent extends User {
+    //TODO: adding the FSD and accept/refuse, get the offer's description; Messagerie externe
     @ManyToOne
     private Company company;
 

@@ -15,6 +15,8 @@ public class InternshipOffer {
     private String description;
     private int duration;
     private int companyResponse;
+    //TODO : Acceptation de l'étudiant
+    private int studentResponse;
     private int yearHeadResponse;
     private String city;
     private String companyName;
