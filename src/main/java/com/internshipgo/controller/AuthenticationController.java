@@ -1,13 +1,7 @@
 package com.internshipgo.controller;
 
-import com.internshipgo.model.CompanyAgent;
-import com.internshipgo.model.Student;
-import com.internshipgo.model.User;
-import com.internshipgo.model.YearHead;
-import com.internshipgo.model.repository.CompanyAgentDao;
-import com.internshipgo.model.repository.StudentDao;
-import com.internshipgo.model.repository.UserDao;
-import com.internshipgo.model.repository.YearHeadDao;
+import com.internshipgo.model.*;
+import com.internshipgo.model.repository.*;
 import com.internshipgo.view.LoginForm;
 import com.internshipgo.view.SignUpForm;
 import com.internshipgo.view.UpdateEmailForm;
@@ -21,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +31,8 @@ public class AuthenticationController {
     private YearHeadDao yearHeadDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private CompanyDao companyDao;
 
     @GetMapping("/createUser")
     public String showCreateUserForm() {
@@ -61,22 +58,36 @@ public class AuthenticationController {
                 student.setSpecialization(signUpForm.getSpecialization());
                 student.setName(signUpForm.getUserName());
                 session.setAttribute("activeUser",student);
-                studentDao.save((Student)student);
+                studentDao.save(student);
                 return "index-2";
             } else if(signUpForm.getUserType().equals("Company")){
-                CompanyAgent company = new CompanyAgent();
-                company.setUserName(signUpForm.getUserName());
-                company.setEmail(signUpForm.getEmail());
-                company.setPassword(signUpForm.getPassword());
+                CompanyAgent companyAgent = new CompanyAgent();
+                companyAgent.setUserName(signUpForm.getUserName());
+                companyAgent.setEmail(signUpForm.getEmail());
+                companyAgent.setPassword(signUpForm.getPassword());
                 /**
-                 * We'll use this field to know the company of the user;
-                 * It's mapped with the companyName in the company(id)
+                 * We'll use this field to know the companyAgent of the user;
+                 * It's mapped with the companyName in the companyAgent(id)
                  * and the InternshipOffer(companyName)
                  */
-                company.setCompanyname(signUpForm.getOrganame());
-                session.setAttribute("activeUser", company);
-
-                companyAgentDao.save((CompanyAgent) company);
+                companyAgent.setCompanyname(signUpForm.getOrganame());
+                Company company1 = companyDao.getCompanyById(signUpForm.getOrganame());
+                if (company1 != null) {
+                    List<CompanyAgent> agents = company1.getAgents();
+                    agents.add(companyAgent);
+                    company1.setAgents(agents);
+                    companyAgent.setCompany(company1);
+                    companyDao.save(company1);
+                }else {
+                    Company company = new Company();
+                    company.setId(signUpForm.getOrganame());
+                    List<CompanyAgent> agents = new ArrayList<>();
+                    companyAgent.setCompany(company);
+                    agents.add(companyAgent);
+                    company.setAgents(agents);
+                    companyDao.save(company);
+                }
+                session.setAttribute("activeUser", companyAgent);
                 return "index-3";
             } else if(signUpForm.getUserType().equals("YearHead")){
                 YearHead yearHead = new YearHead();
@@ -85,7 +96,7 @@ public class AuthenticationController {
                 yearHead.setPassword(signUpForm.getPassword());
                 yearHead.setDepartement(signUpForm.getDepartement());
                 session.setAttribute("activeUser", yearHead);
-                yearHeadDao.save((YearHead)yearHead);
+                yearHeadDao.save(yearHead);
                 return "index-4";
             }
             return "redirect:/index";

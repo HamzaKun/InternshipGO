@@ -1,9 +1,6 @@
 package com.internshipgo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by user on 09/01/2017.
@@ -18,8 +15,19 @@ public class OfferStatus {
     private InternshipOffer internshipOffer;
     @ManyToOne
     private Student student;
+    @Column(columnDefinition = "default '-1'")
     private int companyResponse;
+    @Column(columnDefinition = "default '-1'")
     private int studentResponse;
+    private String motivation;
+
+    public String getMotivation() {
+        return motivation;
+    }
+
+    public void setMotivation(String motivation) {
+        this.motivation = motivation;
+    }
 
     public int getCompanyResponse() {
         return companyResponse;

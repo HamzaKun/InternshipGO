@@ -48,6 +48,7 @@ public class InternshipController {
     public ModelAndView ShowInternshipDetaillee(@PathVariable("internshipId") Long internshipId){
         ModelAndView model = new ModelAndView("job-page");
         model.addObject("internship", internshipOfferDao.findOne(internshipId));
+        model.addObject("iden",internshipId);
         return model;
     }
 }

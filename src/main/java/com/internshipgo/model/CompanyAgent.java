@@ -1,5 +1,6 @@
 package com.internshipgo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -9,7 +10,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class CompanyAgent extends User {
     //TODO: adding the FSD and accept/refuse, get the offer's description; Messagerie externe
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Company company;
 
     private String companyname;

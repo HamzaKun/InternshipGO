@@ -23,4 +23,6 @@ public interface InternshipOfferDao extends CrudRepository<InternshipOffer,Long>
 
     @Query("select o from InternshipOffer o where o.companyName = ?1")
     public List<InternshipOffer> getCompanyOffer(String companyName);
+
+    InternshipOffer getInternshipOfferById(Long id);
 }

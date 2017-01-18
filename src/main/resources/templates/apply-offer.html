@@ -17,8 +17,8 @@
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" th:href="@{css/style.css}">
-    <link rel="stylesheet" th:href="@{css/colors/blue.css}" id="colors">
+    <link rel="stylesheet" th:href="@{../css/style.css}">
+    <link rel="stylesheet" th:href="@{../css/colors/blue.css}" id="colors">
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -39,7 +39,7 @@
 
                 <!-- Logo -->
                 <div id="logo">
-                    <h1><a th:href="index-2"><img src="images/logo.png" alt="Internship Go" /></a></h1>
+                    <h1><a th:href="index-2"><img src="../images/logo.png" alt="Internship Go" /></a></h1>
                 </div>
 
                 <!-- Menu -->
@@ -91,27 +91,10 @@
         <!-- Submit Page -->
         <div class="sixteen columns">
             <div class="submit-page">
-
-                <!-- Notice -->
-                <div class="notification notice closeable margin-bottom-40">
-                    <p><span>Have an account?</span> If you don’t have an account you can create one below by entering your email address.</p>
-                </div>
-
                 <div class="form">
                     <!--/*@thymesVar id="nameForm" type="com.internshipgo.view.UpdateNameForm"*/-->
-                    <form th:action="@{/uploadFileNasa}" method="post" enctype="multipart/form-data" class="register">
 
-                        <h5>Your Name</h5>
-                        <input type="text" class="input-text"  th:name="name" placeholder="Your full name" />
-                        <br>
-
-                        <h5>Your Email</h5>
-                        <input type="text" class="search-field"  th:name="email" placeholder="mail@example.com" />
-                        <br>
-
-                        <h5>Location</h5>
-                        <input class="search-field" type="text" th:name="location" placeholder="e.g. London, UK" value=""/>
-                        <br>
+                    <form th:action="@{/uploadFileNasa/}+${iden}" method="post" enctype="multipart/form-data" class="register">
 
                         <h5>Photo </h5>
                         <input class="upload-btn" id="upload-file-input" type="file" name="photo" accept="*" />

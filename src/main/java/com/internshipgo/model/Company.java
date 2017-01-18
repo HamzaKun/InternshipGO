@@ -1,9 +1,6 @@
 package com.internshipgo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -12,7 +9,6 @@ import java.util.List;
 @Entity
 public class Company {
     @Id
-    @GeneratedValue
     private String id;
     private Type type;
     private CompanySize companySize;
@@ -21,7 +17,7 @@ public class Company {
     private long founded;
     private String webSite;
     private String address;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.ALL})
     private List<CompanyAgent> agents;
 
     public List<CompanyAgent> getAgents() {
