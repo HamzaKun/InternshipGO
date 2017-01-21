@@ -20,8 +20,6 @@ public class InternshipOffer {
     private int yearHeadResponse;
     private String city;
     private String companyName;
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Student> students;
     @ManyToOne
     private Company company;
 
@@ -102,14 +100,6 @@ public class InternshipOffer {
     public String getCompanyName() {     return companyName;     }
 
     public void setCompanyName(String companyName) { this.companyName = companyName;    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
 
     public Company getCompany() {
         return company;

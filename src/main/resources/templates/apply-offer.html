@@ -9,7 +9,7 @@
     <!-- Basic Page Needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Add Resume</title>
+    <title>Apply for offer</title>
 
     <!-- Mobile Specific Metas
     ================================================== -->
@@ -39,24 +39,24 @@
 
                 <!-- Logo -->
                 <div id="logo">
-                    <h1><a th:href="index-2"><img src="../images/logo.png" alt="Internship Go" /></a></h1>
+                    <h1><a th:href="@{/index-2}"><img src="../images/logo.png" alt="Internship Go" /></a></h1>
                 </div>
 
                 <!-- Menu -->
                 <nav id="navigation" class="menu">
                     <ul id="responsive">
                         <!--<h1 th:text="${session.activeUser.userName}"></h1>-->
-                        <li><a th:href="index-2" ><i class="fa fa-home"></i></a></li>
-                        <li><a th:href="browse-jobs">Browse Jobs</a></li>
-                        <li><a th:href="add-resume" id="current">Add Resume</a></li>
-                        <li><a th:href="manage-resumes">Manage Resumes</a></li>
-                        <li><a th:href="manage-conventions2">Manage Convention</a></li>
+                        <li><a th:href="@{/index-2}"><i class="fa fa-home"></i></a></li>
+                        <li><a th:href="@{/browse-jobs}">Browse Jobs</a></li>
+                        <li><a th:href="@{/add-resume}" >Add Resume</a></li>
+                        <li><a th:href="@{/manage-application}">Manage applications</a></li>
+                        <li><a th:href="@{/manage-conventions2}">Manage Convention</a></li>
 
                     </ul>
                     <ul class="float-right">
-                        <li><a th:href="edit-profile"><i class="fa fa-user"></i> </a></li>
+                        <li><a th:href="@{/edit-profile}"><i class="fa fa-user"></i> </a></li>
 
-                        <li><a th:href="disconnect"><i class="fa fa-lock"></i> </a></li>
+                        <li><a th:href="@{/disconnect}"><i class="fa fa-lock"></i> </a></li>
                     </ul>
                 </nav>
 
@@ -77,7 +77,7 @@
         <div class="container">
 
             <div class="sixteen columns">
-                <h2><i class="fa fa-plus-circle"></i> Add Resume</h2>
+                <h2><i class="fa fa-plus-circle"></i> Apply for offer : </h2>
             </div>
 
         </div>
@@ -107,7 +107,7 @@
 
                         <br/>
                         <br/>
-                        <h5>Resume Content</h5>
+                        <h5>Cover letter</h5>
                         <textarea class="WYSIWYG" name="summary" cols="40" th:name="motiv" rows="3" id="summary" spellcheck="true"></textarea>
                         <br>
 

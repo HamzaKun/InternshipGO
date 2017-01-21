@@ -139,9 +139,9 @@
 				<!-- Name / Avatar -->
 				<div class="info">
 					<img src="images/resumes-list-avatar-01.png" alt="">
-					<span th:text="${listValue.name}">John Doe</span>
+					<span th:text="${listValue.student.name}"></span>
 					<ul>
-						<li><a th:href="@{#}"><i class="fa fa-file-text"></i> Download CV</a></li>
+						<li><a th:href="@{/download/}+${listValue.resumePath}"><i class="fa fa-file-text"></i> Download CV</a></li>
 						<li><a th:href="@{#}"><i class="fa fa-envelope"></i> Contact</a></li>
 					</ul>
 				</div>
@@ -180,8 +180,8 @@
 					</div>
 
 					<div class="clearfix"></div>
-					<a th:href="@{#}" class="button margin-top-15">Save</a>
-					<a th:href="@{#}" class="button gray margin-top-15 delete-application">Delete this application</a>
+					<a th:href="@{/accept/}+${listValue.id}" class="button margin-top-15">Accept applicant</a>
+					<a th:href="@{/refuse/}+${listValue.id}" class="button gray margin-top-15 delete-application">Delete this application</a>
 
 			    </div>
 
@@ -194,13 +194,13 @@
 			    <!-- Third Tab -->
 			    <div class="app-tab-content"  id="three-1">
 					<i>Full Name:</i>
-					<span>John Doe</span>
+					<span th:text="${listValue.student.name}"></span>
 
 					<i>Email:</i>
-					<span><a th:href="@{mailto:john.doe@example.com}">john.doe@example.com</a></span>
+					<span th:text="${listValue.student.email}"><a th:href="@{mailto:} + ${listValue.student.email}"></a></span>
 
 					<i>Message:</i>
-					<span>Praesent efficitur dui eget condimentum viverra. Sed non maximus ipsum, non consequat nulla. Vivamus nec convallis nisi, sit amet egestas magna. Quisque vulputate lorem sit amet ornare efficitur. Duis aliquam est elit, sed tincidunt enim commodo sed. Fusce tempus magna id sagittis laoreet. Proin porta luctus ante eu ultrices. Sed porta consectetur purus, rutrum tincidunt magna dictum tempus. </span>
+					<span th:text="${listValue.motivation}"></span>
 			    </div>
 
 			</div>

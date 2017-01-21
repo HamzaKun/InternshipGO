@@ -20,6 +20,24 @@ public class OfferStatus {
     @Column(columnDefinition = "default '-1'")
     private int studentResponse;
     private String motivation;
+    private String picAddress;
+    private String resumePath;
+
+    public String getPicAddress() {
+        return picAddress;
+    }
+
+    public void setPicAddress(String picAddress) {
+        this.picAddress = picAddress;
+    }
+
+    public String getResumePath() {
+        return resumePath;
+    }
+
+    public void setResumePath(String resumePath) {
+        this.resumePath = resumePath;
+    }
 
     public String getMotivation() {
         return motivation;

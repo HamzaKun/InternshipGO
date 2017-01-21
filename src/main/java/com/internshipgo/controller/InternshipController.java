@@ -31,7 +31,6 @@ public class InternshipController {
         students.add(new Student());
         List<InternshipOffer> list = new ArrayList<InternshipOffer>();
         InternshipOffer test = new InternshipOffer();
-        test.setStudents(students);
         list.add(test);
         internshipOfferDao.save(list);
         return "index";

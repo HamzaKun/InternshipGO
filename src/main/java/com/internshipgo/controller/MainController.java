@@ -78,21 +78,21 @@ public class MainController extends WebMvcConfigurerAdapter {
     public ModelAndView browseJobs(HttpSession session) {
 
         User user = (User) session.getAttribute("activeUser");
-        ModelAndView model=new ModelAndView("index");
+        ModelAndView model=new ModelAndView("/index");
 
         if (user == null) {
             model = new ModelAndView("redirect:my-account");
         }else if( user.getClass() == CompanyAgent.class) {
             session.setAttribute("activeUser", user);
-             model= new ModelAndView("index-3");
+             model= new ModelAndView("/index-3");
 
         } else if( user.getClass() == Student.class) {
             session.setAttribute("activeUser" , user);
-            model = new ModelAndView("browse-jobs");
+            model = new ModelAndView("/browse-jobs");
             model.addObject("lists", internshipOfferDao.findAll());
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);
-            model= new ModelAndView("index-4");
+            model= new ModelAndView("/index-4");
 
         }
         return model;
@@ -141,25 +141,6 @@ public class MainController extends WebMvcConfigurerAdapter {
         }
         return "redirect:/index";
 
-    }
-
-    @RequestMapping("/manage-resumes")
-    public String manageResumes(HttpSession session) {
-        User user = (User) session.getAttribute("activeUser");
-        if (user == null) {
-            return "redirect:my-account";
-        }else if( user.getClass() == CompanyAgent.class) {
-            session.setAttribute("activeUser", user);
-
-            return "index-3";
-        } else if( user.getClass() == Student.class) {
-            session.setAttribute("activeUser" , user);
-            return "manage-resumes";
-        } else if ( user.getClass() == YearHead.class) {
-            session.setAttribute("activeUser", user);
-            return "index-4";
-        }
-        return "redirect:/index";
     }
 
     @RequestMapping("/contact2")

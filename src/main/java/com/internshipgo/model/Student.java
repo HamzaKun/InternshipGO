@@ -3,6 +3,7 @@ package com.internshipgo.model;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,17 @@ public class Student extends User{
     @ManyToMany
     private List<Language> languages;
     private String specialization;
+
+    /**
+     *To use this we must first set add the student in the internship offer
+     * @param internshipOffer
+     */
+    public void addInternshipOffer(InternshipOffer internshipOffer) {
+        if (getInternshipOffers() == null){
+            internshipOffers = new ArrayList<InternshipOffer>();
+        }
+        getInternshipOffers().add(internshipOffer);
+    }
 
     public String getSpecialization() {
         return specialization;
@@ -91,7 +103,8 @@ public class Student extends User{
         return internshipOffers;
     }
 
-    public void setInternshipOffers(List<InternshipOffer> internshipOffers) {
+    public void setInternshipOffers(List<InternshipOffer> internshipOffers, boolean add) {
+        this.internshipOffers =
         this.internshipOffers = internshipOffers;
     }
 

@@ -8,7 +8,9 @@ package com.internshipgo.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
+import com.internshipgo.model.InternshipOffer;
 import com.internshipgo.model.OfferStatus;
 import com.internshipgo.model.Student;
 import com.internshipgo.model.User;
@@ -67,30 +69,35 @@ public class UploadController {
         String uploadPath = env.getProperty("paths.uploadedFiles");
         if (!file.isEmpty()) {
             try {
-                byte[] bytes = file.getBytes();
-                // Creating the directory to store file
-                File dir = new File(uploadPath);
-                if (!dir.exists())
-                    dir.mkdirs();
-                // Create the file on server
-                File serverFile = new File(dir.getAbsolutePath()
-                        + File.separator + user.getUserName());
-                BufferedOutputStream stream = new BufferedOutputStream(
-                        new FileOutputStream(serverFile));
-                stream.write(bytes);
-                stream.close();
-                OfferStatus offerStatus = new OfferStatus();
-                offerStatus.setMotivation(motiv);
-                offerStatus.setStudent((Student) user);
-                offerStatus.setInternshipOffer(internshipOfferDao.getInternshipOfferById(internshipId));
-                offerStatusDao.save(offerStatus);
+                Student student = (Student) user;
+                if (offerStatusDao.getOfferStatusByIdAndInternshipId(student.getId(), internshipId) == null) {
+                    byte[] bytes = file.getBytes();
+                    // Creating the directory to store file
+                    File dir = new File(uploadPath);
+                    if (!dir.exists())
+                        dir.mkdirs();
+                    // Create the file on server
+                    File serverFile = new File(dir.getAbsolutePath()
+                            + File.separator + user.getUserName() + "_" + internshipId);
+                    BufferedOutputStream stream = new BufferedOutputStream(
+                            new FileOutputStream(serverFile));
+                    stream.write(bytes);
+                    stream.close();
+                    OfferStatus offerStatus = new OfferStatus();
+                    offerStatus.setMotivation(motiv);
+                    offerStatus.setResumePath(user.getUserName() + "_" + internshipId);
+                    offerStatus.setStudent(student);
+                    offerStatus.setInternshipOffer(internshipOfferDao.getInternshipOfferById(internshipId));
+                    offerStatusDao.save(offerStatus);
 
-                logger.info("Server File Location="
-                        + serverFile.getAbsolutePath());
+                    logger.info("Server File Location="
+                            + serverFile.getAbsolutePath());
+                }
 
                 return "You successfully uploaded file=" + user.getUserName()+internshipId;
                 //return "fileUpload";
             } catch (Exception e) {
+                e.printStackTrace();
                 return "You failed to upload " + user.getUserName() + " => " + e.getMessage();
                 //return "fileUpload";
             }
