@@ -41,7 +41,7 @@ public class CompanyController {
             return "redirect:my-account";
         }else if( user.getClass() == CompanyAgent.class) {
             CompanyAgent companyAgent = (CompanyAgent) user;
-            List<OfferStatus> applicants = offerStatusDao.getApplyingStudents(companyAgent.getCompany().getId());
+            List<OfferStatus> applicants = offerStatusDao.getApplyingUnrespondedStudents(companyAgent.getCompany().getId());
             model.addAttribute("lists", applicants);
             session.setAttribute("activeUser", user);
             return "/manage-applications";
@@ -62,7 +62,7 @@ public class CompanyController {
             /**
              * To check if he's trying to change the status of his company's offers
              */
-            if ( offerStatus.getInternshipOffer().getCompanyName() == companyAgent.getCompanyname()){
+            if ( offerStatus.getInternshipOffer().getCompanyName().equals(companyAgent.getCompanyname())){
                 offerStatus.setCompanyResponse(OfferResponses.ACCEPTED);
                 offerStatusDao.save(offerStatus);
                 return "redirect:/manage-applications";
@@ -85,7 +85,7 @@ public class CompanyController {
             /**
              * To check if he's trying to change the status of his company's offers
              */
-            if ( offerStatus.getInternshipOffer().getCompany().getId() == companyAgent.getCompany().getId()){
+            if ( offerStatus.getInternshipOffer().getCompany().getId().equals(companyAgent.getCompany().getId())){
                 offerStatus.setCompanyResponse(OfferResponses.REFUSED);
                 offerStatusDao.save(offerStatus);
                 return "redirect:/manage-applications";

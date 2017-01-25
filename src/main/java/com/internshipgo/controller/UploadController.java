@@ -44,7 +44,6 @@ public class UploadController {
     public ModelAndView uploadRedirect1(HttpSession session,@PathVariable("internshipId") Long internshipId) {
         User user = (User) session.getAttribute("activeUser");
         ModelAndView model;
-        //User user = new User("fffff","fffff");
         if (user == null) {
             model = new ModelAndView("redirect:my-account");
             return model;
@@ -61,11 +60,12 @@ public class UploadController {
 
     @RequestMapping(value = "/uploadFileNasa/{internshipId}", method = RequestMethod.POST)
     public @ResponseBody
-    String uploadFileHandler(@RequestParam("file") MultipartFile file,
+    ModelAndView uploadFileHandler(@RequestParam("file") MultipartFile file,
                              @RequestParam("photo") MultipartFile photo,
                              @RequestParam("motiv") String motiv
                              , HttpSession session, @PathVariable("internshipId") Long internshipId) {
         User user = (User) session.getAttribute("activeUser");
+        ModelAndView model;
         String uploadPath = env.getProperty("paths.uploadedFiles");
         if (!file.isEmpty()) {
             try {
@@ -93,18 +93,22 @@ public class UploadController {
                     logger.info("Server File Location="
                             + serverFile.getAbsolutePath());
                 }
-
-                return "You successfully uploaded file=" + user.getUserName()+internshipId;
-                //return "fileUpload";
+                model = new ModelAndView("redirect:/browse-jobs");
+                //return "You successfully uploaded file=" + user.getUserName()+internshipId;
+                return model;
             } catch (Exception e) {
                 e.printStackTrace();
-                return "You failed to upload " + user.getUserName() + " => " + e.getMessage();
+                model = new ModelAndView("redirect:/index");
+//                return "You failed to upload " + user.getUserName() + " => " + e.getMessage();
                 //return "fileUpload";
             }
         } else {
-            return "You failed to upload " + user.getUserName()
-                    + " because the file was empty.";
+            model = new ModelAndView("redirect:/index");
+            return model;
+//            return "You failed to upload " + user.getUserName() + " because the file was empty.";
         }
+        model = new ModelAndView("redirect:/index");
+        return model;
     }
 
 }

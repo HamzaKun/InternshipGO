@@ -43,7 +43,7 @@
 			<ul id="responsive">
 
 				<li><a th:href="index-2" ><i class="fa fa-home"></i></a></li>
-				<li><a th:href="browse-jobs">Browse Jobs</a></li>
+				<li><a th:href="browse-jobs">Browse Offers</a></li>
 				<li><a th:href="add-resume">Add Resume</a></li>
 				<li><a th:href="manage-application">Manage applications</a></li>
 				<li><a th:href="manage-conventions2" id="current">Manage Convention</a></li>
@@ -88,298 +88,37 @@
 
 <!-- Content
 ================================================== -->
-<div class="container">
+	<div class="container">
 
-	<!-- Table -->
-	<div class="sixteen columns">
+		<!-- Table -->
+		<div class="sixteen columns">
 
-		<strong><a th:href="@{#}" class="download-csv">Download CSV</a></strong>
+			<p class="margin-bottom-25">Your convention is ready, you can download it below.</p>
 
-	</div>
+			<table class="manage-table resumes responsive-table">
 
-
-	<div class="eight columns">
-		<!-- Select -->
-		<select data-placeholder="Filter by status" class="chosen-select-no-single">
-			<option value="">Filter by status</option>
-			<option value="new">New</option>
-			<option value="interviewed">Interviewed</option>
-			<option value="offer">Offer extended</option>
-			<option value="hired">Hired</option>
-			<option value="archived">Archived</option>
-		</select>
-		<div class="margin-bottom-15"></div>
-	</div>
-
-	<div class="eight columns">
-		<!-- Select -->
-		<select data-placeholder="Newest first" class="chosen-select-no-single">
-			<option value="">Newest first</option>
-			<option value="name">Sort by name</option>
-			<option value="rating">Sort by rating</option>
-		</select>
-		<div class="margin-bottom-35"></div>
-	</div>
-
-
-	<!-- Applications -->
-	<div class="sixteen columns">
-
-		<!-- Application #1 -->
-		<div class="application">
-			<div class="app-content">
-
-				<!-- Name / Avatar -->
-				<div class="info">
-					<img src="images/resumes-list-avatar-01.png" alt="">
-					<span>John Doe</span>
-					<ul>
-						<li><a th:href="@{#}"><i class="fa fa-file-text"></i> Download offer</a></li>
-						<li><a th:href="@{#}"><i class="fa fa-envelope"></i> Contact</a></li>
-					</ul>
-				</div>
-
-				<!-- Buttons -->
-				<div class="buttons">
-					<a th:href="@{#one-1}" class="button gray app-link"><i class="fa fa-pencil"></i> Edit</a>
-					<a th:href="@{#two-1}" class="button gray app-link"><i class="fa fa-sticky-note"></i> Add Note</a>
-					<a th:href="@{#three-1}" class="button gray app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
-				</div>
-				<div class="clearfix"></div>
-
-			</div>
-
-			<!--  Hidden Tabs -->
-			<div class="app-tabs">
-
-				<a th:href="@{#}" class="close-tab button gray"><i class="fa fa-close"></i></a>
-
-				<!-- First Tab -->
-			    <div class="app-tab-content" id="one-1">
-
-					<div class="select-grid">
-						<select data-placeholder="Convention status" class="chosen-select-no-single">
-							<option value="">Convention  status</option>
-							<option value="new">New</option>
-							<option value="interviewed">Signed</option>
-							<option value="offer">refused</option>
-							<option value="hired">Canceled</option>
-						</select>
-					</div>
-
-
-
-					<div class="clearfix"></div>
-					<a th:href="@{#}" class="button margin-top-15">Save</a>
-					<a th:href="@{#}" class="button gray margin-top-15 delete-application">Delete this application</a>
-
-			    </div>
-
-			    <!-- Second Tab -->
-			    <div class="app-tab-content"  id="two-1">
-					<textarea placeholder="Private note regarding this application"></textarea>
-					<a th:href="@{#}" class="button margin-top-15">Add Note</a>
-			    </div>
-
-			    <!-- Third Tab -->
-			    <div class="app-tab-content"  id="three-1">
-					<i>Full Name:</i>
-					<span>John Doe</span>
-
-					<i>Email:</i>
-					<span><a th:href="@{mailto:john.doe@example.com}">john.doe@example.com</a></span>
-
-					<i>Message:</i>
-					<span>Praesent efficitur dui eget condimentum viverra. Sed non maximus ipsum, non consequat nulla. Vivamus nec convallis nisi, sit amet egestas magna. Quisque vulputate lorem sit amet ornare efficitur. Duis aliquam est elit, sed tincidunt enim commodo sed. Fusce tempus magna id sagittis laoreet. Proin porta luctus ante eu ultrices. Sed porta consectetur purus, rutrum tincidunt magna dictum tempus. </span>
-			    </div>
-
-			</div>
-
-			<!-- Footer -->
-			<div class="app-footer">
-
-
-
-				<ul>
-					<li><i class="fa fa-file-text-o"></i> New</li>
-					<li><i class="fa fa-calendar"></i> September 24, 2015</li>
-				</ul>
-				<div class="clearfix"></div>
-
-			</div>
+				<tr>
+					<th><i class="fa fa-user"></i>Company Name</th>
+					<th><i class="fa fa-file-text"></i> Offer Title</th>
+					<th><i class="fa fa-map-marker"></i> Location</th>
+					<th><i class="fa fa-calendar"></i> Status</th>
+					<th></th>
+				</tr>
+					<!-- The accepted offer -->
+					<tr>
+						<td class="title"><a th:href="@{#}" th:text="${offer.internshipOffer.companyName}"></a></td>
+						<td th:text="${offer.internshipOffer.title}"></td>
+						<td th:text="${offer.internshipOffer.city}"></td>
+						<td th:text="${offer.companyResponse}"></td>
+						<td class="action">
+                            <a th:href="@{/downloadConvention/}+${offer.id}"><i class="fa fa-download"></i> Download Convention</a>
+                        </td>
+					</tr>
+			</table>
 		</div>
 
-
-		<!-- Application #2 -->
-		<div class="application">
-			<div class="app-content">
-
-				<!-- Name / Avatar -->
-				<div class="info">
-					<img src="images/avatar-placeholder.png" alt="">
-					<span><a th:href="@{#}">Tom Smith</a></span>
-					<ul>
-						<li><a th:href="@{#}"><i class="fa fa-file-text"></i> Download offer</a></li>
-						<li><a th:href="@{#}"><i class="fa fa-envelope"></i> Contact</a></li>
-					</ul>
-				</div>
-
-				<!-- Buttons -->
-				<div class="buttons">
-					<a th:href="@{#one-2}" class="button gray app-link"><i class="fa fa-pencil"></i> Edit</a>
-					<a th:href="@{#two-2}" class="button gray app-link"><i class="fa fa-sticky-note"></i> Add Note</a>
-					<a th:href="@{#three-2}" class="button gray app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
-				</div>
-				<div class="clearfix"></div>
-
-			</div>
-
-			<!--  Hidden Tabs -->
-			<div class="app-tabs">
-
-				<a th:href="@{#}" class="close-tab button gray"><i class="fa fa-close"></i></a>
-
-				<!-- First Tab -->
-			    <div class="app-tab-content" id="one-2">
-
-						<div class="select-grid">
-							<select data-placeholder="Convention status" class="chosen-select-no-single">
-								<option value="">Convention  status</option>
-								<option value="new">New</option>
-								<option value="interviewed">Signed</option>
-								<option value="offer">refused</option>
-								<option value="hired">Canceled</option>
-							</select>
-						</div>
-
-
-					<div class="clearfix"></div>
-					<a th:href="@{#}" class="button margin-top-15">Save</a>
-					<a th:href="@{#}" class="button gray margin-top-15 delete-application">Delete this application</a>
-
-			    </div>
-
-			    <!-- Second Tab -->
-			    <div class="app-tab-content"  id="two-2">
-					<textarea placeholder="Private note regarding this application"></textarea>
-					<a th:href="@{#}" class="button margin-top-15">Add Note</a>
-			    </div>
-
-			    <!-- Third Tab -->
-			    <div class="app-tab-content" id="three-2">
-					<i>Full Name:</i>
-					<span>Tom Smith</span>
-
-					<i>Email:</i>
-					<span><a th:href="@{mailto:john.doe@example.com}">tom.smith@example.com</a></span>
-
-					<i>Message:</i>
-					<span>Morbi non pharetra quam. Pellentesque eget massa dolor. Sed vitae placerat eros, quis aliquet purus. Donec feugiat sapien urna, at sagittis libero pellentesque in. Praesent efficitur dui eget condimentum viverra. Sed non maximus ipsum, non consequat nulla. Vivamus nec convallis nisi, sit amet egestas magna. Quisque vulputate lorem sit amet ornare efficitur. Duis aliquam est elit, sed tincidunt enim commodo sed. Fusce tempus magna id sagittis laoreet. Proin porta luctus ante eu ultrices. Sed porta consectetur purus, rutrum tincidunt magna dictum tempus. </span>
-			    </div>
-
-			</div>
-
-			<!-- Footer -->
-			<div class="app-footer">
-
-
-
-				<ul>
-					<li><i class="fa fa-file-text-o"></i>Convention canceled</li>
-					<li><i class="fa fa-calendar"></i> September 22, 2015</li>
-				</ul>
-				<div class="clearfix"></div>
-
-			</div>
-		</div>
-
-
-		<!-- Application #3 -->
-		<div class="application">
-			<div class="app-content">
-
-				<!-- Name / Avatar -->
-				<div class="info">
-					<img src="images/avatar-placeholder.png" alt="">
-					<span>Kathy Berry</span>
-					<ul>
-						<li><a th:href="@{#}"><i class="fa fa-file-text"></i> Download offer</a></li>
-						<li><a th:href="@{#}"><i class="fa fa-envelope"></i> Contact</a></li>
-					</ul>
-				</div>
-
-				<!-- Buttons -->
-				<div class="buttons">
-					<a th:href="@{#one-3}" class="button gray app-link"><i class="fa fa-pencil"></i> Edit</a>
-					<a th:href="@{#two-3}" class="button gray app-link"><i class="fa fa-sticky-note"></i> Add Note</a>
-					<a th:href="@{#three-3}" class="button gray app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
-				</div>
-				<div class="clearfix"></div>
-
-			</div>
-
-			<!--  Hidden Tabs -->
-			<div class="app-tabs">
-
-				<a th:href="@{#}" class="close-tab button gray"><i class="fa fa-close"></i></a>
-
-				<!-- First Tab -->
-			    <div class="app-tab-content" id="one-3">
-
-						<div class="select-grid">
-							<select data-placeholder="Convention status" class="chosen-select-no-single">
-								<option value="">Convention  status</option>
-								<option value="new">New</option>
-								<option value="interviewed">Signed</option>
-								<option value="offer">refused</option>
-								<option value="hired">Canceled</option>
-							</select>
-						</div>
-
-
-					<div class="clearfix"></div>
-					<a th:href="@{#}" class="button margin-top-15">Save</a>
-					<a th:href="@{#}" class="button gray margin-top-15 delete-application">Delete this application</a>
-
-			    </div>
-
-			    <!-- Second Tab -->
-			    <div class="app-tab-content"  id="two-3">
-					<textarea placeholder="Private note regarding this application"></textarea>
-					<a th:href="@{#}" class="button margin-top-15">Add Note</a>
-			    </div>
-
-			    <!-- Third Tab -->
-			    <div class="app-tab-content"  id="three-3">
-					<i>Full Name:</i>
-					<span>Kathy Berry</span>
-
-					<i>Email:</i>
-					<span><a th:href="@{mailto:kathy.berry@example.com}">kathy.berry@example.com</a></span>
-			    </div>
-
-			</div>
-
-			<!-- Footer -->
-			<div class="app-footer">
-
-
-
-				<ul>
-					<li><i class="fa fa-file-text-o"></i>convetion signed</li>
-					<li><i class="fa fa-calendar"></i> September 26, 2015</li>
-				</ul>
-				<div class="clearfix"></div>
-
-			</div>
-		</div>
-
-
 	</div>
-</div>
-
-
-<!-- Footer
+	<!-- Footer
 ================================================== -->
 <div class="margin-top-60"></div>
 

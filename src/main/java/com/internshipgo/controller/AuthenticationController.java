@@ -44,6 +44,7 @@ public class AuthenticationController {
         System.out.println("in createUser Post method");
         System.out.println(signUpForm);
         //To check if the email is already in use
+        //TODO Add an error
         List<User> users = userDao.findByEmail(signUpForm.getEmail());
         if(bindingResult.hasErrors() || !signUpForm.getConfPassword().equals((String) signUpForm.getPassword())
                 || users.size() != 0) {

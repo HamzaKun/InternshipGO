@@ -33,6 +33,8 @@ public class MainController extends WebMvcConfigurerAdapter {
     private UserDao userDao;
     @Autowired
     InternshipOfferDao internshipOfferDao;
+    @Autowired
+    OfferStatusDao offerStatusDao;
 
 
     //no connected -----------
@@ -50,10 +52,6 @@ public class MainController extends WebMvcConfigurerAdapter {
     public String contact(HttpSession session) {
         return "contact";
     }
-
-
-    //candidate connected -----------
-
 
     @RequestMapping("/index-2")
     public String index2(HttpSession session) {
@@ -76,16 +74,13 @@ public class MainController extends WebMvcConfigurerAdapter {
 
         @RequestMapping("/browse-jobs")
     public ModelAndView browseJobs(HttpSession session) {
-
         User user = (User) session.getAttribute("activeUser");
         ModelAndView model=new ModelAndView("/index");
-
         if (user == null) {
             model = new ModelAndView("redirect:my-account");
         }else if( user.getClass() == CompanyAgent.class) {
             session.setAttribute("activeUser", user);
              model= new ModelAndView("/index-3");
-
         } else if( user.getClass() == Student.class) {
             session.setAttribute("activeUser" , user);
             model = new ModelAndView("/browse-jobs");
@@ -93,11 +88,8 @@ public class MainController extends WebMvcConfigurerAdapter {
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);
             model= new ModelAndView("/index-4");
-
         }
         return model;
-
-
     }
 
     @RequestMapping(value = "/browse-jobs/{internshipId}")
@@ -112,7 +104,6 @@ public class MainController extends WebMvcConfigurerAdapter {
         model.addAttribute("nameForm", new UpdateNameForm());
         model.addAttribute("mailForm", new UpdateEmailForm());
         User user = (User) session.getAttribute("activeUser");
-        user= new User("fflllf","kkkkkk");
         if (user == null) {
             return "redirect:my-account";
         }else if( user.getClass() == CompanyAgent.class) {
@@ -122,9 +113,7 @@ public class MainController extends WebMvcConfigurerAdapter {
         } else if ( user.getClass() == YearHead.class) {
             return "/index-4";
         }
-       // return "redirect:/index";
         return "add-resume";
-
     }
 
     @RequestMapping("/edit-profile")
@@ -140,7 +129,6 @@ public class MainController extends WebMvcConfigurerAdapter {
             return "/index-4";
         }
         return "redirect:/index";
-
     }
 
     @RequestMapping("/contact2")
@@ -163,24 +151,26 @@ public class MainController extends WebMvcConfigurerAdapter {
     }
 
     @RequestMapping("/manage-conventions2")
-    public String manageConvention2(HttpSession session) {
-        /*User user = (User) session.getAttribute("activeUser");
+    public String manageConvention2(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("activeUser");
         if (user == null) {
             return "redirect:my-account";
         }else if( user.getClass() == CompanyAgent.class) {
             session.setAttribute("activeUser", user);
-
             return "index-3";
         } else if( user.getClass() == Student.class) {
             session.setAttribute("activeUser" , user);
+            OfferStatus acceptedOffer = offerStatusDao.getAcceptedOfferStatusByStudentId(user.getId());
+            session.setAttribute("activeUser" , user);
+            model.addAttribute("offer", acceptedOffer);
             return "manage-conventions2";
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);
             return "index-4";
-        }*/
-        return "manage-conventions2";
+        } else {
+            return "index";
+        }
     }
-    //employer connected -----------
 
     @RequestMapping("/index-3")
     public String index3(HttpSession session) {
@@ -201,7 +191,7 @@ public class MainController extends WebMvcConfigurerAdapter {
         return "redirect:/index";
     }
 
-    @RequestMapping("/add-job")
+    /*@RequestMapping("/add-job")
     public String addJob(HttpSession session) {
         User user = (User) session.getAttribute("activeUser");
         if (user == null) {
@@ -218,9 +208,9 @@ public class MainController extends WebMvcConfigurerAdapter {
             return "index-4";
         }
         return "redirect:/index";
-    }
+    }*/
 
-    @RequestMapping("/manage-jobs")
+    /*@RequestMapping("/manage-jobs")
     public String manageJobs(HttpSession session) {
         User user = (User) session.getAttribute("activeUser");
         if (user == null) {
@@ -237,7 +227,7 @@ public class MainController extends WebMvcConfigurerAdapter {
             return "index-4";
         }
         return "redirect:/index";
-    }
+    }*/
 
 
     @RequestMapping("/browse-resumes")
