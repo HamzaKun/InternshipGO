@@ -21,5 +21,5 @@ public interface OfferStatusDao extends CrudRepository<OfferStatus, Long> {
     @Query("select o from OfferStatus o where o.id = ?1 and o.student.id = ?2")
     OfferStatus getOfferStatusByIdAndInternshipId(Long id, Long intId);
     @Query("select o from OfferStatus o where o.student.id = ?1 and o.companyResponse = 1 and o.studentResponse = 1")
-    OfferStatus getAcceptedOfferStatusByStudentId(Long studentId);
+    List<OfferStatus> getAcceptedOfferStatusByStudentId(Long studentId);
 }

@@ -5,6 +5,7 @@ import com.internshipgo.model.repository.OfferStatusDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -34,6 +35,33 @@ public class ApplicationsController {
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);
             return "index-4";
+        }
+        return "redirect:/index";
+    }
+
+    @RequestMapping("/studentAccept/{offerId}")
+    public String studentAccept(HttpSession session, @PathVariable("offerId") Long offerId) {
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:/index";
+        } else if ( user.getClass() == Student.class ) {
+            OfferStatus offerStatus = offerStatusDao.getOfferStatusById(offerId);
+            offerStatus.setStudentResponse(OfferResponses.ACCEPTED);
+            offerStatusDao.save(offerStatus);
+            return "redirect:/manage-application";
+        }
+        return "redirect:/index";
+    }
+    @RequestMapping("/studentRefuse/{offerId}")
+    public String studentRefuse(HttpSession session, @PathVariable("offerId") Long offerId) {
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            return "redirect:/index";
+        } else if ( user.getClass() == Student.class ) {
+            OfferStatus offerStatus = offerStatusDao.getOfferStatusById(offerId);
+            offerStatus.setStudentResponse(OfferResponses.REFUSED);
+            offerStatusDao.save(offerStatus);
+            return "redirect:/manage-application";
         }
         return "redirect:/index";
     }

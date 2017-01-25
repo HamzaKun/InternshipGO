@@ -43,7 +43,7 @@
 					<ul id="responsive">
 						<li><a th:href="@{/index-2}" ><i class="fa fa-home"></i></a></li>
 						<li><a th:href="@{/browse-jobs}">Browse Offers</a></li>
-						<li><a th:href="@{/add-resume}">Add Resume</a></li>
+						<li><a th:href="@{/add-resume}">Update profile</a></li>
 						<li><a th:href="@{/manage-application}" id="current">Manage applications</a></li>
 						<li><a th:href="@{/manage-conventions2}">Manage Convention</a></li>
 					</ul>
@@ -110,9 +110,8 @@
 					<td th:text="${listValue.internshipOffer.city}"></td>
 					<td th:text="${listValue.companyResponse}"></td>
 					<td class="action">
-						<a th:href="@{#}"><i class="fa fa-pencil"></i> Accept</a>
-						<a th:href="@{#}"><i class="fa  fa-eye-slash"></i> Refuse</a>
-						<a th:href="@{#}" class="delete"><i class="fa fa-remove"></i> Delete</a>
+						<a th:href="@{/studentAccept/}+${listValue.id}"><i class="fa fa-check"></i> Accept</a>
+						<a th:href="@{/studentRefuse/}+${listValue.id}" class="delete"><i class="fa fa-remove"></i> Refuse</a>
 					</td>
 				</tr>
 				</p>

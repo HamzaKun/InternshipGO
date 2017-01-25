@@ -160,9 +160,13 @@ public class MainController extends WebMvcConfigurerAdapter {
             return "index-3";
         } else if( user.getClass() == Student.class) {
             session.setAttribute("activeUser" , user);
-            OfferStatus acceptedOffer = offerStatusDao.getAcceptedOfferStatusByStudentId(user.getId());
+            List<OfferStatus> acceptedOffers = offerStatusDao.getAcceptedOfferStatusByStudentId(user.getId());
             session.setAttribute("activeUser" , user);
-            model.addAttribute("offer", acceptedOffer);
+            if (acceptedOffers.size() != 0)
+                model.addAttribute("offer", acceptedOffers.get(0));
+            else
+                model.addAttribute("offer", null);
+
             return "manage-conventions2";
         } else if ( user.getClass() == YearHead.class) {
             session.setAttribute("activeUser", user);

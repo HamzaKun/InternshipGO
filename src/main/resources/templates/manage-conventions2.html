@@ -92,8 +92,8 @@
 
 		<!-- Table -->
 		<div class="sixteen columns">
-
-			<p class="margin-bottom-25">Your convention is ready, you can download it below.</p>
+			<p th:if="${offer} != null" class="margin-bottom-25">Your convention is ready, you can download it below.</p>
+			<p th:if="${offer} == null" class="margin-bottom-25">You haven't been accepted by any company yet.</p>
 
 			<table class="manage-table resumes responsive-table">
 
@@ -105,7 +105,8 @@
 					<th></th>
 				</tr>
 					<!-- The accepted offer -->
-					<tr>
+
+					<tr th:if="${offer} != null">
 						<td class="title"><a th:href="@{#}" th:text="${offer.internshipOffer.companyName}"></a></td>
 						<td th:text="${offer.internshipOffer.title}"></td>
 						<td th:text="${offer.internshipOffer.city}"></td>

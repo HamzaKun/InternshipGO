@@ -48,7 +48,7 @@
 						<!--<h1 th:text="${session.activeUser.userName}"></h1>-->
 						<li><a th:href="index-2" ><i class="fa fa-home"></i></a></li>
 						<li><a th:href="browse-jobs">Browse Offers</a></li>
-						<li><a th:href="add-resume" id="current">Add Resume</a></li>
+						<li><a th:href="add-resume" id="current">Update profile</a></li>
 						<li><a th:href="manage-application">Manage applications</a></li>
 						<li><a th:href="manage-conventions2">Manage Convention</a></li>
 
@@ -77,7 +77,7 @@
 	<div class="container">
 
 		<div class="sixteen columns">
-			<h2><i class="fa fa-plus-circle"></i> Add Resume</h2>
+			<h2><i class="fa fa-plus-circle"></i> Update profile</h2>
 		</div>
 
 	</div>
@@ -141,7 +141,7 @@
 
             <!--<h5>Video <span>(optional)</span></h5>
                             <input class="search-field" type="text" placeholder="A link to a video about you" value=""/>-->
-            <div class="form">
+            <!--<div class="form">
                 <h5>Resume </h5>
                 <form id="upload-file-form1" method="post" enctype="multipart/form-data" class="register">
                     <input class="upload-btn"id="upload-file-input1" type="file" name="uploadfile1" accept="*" />
@@ -154,12 +154,12 @@
 			</div>
 
 
-			<!-- Add URLs -->
+			&lt;!&ndash; Add URLs &ndash;&gt;
 			<div class="form with-line">
 				<h5>URL(s) <span>(optional)</span></h5>
 				<div class="form-inside">
 
-					<!-- Adding URL(s) -->
+					&lt;!&ndash; Adding URL(s) &ndash;&gt;
 					<div class="form boxed box-to-clone url-box">
 						<a th:href="@{#}" class="close-form remove-box button"><i class="fa fa-close"></i></a>
 						<input class="search-field" type="text" placeholder="Name" value=""/>
@@ -171,7 +171,7 @@
 				</div>
 			</div>
 
-
+-->
 			<!-- Education -->
 			<div class="form with-line">
 				<h5>Education <span>(optional)</span></h5>
@@ -211,7 +211,7 @@
 
 
 			<div class="divider margin-top-0 padding-reset"></div>
-			<a th:href="@{/uploadProfilePic}" class="button big margin-top-5">Preview <i class="fa fa-arrow-circle-right"></i></a>
+			<a th:href="@{/edit-profile}" class="button big margin-top-5">Preview <i class="fa fa-arrow-circle-right"></i></a>
 
 		</div>
 	</div>
