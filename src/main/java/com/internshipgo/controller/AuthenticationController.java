@@ -91,14 +91,44 @@ public class AuthenticationController {
                 session.setAttribute("activeUser", companyAgent);
                 return "index-3";
             } else if(signUpForm.getUserType().equals("YearHead")){
-                YearHead yearHead = new YearHead();
+/*                YearHead yearHead = new YearHead();
                 yearHead.setUserName(signUpForm.getUserName());
                 yearHead.setEmail(signUpForm.getEmail());
                 yearHead.setPassword(signUpForm.getPassword());
                 yearHead.setDepartement(signUpForm.getDepartement());
                 session.setAttribute("activeUser", yearHead);
                 yearHeadDao.save(yearHead);
-                return "index-4";
+                return "index-4";*/
+                CompanyAgent companyAgent = new CompanyAgent();
+                companyAgent.setUserName(signUpForm.getUserName());
+                companyAgent.setEmail(signUpForm.getEmail());
+                companyAgent.setPassword(signUpForm.getPassword());
+                /**
+                 * We'll use this field to know the companyAgent of the user;
+                 * It's mapped with the companyName in the companyAgent(id)
+                 * and the InternshipOffer(companyName)
+                 */
+                companyAgent.setCompanyname(signUpForm.getOrganame());
+                companyAgent.setCompanyname("google");
+                companyAgentDao.save(companyAgent);
+                Company company1 = companyDao.getCompanyById("google");
+                if (company1 != null) {
+                    List<CompanyAgent> agents = company1.getAgents();
+                    agents.add(companyAgent);
+                    company1.setAgents(agents);
+                    companyAgent.setCompany(company1);
+                    companyDao.save(company1);
+                }else {
+                    Company company = new Company();
+                    company.setId(signUpForm.getOrganame());
+                    List<CompanyAgent> agents = new ArrayList<>();
+                    companyAgent.setCompany(company);
+                    agents.add(companyAgent);
+                    company.setAgents(agents);
+                    companyDao.save(company);
+                }
+                session.setAttribute("activeUser", companyAgent);
+                return "index-3";
             }
             return "redirect:/index";
         }

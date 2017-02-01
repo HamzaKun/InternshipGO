@@ -104,7 +104,7 @@
 				</tr>
 				<p th:each="listValue : ${offers}" >
 				<!-- Item #1 -->
-				<tr>
+				<tr >
 					<td class="title"><a th:href="@{#}" th:text="${listValue.internshipOffer.companyName}"></a></td>
 					<td th:text="${listValue.internshipOffer.title}"></td>
 					<td th:text="${listValue.internshipOffer.city}"></td>

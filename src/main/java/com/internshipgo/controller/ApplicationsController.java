@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -38,6 +39,12 @@ public class ApplicationsController {
         }
         return "redirect:/index";
     }
+
+/*    @RequestMapping("/manage-application2")
+    public ModelAndView manageResumes2(HttpSession session, Model model) {
+        ModelAndView dg = new ModelAndView("manage-application.html");
+        return dg;
+    }*/
 
     @RequestMapping("/studentAccept/{offerId}")
     public String studentAccept(HttpSession session, @PathVariable("offerId") Long offerId) {

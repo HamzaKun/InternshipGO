@@ -63,7 +63,7 @@ public class CompanyController {
              * To check if he's trying to change the status of his company's offers
              */
             if ( offerStatus.getInternshipOffer().getCompanyName().equals(companyAgent.getCompanyname())){
-                offerStatus.setCompanyResponse(OfferResponses.ACCEPTED);
+                offerStatus.setCompanyResponse(OfferResponses.ACCEPTED + offerStatus.getCompanyResponse());
                 offerStatusDao.save(offerStatus);
                 return "redirect:/manage-applications";
             } else {
