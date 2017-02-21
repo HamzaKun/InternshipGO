@@ -15,10 +15,10 @@ public class OfferStatus {
     private InternshipOffer internshipOffer;
     @ManyToOne
     private Student student;
-    @Column(columnDefinition = "default '-1'")
-    private int companyResponse;
-    @Column(columnDefinition = "default '-1'")
-    private int studentResponse;
+    //@Column(columnDefinition = "default '-1'")
+    private int companyResponse = -1;
+    //@Column(columnDefinition = "default '5'")
+    private int studentResponse = -1;
     private String motivation;
     private String picAddress;
     private String resumePath;
