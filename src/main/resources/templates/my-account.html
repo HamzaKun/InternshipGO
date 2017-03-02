@@ -107,7 +107,8 @@
 
 					<p class="form-row form-row-wide">
 						<label for="username">Email:
-							<i class="ln ln-icon-Male"></i>
+							<i class="ln ln-icon-Male"></i><!--
+							<inline th:if="${#fields.hasErrors('loginForm')}" th:errors="*{loginForm}"></inline>-->
 							<input type="text" th:field="*{email}"  class="input-text"  value="" id="username"  placeholder="Email"/>
 						</label>
 					</p>
@@ -115,7 +116,7 @@
 					<p class="form-row form-row-wide">
 						<label for="password">Password:
 							<i class="ln ln-icon-Lock-2"></i>
-							<input   th:field="*{password}"   class="input-text" type="password"  id="password"/>
+							<input th:field="*{password}"   class="input-text" type="password"  id="password"/>
 						</label>
 					</p>
 

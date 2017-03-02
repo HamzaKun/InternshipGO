@@ -71,8 +71,8 @@
 <div id="titlebar">
 	<div class="container">
 		<div class="ten columns">
-			<span><a th:href="browse-jobs">Restaurant / Food Service</a></span>
-			<h2>Restaurant Team Member - Crew <span class="full-time">Full-Time</span></h2>
+			<span><a th:href="browse-jobs" th:text="${internship.title}"></a></span>
+			<h2 th:text="${internship.companyName}"> <span class="full-time">Full-Time</span></h2>
 		</div>
 
 
